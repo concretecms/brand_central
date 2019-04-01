@@ -1,0 +1,141 @@
+.asset {
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+
+  h2 {
+    text-transform: none !important;
+  }
+
+  h3 {
+    margin-top: 0px;
+  }
+
+  .asset-btn-group {
+    button {
+      text-transform: uppercase;
+      font-weight: bold;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .asset-meta {
+
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    a {
+      &:hover {
+        color: $hoverColor;
+      }
+    }
+
+    a.add-to-lightbox {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      padding-right: 25px;
+      background:url(#{$themePath}/images/ic_collections.svg) no-repeat;
+      background-size: 15px;
+      background-position: right 0px top 3px;
+      text-decoration: none;
+      color:#585858;
+
+      &:hover {
+        color: $hoverColor;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+      li {
+        display: inline-block;
+        margin-right: 68px;
+        color: #585858;
+
+        span {
+          color: #a8a8a8;
+        }
+      }
+    }
+  }
+
+  .asset-detail-image {
+    background-color: $imgBackgroundColor;
+    border: 1px solid $imgBorderColor;
+    display: block;
+    position: relative;
+    height: 0;
+    padding:56.25% 0 0 0;
+    overflow: hidden;
+    width: 100%;
+    min-height: 500px;
+
+    @extend %image-responsive-asset-detail;
+
+
+    img {
+      @extend %img;
+    }
+  }
+  .asset-description, .asset-collections {
+    margin-bottom: 50px;
+    h3 {
+      font-weight: bold;
+      font-size:1em;
+      color:$baseColor;
+    }
+  }
+  .asset-collections, .asset-files{
+    ul {
+      list-style: none;
+      margin:0;
+      padding:0;
+      li {
+        margin-bottom: 15px;
+        a{
+          text-decoration: none;
+          i{
+            margin-right:10px;
+          }
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  .asset-files{
+    a.asset-download-bundle {
+      @extend %round-button;
+      color:#0075BF;
+      border-color:#0075BF;
+      &:hover{
+        background-color:#0075BF;
+        color:#fff;
+      }
+    }
+  }
+}
+
+.error-message {
+  position: relative;
+  i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  font-size: 18px;
+
+  ul {
+    list-style-type: none;
+  }
+}

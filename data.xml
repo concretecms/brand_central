@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+
+
+
+    <blocktypes>
+        <blocktype handle="desktop_quick_links" package="brand_central"/>
+    </blocktypes>
+
+    <themes>
+        <theme handle="theme_brand_central" package="brand_central" activated="1"/>
+    </themes>
+
+    <pagetemplates>
+        <pagetemplate icon="two_column.png" name="Home" handle="home" package="brand_central" internal=""/>
+        <pagetemplate icon="two_column.png" name="Collection List" handle="collection_list" package="brand_central" internal=""/>
+    </pagetemplates>
+
+    <thumbnailtypes>
+        <thumbnailtype name="Asset Thumbnail" handle="asset_thumbnail" sizingMode="proportional" width="480" height="320" />
+        <thumbnailtype name="Asset Detail" handle="asset_detail" sizingMode="proportional" width="960" height="640" />
+    </thumbnailtypes>
+
+    <trees>
+        <tree type="topic" name="Collection Categories" default="0">
+            <topic name="People"/>
+            <topic name="Landscapes"/>
+            <topic name="Animals"/>
+            <topic name="Backgrounds"/>
+        </tree>
+
+
+    </trees>
+
+
+    <expressentities>
+        <entity id="30fa48ee-9064-11e8-b1b2-000c6c0a6826" handle="asset_file" plural_handle="asset_files"
+                name="Asset File" include_in_public_list="1" description="" supports_custom_display_order="1"
+                default_view_form="30fa61e4-9064-11e8-b1b2-000c6c0a6826"
+                default_edit_form="30fa61e4-9064-11e8-b1b2-000c6c0a6826" results-folder="/">
+            <attributekeys>
+                <attributekey handle="asset_file" name="File" package="" searchable="1" indexed="1" type="image_file"
+                              category="">
+                    <type mode="file_manager"/>
+                </attributekey>
+                <attributekey handle="asset_file_description" name="Description" package="" searchable="1" indexed="1"
+                              type="textarea" category="">
+                    <type mode="text"/>
+                </attributekey>
+            </attributekeys>
+            <associations>
+                <association type="many_to_one" id="6bffa39e-9064-11e8-b1b2-000c6c0a6826"
+                             source-entity="30fa48ee-9064-11e8-b1b2-000c6c0a6826"
+                             target-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826" target-property-name="asset"
+                             inversed-by-property-name="asset_files" is-owned="1" is-owner=""/>
+            </associations>
+            <forms>
+                <form id="30fa61e4-9064-11e8-b1b2-000c6c0a6826" name="Form">
+                    <fieldsets>
+                        <fieldset title="" description="">
+                            <controls>
+                                <control id="b062134e-9066-11e8-b1b2-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_file"/>
+                                </control>
+                                <control id="aabf4bce-9434-11e8-b636-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_file_description"/>
+                                </control>
+                            </controls>
+                        </fieldset>
+                        <fieldset title="Asset" description="">
+                            <controls>
+                                <control id="c7789c9c-9066-11e8-b1b2-000c6c0a6826" type="association" required=""
+                                         custom-label="" association="6bffa39e-9064-11e8-b1b2-000c6c0a6826"/>
+                            </controls>
+                        </fieldset>
+                    </fieldsets>
+                </form>
+            </forms>
+        </entity>
+        <entity id="6e8ab340-905c-11e8-b1b2-000c6c0a6826" handle="asset" plural_handle="assets" name="Asset"
+                include_in_public_list="1" description="" default_view_form="6e8ac380-905c-11e8-b1b2-000c6c0a6826"
+                default_edit_form="6e8ac380-905c-11e8-b1b2-000c6c0a6826" results-folder="/">
+            <attributekeys>
+                <attributekey handle="asset_name" name="Name" package="" searchable="1" indexed="1" type="text"
+                              category="">
+                    <type placeholder=""/>
+                </attributekey>
+                <attributekey handle="asset_description" name="Description" package="" searchable="1" indexed="1"
+                              type="textarea" category="">
+                    <type mode="text"/>
+                </attributekey>
+                <attributekey handle="asset_thumbnail" name="Thumbnail" package="" searchable="1" indexed="1"
+                              type="image_file" category="">
+                    <type mode="file_manager"/>
+                </attributekey>
+                <attributekey handle="asset_folder_id" name="Folder ID" package="" searchable="1" indexed="0" type="number"
+                              category="">
+                </attributekey>
+                <attributekey handle="asset_tags" name="Tags" package="" searchable="1" indexed="1" type="select" category="">
+                    <type allow-multiple-values="1" display-order="display_asc" display-multiple-values=""
+                          allow-other-values="1" hide-none-option="">
+                        <options>
+                            <option value="Logo" is-end-user-added="1"/>
+                            <option value="branding" is-end-user-added="1"/>
+                        </options>
+                    </type>
+                </attributekey>
+                <attributekey handle="asset_location" name="Location" package="" searchable="1" indexed="1" type="text"
+                              category="">
+                    <type placeholder=""/>
+                </attributekey>
+                <attributekey handle="asset_type" name="Type" package="" searchable="1" indexed="1" type="select"
+                              category="">
+                    <type allow-multiple-values="" display-order="display_asc" display-multiple-values=""
+                          allow-other-values="" hide-none-option="">
+                        <options>
+                            <option value="photo" is-end-user-added="1"/>
+                            <option value="logo" is-end-user-added="1"/>
+                            <option value="video" is-end-user-added="1"/>
+                            <option value="template" is-end-user-added="1"/>
+                        </options>
+                    </type>
+                </attributekey>
+            </attributekeys>
+            <associations>
+                <association type="one_to_many" id="6bffc09a-9064-11e8-b1b2-000c6c0a6826"
+                             source-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826"
+                             target-entity="30fa48ee-9064-11e8-b1b2-000c6c0a6826" target-property-name="asset_files"
+                             inversed-by-property-name="asset" is-owned="" is-owner="1"/>
+                <association type="many_to_many" id="bf22a0c6-9064-11e8-b1b2-000c6c0a6826"
+                             source-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826"
+                             target-entity="f1b4aefa-905d-11e8-b1b2-000c6c0a6826" target-property-name="collections"
+                             inversed-by-property-name="assets" is-owned="" is-owner=""/>
+                <association type="many_to_many" id="01134731-b06b-11e8-9990-0800272d882f"
+                             source-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826"
+                             target-entity="cf642ce0-b064-11e8-9990-0800272d882f" target-property-name="lightboxes"
+                             inversed-by-property-name="assets" is-owned="" is-owner=""/>
+            </associations>
+            <forms>
+                <form id="6e8ac380-905c-11e8-b1b2-000c6c0a6826" name="Form">
+                    <fieldsets>
+                        <fieldset title="General" description="">
+                            <controls>
+                                <control id="603c9d22-9065-11e8-b1b2-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_name"/>
+                                </control>
+                                <control id="629e84b8-9065-11e8-b1b2-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_description"/>
+                                </control>
+                                <control id="0982a076-942f-11e8-b636-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_thumbnail"/>
+                                </control>
+                                <control id="1033a94c-95c4-11e8-b6f5-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_tags"/>
+                                </control>
+                                <control id="33bfca6c-95ce-11e8-b6f5-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_location"/>
+                                </control>
+                                <control id="3226c4da-9b50-11e8-b815-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="asset_type"/>
+                                </control>
+                            </controls>
+                        </fieldset>
+                        <fieldset title="Collection" description="">
+                            <controls>
+                                <control id="6b1c4eea-9065-11e8-b1b2-000c6c0a6826" type="association" required=""
+                                         custom-label="" association="bf22a0c6-9064-11e8-b1b2-000c6c0a6826"/>
+                            </controls>
+                        </fieldset>
+                        <fieldset title="Files" description="">
+                            <controls>
+                                <control id="6a7ceaac-9066-11e8-b1b2-000c6c0a6826" type="association" required=""
+                                         custom-label="" association="6bffc09a-9064-11e8-b1b2-000c6c0a6826"/>
+                            </controls>
+                        </fieldset>
+                    </fieldsets>
+                </form>
+            </forms>
+        </entity>
+        <entity id="f1b4aefa-905d-11e8-b1b2-000c6c0a6826" handle="collection" plural_handle="collections"
+                name="Collection" include_in_public_list="1" description=""
+                default_view_form="f1b4bc56-905d-11e8-b1b2-000c6c0a6826"
+                default_edit_form="f1b4bc56-905d-11e8-b1b2-000c6c0a6826" results-folder="/">
+            <attributekeys>
+                <attributekey handle="collection_name" name="Name" package="" searchable="1" indexed="1" type="text"
+                              category="">
+                    <type placeholder=""/>
+                </attributekey>
+                <attributekey handle="collection_description" name="Description" package="" searchable="1" indexed="1"
+                              type="textarea" category="">
+                    <type mode="text"/>
+                </attributekey>
+                <attributekey handle="collection_silo" name="Silo" package="" searchable="1" indexed="1" type="select"
+                              category="">
+                    <type allow-multiple-values="" display-order="display_asc" display-multiple-values=""
+                          allow-other-values="" hide-none-option="">
+                        <options>
+                            <option value="Photo" is-end-user-added=""/>
+                            <option value="material" is-end-user-added=""/>
+                        </options>
+                    </type>
+                </attributekey>
+                <attributekey handle="collection_category" name="Category" package="" searchable="1" indexed="1"
+                              type="topics" category="">
+                    <tree name="Collection Categories" path="/" allow-multiple-values=""/>
+                </attributekey>
+            </attributekeys>
+            <associations>
+                <association type="many_to_many" id="bf22b322-9064-11e8-b1b2-000c6c0a6826"
+                             source-entity="f1b4aefa-905d-11e8-b1b2-000c6c0a6826"
+                             target-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826" target-property-name="assets"
+                             inversed-by-property-name="collections" is-owned="" is-owner=""/>
+            </associations>
+            <forms>
+                <form id="f1b4bc56-905d-11e8-b1b2-000c6c0a6826" name="Form">
+                    <fieldsets>
+                        <fieldset title="" description="">
+                            <controls>
+                                <control id="0d862652-9065-11e8-b1b2-000c6c0a6826" type="attribute_key" required="1"
+                                         custom-label="">
+                                    <attributekey handle="collection_name"/>
+                                </control>
+                                <control id="0fe0e16c-9065-11e8-b1b2-000c6c0a6826" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="collection_description"/>
+                                </control>
+                                <control id="27b7cda8-9f46-11e8-956d-0800272d882f" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="collection_silo"/>
+                                </control>
+                                <control id="3581d354-a09e-11e8-956d-0800272d882f" type="attribute_key" required=""
+                                         custom-label="">
+                                    <attributekey handle="collection_category"/>
+                                </control>
+                                <control id="c3d405a4-b18a-11e8-b3b9-0800272d882f" type="association" required="" custom-label="" association="bf22b322-9064-11e8-b1b2-000c6c0a6826" label-mask="%asset_name%"/>
+                            </controls>
+                        </fieldset>
+                    </fieldsets>
+                </form>
+            </forms>
+        </entity>
+        <entity id="cf642ce0-b064-11e8-9990-0800272d882f" handle="lightbox" plural_handle="lightboxes" name="Lightbox"
+                include_in_public_list="1" description="" default_view_form="cf6435b8-b064-11e8-9990-0800272d882f"
+                default_edit_form="cf6435b8-b064-11e8-9990-0800272d882f" results-folder="/">
+            <associations>
+                <association type="many_to_many" id="0113405d-b06b-11e8-9990-0800272d882f"
+                             source-entity="cf642ce0-b064-11e8-9990-0800272d882f"
+                             target-entity="6e8ab340-905c-11e8-b1b2-000c6c0a6826" target-property-name="assets"
+                             inversed-by-property-name="lightboxes" is-owned="" is-owner=""/>
+            </associations>
+            <attributekeys>
+                <attributekey handle="lightbox_name" name="Name" package="" searchable="1" indexed="1" type="text"
+                              category="">
+                    <type placeholder=""/>
+                </attributekey>
+            </attributekeys>
+            <forms>
+                <form id="cf6435b8-b064-11e8-9990-0800272d882f" name="Form">
+                    <fieldsets>
+                        <fieldset title="" description="">
+                            <control id="1360886c-b065-11e8-9990-0801272d882f" type="attribute_key" required="1"
+                                     custom-label="">
+                                <attributekey handle="lightbox_name"/>
+                            </control>
+                            <controls>
+                                <control id="1360886c-b065-11e8-9990-0800272d882f" type="entity_property" required=""
+                                         custom-label="" type-id="author"/>
+                            </controls>
+                        </fieldset>
+                    </fieldsets>
+                </form>
+            </forms>
+        </entity>
+    </expressentities>
+
+</concrete5-cif>

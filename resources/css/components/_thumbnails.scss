@@ -1,0 +1,117 @@
+%image-container {
+  @include fourK {
+    min-height: 241px !important;
+  }
+  @include lgScreen {
+    min-height: 241px !important;
+  }
+  @include mdScreen {
+    min-height: 241px !important;
+  }
+  @include smScreen {
+    min-height: 304px !important;
+  }
+  @include tablet {
+    min-height: 481px !important;
+  }
+  @include cellphone {
+    min-height: 264px !important;
+  }
+  @include smCellphone {
+    min-height: 230px !important;
+  }
+}
+%image-container-collections {
+  @include fourK {
+    min-height: 241px !important;
+  }
+  @include lgScreen {
+    min-height: 241px !important;
+  }
+  @include mdScreen {
+    min-height: 241px !important;
+  }
+  @include smScreen {
+    min-height: 304px !important;
+  }
+  @include tablet {
+    min-height: 231px !important;
+  }
+  @include cellphone {
+    min-height: 264px !important;
+  }
+  @include smCellphone {
+    min-height: 230px !important;
+  }
+}
+
+%image-responsive-grid-thumbnails {
+  @include largeScreen {
+    /* Large Screen */
+    min-height: 241px !important;
+  }
+  @include mediumScreen {
+    /* Medium Screen */
+    min-height: 304px !important;
+  }
+  @include smallScreen {
+    /* Small Screen */
+    min-height: 231px !important;
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    min-height: 231px !important;
+  }
+  @media (max-width: 767px) {
+    min-height: calc((100vw - 30px) / 3 * 2) !important;
+  }
+}
+
+%image-responsive-asset-detail {
+  @include largeScreen {
+    /* Large Screen */
+    min-height: 500px !important;
+  }
+  @include mediumScreen {
+    /* Medium Screen */
+    min-height: 412px !important;
+  }
+  @include smallScreen {
+    /* Small Screen */
+    min-height: 481px !important;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    min-height: 481px !important;
+  }
+  @media (max-width: 767px) {
+    min-height: calc((100vw - 30px) / 3 * 2) !important;
+  }
+}
+
+
+%image-container-properties {
+  text-decoration: none;
+  width: 100%;
+  border-radius: 0;
+  border:1px solid $imgBorderColor;
+  background-color: $imgBackgroundColor;
+  display: block;
+  position: relative;
+  height: 0;
+  padding:56.25% 0 0 0;
+  overflow: hidden;
+  min-height: 241px;
+}
+
+%img {
+  position: absolute;
+  display: block;
+  left:0;
+  right:0;
+  top:0;
+  bottom: 0;
+  margin:auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+

@@ -1,0 +1,36 @@
+nav.pagination {
+
+  float: right;
+
+
+  span, a {
+    color: #555;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 17px;
+    margin-right: 5px;
+    margin-left: 5px;
+
+    &.current {
+      background-color: #f1f1f1;
+      color: #a7aeaf;
+    }
+
+    &.disabled {
+      color: #a7aeaf;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+      background-color: #f7f7f7;
+    }
+
+
+  }
+}

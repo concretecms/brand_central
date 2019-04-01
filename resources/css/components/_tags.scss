@@ -1,0 +1,35 @@
+.ex-tags {
+  h2 {
+    text-transform: capitalize;
+    display: block;
+    margin:40px 0 0 0;
+    font-size:1.5em;
+  }
+  hr {
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+  ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+    li {
+      display: inline-block;
+      margin:10px;
+      &:first-child {
+        margin-left: 0px;
+      }
+      a {
+        @extend %round-button;
+        color:#333;
+        border:none;
+        background-color:#E9E9E9;
+        margin-top:0;
+        &:hover{
+          background-color:#727272;
+          color:#fff;
+        }
+      }
+    }
+  }
+}

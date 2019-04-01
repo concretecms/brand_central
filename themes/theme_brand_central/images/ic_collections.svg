@@ -1,0 +1,17 @@
+<svg id="ic_collections" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #747474;
+      }
+    </style>
+  </defs>
+  <g id="Icon_24px" data-name="Icon 24px">
+    <path id="Shape" class="cls-1" d="M0,0H24V24H0Z"/>
+    <path id="Shape-2" data-name="Shape" class="cls-2" d="M16,20H2a2,2,0,0,1-2-2V4H2V18H16v2Zm2-4H6a2,2,0,0,1-2-2V2A2,2,0,0,1,6,0H18a2,2,0,0,1,2,2V14A2,2,0,0,1,18,16ZM9,10,6,14H18L14,9l-2.97,3.71Z" transform="translate(2 2)"/>
+  </g>
+</svg>

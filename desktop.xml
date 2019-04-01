@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+
+    <singlepages>
+        <page name="Welcome Back" path="/account/welcome" filename="/account/welcome.php" pagetype="" description="" package="brand_central">
+            <attributes>
+                <attributekey handle="desktop_priority">
+                    <value>10</value>
+                </attributekey>
+                <attributekey handle="is_desktop">
+                    <value>1</value>
+                </attributekey>
+                <attributekey handle="exclude_nav">
+                    <value>1</value>
+                </attributekey>
+            </attributes>
+            <area name="Main">
+                <blocks>
+                    <block type="desktop_quick_links" name=""/>
+                </blocks>
+            </area>
+        </page>
+    </singlepages>
+
+</concrete5-cif>

@@ -1,0 +1,107 @@
+.lightbox-container {
+  display: inline-block!important;
+  .icon {
+    background: url(#{$themePath}/images/ic_collections.svg) no-repeat;
+    background-size: 15px;
+    min-height: 15px;
+    min-width: 15px;
+    display: inline-block;
+    margin:0 10px;
+  }
+  .react-modal {
+    @extend %modal;
+
+  }
+
+  .loader {
+    display: block;
+    text-align: center;
+    min-height: 355px;
+    margin:10px;
+    span {
+      background:url(#{$themePath}/images/loader.svg) no-repeat;
+      background-size: contain;
+      min-height: 40px;
+      min-width: 40px;
+      display: block;
+      position: absolute;
+      float:left;
+      top:40%;
+      left:50%;
+      margin-right: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .lightbox-list-container {
+    display:block;
+    min-height: 355px;
+    max-height: 355px;
+    overflow-y: auto;
+    margin:10px;
+    .lightbox-list {
+      list-style: none;
+      margin:0;
+      padding:0;
+      li {
+        margin:10px 0;
+        list-style: none;
+        padding:5px;
+        span {
+          text-transform: capitalize;
+          cursor: pointer;
+          i {
+            margin-right:8px;
+            color: #63858f;
+          }
+        }
+      }
+    }
+  }
+  .label-create-new {
+    font-size: .8em;
+    font-weight: 600;
+    margin:10px 0;
+    display: block;
+  }
+
+  .create-lightbox-btn {
+    text-transform: uppercase;
+    font-size: 8px;
+    height: 34px;
+    font-weight: bold;
+    background-color: #5da058;
+    color:#fff;
+  }
+
+
+  .create-lightbox-input, .create-lightbox-btn {
+    border:none;
+    border-radius: 0;
+    &:focus{
+      outline: none !important;
+    }
+  }
+
+  .create-lightbox-input {
+    background-color: #f4f4f4;
+    border:0;
+    box-shadow: none;
+    &:focus {
+      outline:none !important;
+    }
+  }
+
+  .lightbox-banner-success {
+    @extend %bannerMsg;
+    background-color: #68bf56;
+    color: #fff;
+
+  }
+  .lightbox-banner-alert {
+    @extend %bannerMsg;
+    background-color:red;
+    color:#fff;
+  }
+
+}
+

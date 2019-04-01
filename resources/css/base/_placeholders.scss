@@ -1,0 +1,155 @@
+%round-button {
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding:15px 45px;
+  border:2px solid #0075BF;
+  border-radius: 50px;
+  margin-top:20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: .8em;
+  letter-spacing: .3em;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* Search Placeholder */
+%search-input {
+  width: 700px;
+}
+
+%input-style {
+  width:100%;
+  min-height: $search-input-height;
+  max-height: $search-input-height;
+  padding:20px 40px 20px 80px;
+  border:0;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-size: 1em;
+  background:url(#{$themePath}/images/magnifiing-glass.svg) no-repeat;
+  background-size: 25px;
+  background-position: left 35px top 15px;
+  background-color:#fff;
+  margin:0;
+  &:focus{
+    outline: none;
+  }
+}
+
+%input-group-btn-style {
+  min-height: $search-input-height;
+  max-height: $search-input-height;
+  border-radius: 0;
+  border-left: 1px solid #ccc;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #fff;
+  width:150px;
+  &:focus{
+    outline: none;
+    box-shadow: none;
+  }
+  &:active {
+    box-shadow:none;
+  }
+  span.caret {
+    margin-left:15px;
+  }
+}
+
+%dropdown-menu-style {
+  min-width: 150px;
+  border-radius: 0;
+  margin:0;
+}
+
+%dropdown-menu-a-style{
+  padding:5px 20px 5px 35px;
+  line-height: 1.6;
+  &:first-child{
+    margin-top:10px;
+  }
+  &:last-child{
+    margin-bottom: 10px;
+  }
+}
+/* End Search Placeholder */
+
+
+%modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 150;
+  .react-modal-content {
+    background-color: #fff;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: 50%;
+    transform: translate(-50%, -50%);
+    .modal-body {
+      overflow-y: auto;
+    }
+    .label-default {
+      padding: 8px;
+      background-color: #f4f4f4;
+      color: #333;
+      text-transform: uppercase;
+      margin: 10px;
+      border: 1px solid #ccc;
+    }
+    .close-modal {
+      background: url(#{$themePath}/images/icon_close.svg) no-repeat;
+      background-size: contain;
+      min-height: 20px;
+      min-width: 20px;
+      display: block;
+      cursor: pointer;
+      float: left;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      clear: both;
+
+    }
+    .modal-footer {
+      .close-modal-btn {
+        @extend %round-button;
+        margin: 5px;
+        &:focus {
+          outline: none;
+        }
+      }
+      .save-modal-btn {
+        @extend %round-button;
+        margin: 5px;
+        background-color: #0075BF;
+        color: #fff;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+%bannerMsg {
+  position: absolute;
+  float:left;
+  text-align: center;
+  z-index: 150;
+  font-weight: bold;
+  width:600px;
+  padding:15px;
+  top:200px;
+  left:50%;
+  margin-right: 50%;
+  transform: translate(-50%, -50%);
+}

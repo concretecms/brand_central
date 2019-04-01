@@ -1,0 +1,38 @@
+div.ccm-page {
+  footer {
+    padding:25px 0px 25px 0px;
+    background-color: #f1f1f1;
+    color:$baseColor;
+    line-height: 26px;
+
+    a {
+      color: #1680c4;
+    }
+    .footer-copyright {
+      color: #333;
+      padding-top: 20px;
+      font-size: 12px;
+    }
+
+    div.footer-logos {
+      text-align: right;
+      margin-top: -40px;
+      @include smallScreen {
+        text-align: center !important;
+        margin-top: 0px !important;
+      }
+      @include xsScreen {
+        text-align: center !important;
+        margin-top: 0px !important;
+      }
+      img {
+        &:first-child {
+          margin-left: 0px;
+          margin-top: 20px;
+        }
+        margin-left: 40px;
+        vertical-align: bottom;
+      }
+    }
+  }
+}

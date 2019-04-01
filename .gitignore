@@ -1,0 +1,6 @@
+.idea
+composer.lock
+yarn-error.log
+mix-manifest.json
+vendor
+node_modules

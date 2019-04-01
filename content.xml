@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+
+    <pages>
+        <page name="Home" path="" filename="" pagetype="home" template="home" user="admin" description=""
+              package="brand_central">
+        </page>
+        <page name="Print &amp; Web Materials" path="/print-web-materials" filename="" pagetype="collection_list" template="collection_list" user="admin" description=""
+              package="brand_central">
+            <area name="Main">
+                <blocks>
+                    <block type="express_entry_list" name="" custom-template="mixed_footprint_result_list.php">
+                        <data table="btExpressEntryList">
+                            <record>
+                                <exEntityID>f1b4aefa-905d-11e8-b1b2-000c6c0a6826</exEntityID>
+                                <detailPage>0</detailPage>
+                                <linkedProperties></linkedProperties>
+                                <searchProperties></searchProperties>
+                                <columns></columns>
+                                <filterFields></filterFields>
+                                <displayLimit>20</displayLimit>
+                                <enableSearch>1</enableSearch>
+                                <enableKeywordSearch>0</enableKeywordSearch>
+                                <headerBackgroundColor></headerBackgroundColor>
+                                <headerBackgroundColorActiveSort></headerBackgroundColorActiveSort>
+                                <headerTextColor></headerTextColor>
+                                <tableName></tableName>
+                                <tableDescription></tableDescription>
+                                <tableStriped>0</tableStriped>
+                                <rowBackgroundColorAlternate></rowBackgroundColorAlternate>
+                            </record>
+                        </data>
+                    </block>
+                </blocks>
+            </area>
+        </page>
+        <page name="Photo Gallery" path="/photo-gallery" filename="" pagetype="collection_list" template="collection_list" user="admin" description=""
+              package="brand_central">
+            <area name="Main">
+                <blocks>
+                    <block type="express_entry_list" name="" custom-template="mixed_footprint_result_list.php">
+                        <data table="btExpressEntryList">
+                            <record>
+                                <exEntityID>f1b4aefa-905d-11e8-b1b2-000c6c0a6826</exEntityID>
+                                <detailPage>0</detailPage>
+                                <linkedProperties></linkedProperties>
+                                <searchProperties></searchProperties>
+                                <columns></columns>
+                                <filterFields></filterFields>
+                                <displayLimit>20</displayLimit>
+                                <enableSearch>1</enableSearch>
+                                <enableKeywordSearch>0</enableKeywordSearch>
+                                <headerBackgroundColor></headerBackgroundColor>
+                                <headerBackgroundColorActiveSort></headerBackgroundColorActiveSort>
+                                <headerTextColor></headerTextColor>
+                                <tableName></tableName>
+                                <tableDescription></tableDescription>
+                                <tableStriped>0</tableStriped>
+                                <rowBackgroundColorAlternate></rowBackgroundColorAlternate>
+                            </record>
+                        </data>
+                    </block>
+                </blocks>
+            </area>
+        </page>
+        <page name="Branding Guidelines" path="/branding-guidelines" filename="" pagetype="collection_list" template="collection_list" user="admin" description=""
+              package="brand_central">
+        </page>
+        <page name="Market Research" path="/market-research" filename="" pagetype="collection_list" template="collection_list" user="admin" description=""
+              package="brand_central">
+        </page>
+        <page name="Sponsorship" path="/sponsorship" filename="" pagetype="collection_list" template="collection_list" user="admin" description=""
+              package="brand_central">
+        </page>
+    </pages>
+
+    <singlepages>
+        <page name="View Asset" path="/assets" filename="/assets.php" pagetype="" description="" package="brand_central">
+            <attributes>
+                <attributekey handle="exclude_nav">
+                    <value>1</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="Collections" path="/collections" filename="/collections.php" pagetype="" description="" package="brand_central">
+            <attributes>
+                <attributekey handle="exclude_nav">
+                    <value>1</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="Search" path="/search" filename="/search.php" pagetype="" description="" package="brand_central">
+            <attributes>
+                <attributekey handle="exclude_nav">
+                    <value>1</value>
+                </attributekey>
+            </attributes>
+        </page>
+        <page name="My Lightboxes" path="/account/lightboxes" filename="/account/lightboxes.php" pagetype="" description="" package="brand_central">
+        </page>
+    </singlepages>
+
+    <pagetypes>
+        <pagetype name="Home" handle="home" package="brand_central" launch-in-composer="0" is-frequently-added="0">
+            <pagetemplates type="custom" default="home">
+                <pagetemplate handle="home"/>
+            </pagetemplates>
+            <target handle="all" package="" form-factor=""/>
+            <composer>
+                <formlayout>
+                    <set name="Basics" description="">
+                        <control custom-template="" required="1" custom-label="Page Name" description=""
+                                 type="core_page_property" handle="name"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="description"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="page_template"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="publish_target"/>
+                    </set>
+                </formlayout>
+                <output>
+                </output>
+            </composer>
+        </pagetype>
+
+
+        <pagetype name="Collection List" handle="collection_list" package="brand_central" launch-in-composer="0" is-frequently-added="0">
+            <pagetemplates type="custom" default="collection_list">
+                <pagetemplate handle="collection_list"/>
+            </pagetemplates>
+            <target handle="all" package="" form-factor=""/>
+            <composer>
+                <formlayout>
+                    <set name="Basics" description="">
+                        <control custom-template="" required="1" custom-label="Page Name" description=""
+                                 type="core_page_property" handle="name"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="description"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="page_template"/>
+                        <control custom-template="" custom-label="" description="" type="core_page_property"
+                                 handle="publish_target"/>
+                    </set>
+                </formlayout>
+                <output>
+                </output>
+            </composer>
+        </pagetype>
+
+    </pagetypes>
+
+
+</concrete5-cif>

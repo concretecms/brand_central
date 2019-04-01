@@ -1,0 +1,43 @@
+.home-search {
+  display: -ms-flexbox;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  @include desktop {
+    min-height: 700px;
+    height: 700px;
+  }
+  @include mobile{
+    min-height: 400px;
+    form {
+      padding:10px;
+    }
+  }
+
+  .search-container {
+    @extend %search-input;
+    input {
+      @extend %input-style;
+    }
+    button {
+      @extend %input-group-btn-style;
+    }
+    .dropdown-menu{
+      @extend %dropdown-menu-style;
+      a {
+        @extend %dropdown-menu-a-style;
+        &:hover {
+          background:none;
+          color:#0075BF;
+        }
+      }
+    }
+  }
+}
