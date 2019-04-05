@@ -1,5 +1,5 @@
 {
-  "name": "concrete5/brandcentral",
+  "name": "concrete5/brand_central",
   "description": "A concrete5 asset management system package",
   "type": "concrete5-package",
   "license": "MIT",
