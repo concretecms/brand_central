@@ -4,8 +4,7 @@ namespace Concrete5\AssetLibrary\Results\Formatter;
 
 use Concrete\Core\Entity\Express\Entry;
 use Concrete\Core\Support\Facade\Facade;
-use Concrete\Core\Url\Url;
-use Concrete\Core\User\UserInfoRepository;
+use Concrete\Core\Support\Facade\Url;
 use Doctrine\DBAL\Connection;
 
 class Lightbox
