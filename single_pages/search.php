@@ -72,7 +72,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 
                 <div class="row assets">
                     <?php foreach($search_assets as $asset) {
-                        $asset = new \PortlandLabs\AssetLibrary\Results\Formatter\Asset($asset);
+                        $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
                         ?>
                         <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
                             <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
