@@ -4,7 +4,7 @@ import Dropzone from "react-dropzone"
 import { transactionId } from "../lib/assetServices"
 import { runAction } from "../actions/assetActions"
 import FileTable from "../containers/bulkUploadFileItem"
-import axios from "axios";
+import axios from "axios"
 
 
 class BulkFiles extends Component {
@@ -20,58 +20,80 @@ class BulkFiles extends Component {
             return this.maxFilesErr()
         }
 
-        const uploaders = files.map( file => {
+        const uploaders = files.map( (file) => {
+            
             const utid = transactionId();
-            const initAsset = {
-                id:utid,
-                img:file.preview,
-                fid:null,
-                name:'',
-                desc:'',
-                type:'',
-                tags:[],
-                isLoading:true,
-                isNameEditMode:false,
-                isDescEditMode:false,
-                errorMsg:'',
-                hasErrors:false
+                const initAsset = {
+                    id:utid,
+                    img:file.preview,
+                    fid:null,
+                    name:file.name,
+                    desc:'',
+                    type:'',
+                    tags:[],
+                    isLoading:true,
+                    isNameEditMode:false,
+                    isDescEditMode:false,
+                    errorMsg:'',
+                    hasErrors:false
+                }
+                this.props.setAsset(initAsset)
+
+                const fd = new FormData()
+
+                fd.append('file', file)
+
+            return () => {
+
+                return axios.post("/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest' } })
+                    .then( response => {
+                        const data = response.data
+                        const payload = {
+                            id:utid,
+                            fid: data.id,
+                            name:data.filename,
+                            img: data.url,
+                            type:"photo",
+                            isLoading:false,
+                            hasErrors:false,
+
+                        }
+                        this.props.updateAssetLoading(payload)
+                        this.props.updateAssetImg(payload)
+                    }).catch(error => {
+                        const payload = {
+                            id:utid,
+                            isLoading:false,
+                            errorMsg: error.response.data.errors[0],
+                            hasErrors:true
+                        }
+                        this.props.updateAssetLoading({isLoading:false})
+                        this.props.updateAssetImg(payload)
+
+                        setTimeout(()=> {
+                            this.props.removeAsset(utid)
+                        }, 3500)
+                    })
             }
-            this.props.setAsset(initAsset)
-
-            const fd = new FormData()
-
-            fd.append('file', file)
-
-            return axios.post("/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest' } })
-                .then( response => {
-                    const data = response.data
-                    const payload = {
-                        id:utid,
-                        fid: data.id,
-                        name:data.filename,
-                        img: data.url,
-                        type:"photo",
-                        isLoading:false,
-                        hasErrors:false,
-
-                    }
-                    this.props.updateAssetLoading(payload)
-                    this.props.updateAssetImg(payload)
-                }).catch(error => {
-                    const payload = {
-                        id:utid,
-                        isLoading:false,
-                        errorMsg: error.response.data.errors[0],
-                        hasErrors:true
-                    }
-                    this.props.updateAssetLoading({isLoading:false})
-                    this.props.updateAssetImg(payload)
-
-                    setTimeout(()=> {
-                        this.props.removeAsset(utid)
-                    }, 3500)
-                })
         })
+
+        this.chunkUploads(uploaders)
+    }
+
+    chunkUploads (uploads) {
+        const first = uploads.shift()
+        this.uploadChunk(first, uploads)
+    }
+
+    uploadChunk(chunk, chunks) {
+        if (!chunk) return
+        chunk().then(
+            () => {
+                const next = chunks.shift()
+                this.uploadChunk(next, chunks)
+            },
+            () => console.log(arguments, 'fail')
+        )
     }
 
     render () {
