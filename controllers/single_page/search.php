@@ -15,7 +15,7 @@ class Search extends PageController
 
         $input = $query->get('keywords');
         $filter = $query->get('filter');
-        $tags = $query->get('tags');
+        $tags = $this->extractTags($query->get('tags'));
         $itemsPerPage = $query->get('ipp');
         $filterLabel = 'Anything';
 
@@ -63,7 +63,7 @@ class Search extends PageController
             }
         } else {
             if ($tags) {
-                foreach ((array)$tags as $tag) {
+                foreach ($tags as $tag) {
                     $list->filterByAssetTags($tag);
                 }
                 $keywords = $tags;
@@ -120,6 +120,24 @@ class Search extends PageController
         $this->set('items_per_page', $itemsPerPage);
         $this->set('collectionResults', $collectionResults);
         $this->set('showCollectionResults', $showCollectionResults);
+    }
+
+    /**
+     * @param mixed $tags
+     * @return array
+     */
+    protected function extractTags($tags) : array
+    {
+        $return = [];
+        if (is_array($tags)) {
+            foreach ($tags as $tag) {
+                $tag = preg_replace('/[<>"\']/', '', $tag);
+                if ($tag) {
+                    $return[] = $tag;
+                }
+            }
+        }
+        return $return;
     }
 
     public function getRemoveTagUrl($keyword)
