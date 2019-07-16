@@ -131,7 +131,7 @@ class Search extends PageController
         $return = [];
         if (is_array($tags)) {
             foreach ($tags as $tag) {
-                $tag = preg_replace('/[^A-Za-z0-9]/', '', $tag);
+                $tag = preg_replace('/[<>\"\']/', '', $tag);
                 if ($tag) {
                     $return[] = $tag;
                 }
