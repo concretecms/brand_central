@@ -122,11 +122,15 @@ class Search extends PageController
         $this->set('showCollectionResults', $showCollectionResults);
     }
 
-    protected function extractTags($tags)
+    /**
+     * @param mixed $tags
+     * @return array
+     */
+    protected function extractTags($tags) : array
     {
         $return = [];
         if (is_array($tags)) {
-            foreach($tags as $tag) {
+            foreach ($tags as $tag) {
                 $tag = preg_replace('/[^A-Za-z0-9]/', '', $tag);
                 if ($tag) {
                     $return[] = $tag;
