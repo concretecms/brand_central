@@ -50,7 +50,7 @@
     <div class="header">
         <div class="container">
             <div class="row">
-                <?php View::element('header_logo', ['path'=>$this->getThemePath()], 'brand_central') ?>
+                <?php View::element('header_logo', ['path' => $this->getThemePath()], 'brand_central') ?>
                 <div class="col-md-9 col-xs-10 main-nav-menu text-center">
                     <div class="hamburger-icon">
                         <div id="nav-icon" class="hamburger">
