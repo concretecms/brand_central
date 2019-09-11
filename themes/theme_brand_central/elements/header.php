@@ -50,12 +50,7 @@
     <div class="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-xs-2 main-nav-branding">
-                    <a href="<?=URL::to('/')?>" class="logo">
-                        <img class="logo" src="<?php echo $this->getThemePath() ?>/images/brand-central.svg" alt="Brand Central Logo" />
-                        <img class="logo-mobil" src="<?php echo $this->getThemePath() ?>/images/brand-central.svg" alt="Brand Central Logo" />
-                    </a>
-                </div>
+                <?php View::element('header_logo', ['path' => $this->getThemePath()], 'brand_central') ?>
                 <div class="col-md-9 col-xs-10 main-nav-menu text-center">
                     <div class="hamburger-icon">
                         <div id="nav-icon" class="hamburger">
