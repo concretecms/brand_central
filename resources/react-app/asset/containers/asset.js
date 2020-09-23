@@ -37,10 +37,10 @@ class Asset extends Component {
     handleCancel() {
         console.log(this.props.asset.id);
         if (this.props.asset.id) {
-            window.location.href = '/assets/' + this.props.asset.id
+            window.location.href = CCM_DISPATCHER_FILENAME + '/assets/' + this.props.asset.id
         }
         else {
-            window.location.href = '/account/welcome'
+            window.location.href = CCM_DISPATCHER_FILENAME + '/account/welcome'
         }
     }
 
@@ -73,7 +73,7 @@ class Asset extends Component {
         promise.then(
             (response) => {
                 if (response.id) {
-                    window.location.href = '/assets/' + response.id;
+                    window.location.href = CCM_DISPATCHER_FILENAME + '/assets/' + response.id;
                 } else {
                     this.toggleSaving(false)
                 }

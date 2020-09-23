@@ -84,7 +84,7 @@ class FileTable extends Component {
     getGoogleTags (id, fid) {
         this.props.loadingTagsStatus(true)
         this.props.loadingAssetTags({id:id, isLoadingTags:true})
-        axios.post(`/api/v1/tags/google-vision/process`, {id:fid})
+        axios.post(CCM_DISPATCHER_FILENAME + `/api/v1/tags/google-vision/process`, {id:fid})
             .then(response => {
                 const tags = response.data
 

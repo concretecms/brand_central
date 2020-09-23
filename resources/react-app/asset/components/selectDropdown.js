@@ -46,7 +46,7 @@ class SelectDropdown extends Component {
                 this.debouncer = _.debounce(function (inputValue) {
                     this.promise = null;
                     this.debouncer = null;
-                    axios.get(`/api/v1/${this.props.field}?search=${inputValue}`)
+                    axios.get(CCM_DISPATCHER_FILENAME + `/api/v1/${this.props.field}?search=${inputValue}`)
                         .then(response => {
                             me.resolve(response.data.map(option => ({value: option.id, label: option.name})))
                         })

@@ -30,7 +30,7 @@ class DropdownCollections extends Component  {
 
         const handleCreate = (inputValue) => {
 
-            axios.post("/api/v1/collections/create", {collection: inputValue}, {
+            axios.post(CCM_DISPATCHER_FILENAME + "/api/v1/collections/create", {collection: inputValue}, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -55,7 +55,7 @@ class DropdownCollections extends Component  {
                     this.promise = null;
                     this.debouncer = null;
 
-                    axios.get(`/api/v1/collections?search=${inputValue}`)
+                    axios.get(CCM_DISPATCHER_FILENAME + `/api/v1/collections?search=${inputValue}`)
                         .then(response => {
                             me.resolve(response.data.map(option => ({value: option.id, label: option.name})));
                         })
