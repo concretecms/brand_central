@@ -57,5 +57,47 @@ $(function() {
         $('#rename-lightbox-modal').modal('show');
     });
 
+    /*
+     * Initialize the grid view switcher component
+     */
 
+    $(".switch-view a").click(function(e) {
+        e.preventDefault();
+
+        $(".grid-view").addClass("hidden");
+
+        $(".switch-view a").removeClass("active");
+
+        $(this).addClass("active");
+
+        switch($(this).data("gridView")) {
+            case "regular":
+                $(".grid-view-regular").removeClass("hidden");
+
+                break;
+
+            case "masonry":
+                $(".grid-view-masonry").removeClass("hidden");
+
+                var Masonry = require('masonry-layout');
+
+                new Masonry('.grid', {
+                    itemSelector: '.grid-item'
+                });
+
+                break;
+        };
+
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("selectedGridView", $(this).data("gridView"))
+        }
+    });
+
+    var selectedGridView = "regular";
+
+    if (typeof(Storage) !== "undefined") {
+        selectedGridView = localStorage.getItem("selectedGridView") || "regular";
+    }
+
+    $(".switch-view a[data-grid-view='" + selectedGridView + "']").trigger("click");
 });

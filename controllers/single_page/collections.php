@@ -94,6 +94,16 @@ class Collections extends PageController
         $this->render('/collections/form');
     }
 
+    public function download($collectionID = null)
+    {
+        $express = $this->app->make('express');
+
+        $collection = Express::getEntry($collectionID);
+        if ($collection) {
+            print "F"; die();
+        }
+    }
+
     public function edit($collectionID = null)
     {
         $express = $this->app->make('express');
