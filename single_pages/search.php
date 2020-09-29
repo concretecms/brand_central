@@ -1,5 +1,9 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.');
 
+use Concrete\Core\Support\Facade\Url;
+use Concrete\Core\User\User;
+use Concrete5\AssetLibrary\Results\Formatter\Asset;
+
 $url = Concrete\Core\Support\Facade\Url::to('/search');
 
 $defaultQuery = array_filter([
@@ -55,6 +59,20 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                                 <li><a href="<?= $searchUrl(['sortBy' => 'oldest']) ?>"><i class="fa <?= $sortBy === 'oldest' ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Oldest First</a></li>
                                 <li><a href="<?= $searchUrl(['sortBy' => 'name']) ?>"><i class="fa <?= $sortBy == 'name'? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Name</a></li>
                             </ul>
+
+                            <ul class="switch-view search">
+                                <li>
+                                    <a href="javascript:void(0);" data-tooltip="regular-grid" data-grid-view="regular" title="<?php echo h(t("Regular Grid")); ?>">
+                                        <i class="fa fa-th-large"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript:void(0);" data-tooltip="masonry-grid" data-grid-view="masonry" title="<?php echo h(t("Masonry Grid")); ?>">
+                                        <i class="fa fa-th"></i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -71,29 +89,66 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                     <?php } ?>
 
                 <div class="row assets">
-                    <?php foreach($search_assets as $asset) {
-                        $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
-                        ?>
-                        <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
-                            <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
-                                <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
-                            </a>
-                            <div class="thumbnail-caption">
-                                <h3>
-                                    <span class="pull-right">
-                                        <?php
-                                        $u = new User();
-                                        if ($u->isRegistered()) {
-                                            ?>
-                                            <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?=t('Add to Lightbox')?>" data-asset="<?= $asset->getId() ?>"></a>
-                                        <?php } ?>
-                                        <a href="<?=$asset->getDownloadURL()?>" data-tooltip="download" title="<?=t('Download')?>"><i class="fa fa-download"></i></a>
-                                    </span>
-                                    <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="asset-link"><?= trim(h($asset->getAssetName())) ?: '&nbsp;' ?></a>
-                                </h3>
+                    <div class="grid-view grid-view-regular hidden">
+                        <?php foreach($search_assets as $asset) {
+                            $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
+                            ?>
+                            <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
+                                <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
+                                    <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
+                                </a>
+                                <div class="thumbnail-caption">
+                                    <h3>
+                                        <span class="pull-right">
+                                            <?php
+                                            $u = new User();
+                                            if ($u->isRegistered()) {
+                                                ?>
+                                                <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?=t('Add to Lightbox')?>" data-asset="<?= $asset->getId() ?>"></a>
+                                            <?php } ?>
+                                            <a href="<?=$asset->getDownloadURL()?>" data-tooltip="download" title="<?=t('Download')?>"><i class="fa fa-download"></i></a>
+                                        </span>
+                                        <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="asset-link"><?= trim(h($asset->getAssetName())) ?: '&nbsp;' ?></a>
+                                    </h3>
+                                </div>
                             </div>
+                        <?php } ?>
+                    </div>
+                    <div class="grid-view grid-view-masonry hidden">
+                        <div class="grid">
+                            <?php foreach($search_assets as $asset) { ?>
+                                <?php $asset = new Asset($asset); ?>
+
+                                <div class="grid-item">
+                                    <a href="<?php echo Url::to('/assets', $asset->getId()) ?>" class="thumbnail">
+                                        <img src="<?php echo h($asset->getThumbnailImageURL()) ?>" class="<?php echo h($asset->getAssetType()) ?>"/>
+                                    </a>
+
+                                    <div class="overlay">
+                                        <a href="<?php echo Url::to('/assets', $asset->getId()) ?>" class="description">
+                                                <span class="title">
+                                                    <?php echo $asset->getAssetName()?>
+                                                </span>
+
+                                            <?php echo $asset->getAssetDescription(); ?>
+                                        </a>
+
+                                        <?php $u = new User(); ?>
+
+                                        <?php if ($u->isRegistered()) { ?>
+                                            <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?php echo h(t('Add to Lightbox')) ?>" data-asset="<?php echo h($asset->getId()) ?>">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        <?php } ?>
+
+                                        <a href="<?php echo h($asset->getDownloadURL()) ?>" data-tooltip="download" title="<?php echo h(t('Download')) ?>" class="download">
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
                 <?php
                 if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
