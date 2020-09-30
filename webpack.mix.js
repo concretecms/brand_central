@@ -8,6 +8,7 @@ mix
     })
     .js('resources/js/main.js', 'themes/theme_brand_central/js')
     .js('resources/js/asset-download.js', 'themes/theme_brand_central/js')
+    .js('resources/js/collection-download.js', 'themes/theme_brand_central/js')
     .react('resources/react-app/asset/asset.js', 'themes/theme_brand_central/js')
     .react('resources/react-app/lightboxes/lightbox.js', 'themes/theme_brand_central/js')
 

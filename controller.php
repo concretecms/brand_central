@@ -19,7 +19,7 @@ class Controller extends Package implements ProviderAggregateInterface
 {
 
     protected $appVersionRequired = '8.5.0';
-    protected $pkgVersion = '0.6.6';
+    protected $pkgVersion = '0.6.9';
     protected $pkgHandle = 'brand_central';
     protected $pkgAllowsFullContentSwap = true;
     protected $pkgAutoloaderRegistries = array(
@@ -113,6 +113,7 @@ class Controller extends Package implements ProviderAggregateInterface
         $pages = [
             '/account/lightboxes',
             '/assets/download',
+            '/collections/download',
             '/lightboxes'
         ];
 
