@@ -128,7 +128,7 @@ if ($collection) {
 <?php
     } else {
 
-    View::element('all_collection_grid', ['collections' => $collections], 'brand_central');
+    View::element('all_collection_grid', ['collections' => $collections, 'pagination' => $pagination], 'brand_central');
 
 }
 ?>

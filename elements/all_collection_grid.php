@@ -4,6 +4,16 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 
 use Concrete5\AssetLibrary\Results\Formatter\Collection;
 
+$url = Concrete\Core\Support\Facade\Url::to('/collections');
+
+$defaultQuery = array_filter([
+    'ipp' => (int) $items_per_page ?? null
+]);
+$searchUrl = function($data = []) use ($url, $defaultQuery) {
+    $query = $url->getQuery();
+    $query->set($data + $defaultQuery);
+    return $url->setQuery($query);
+};
 ?>
 
 <div class="row">
@@ -30,4 +40,27 @@ use Concrete5\AssetLibrary\Results\Formatter\Collection;
         </section>
     </div>
 </div>
+
+<?php
+if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="dropdown search-page-results" style="">
+                <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="current-option"><?= h($items_per_page) ?> </span> <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="<?= $searchUrl(['ipp' => 12]) ?>">12</a></li>
+                    <li><a href="<?= $searchUrl(['ipp' => 24]) ?>">24</a></li>
+                    <li><a href="<?= $searchUrl(['ipp' => 48]) ?>">48</a></li>
+                    <li><a href="<?= $searchUrl(['ipp' => 96]) ?>">96</a></li>
+                </ul>
+            </div>
+            Per Page
+        </div>
+        <div class="col-sm-8">
+            <?php print $pagination->renderDefaultView(); ?>
+        </div>
+    </div>
+
+<?php } ?>
 
