@@ -10,7 +10,7 @@
   }
 }
 
-div.ccm-page {
+div.ccm-page, .modal-dialog {
   .btn-submit {
     @extend %round-button;
     background-color: #0075BF;

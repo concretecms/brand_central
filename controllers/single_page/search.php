@@ -120,6 +120,7 @@ class Search extends PageController
         $this->set('items_per_page', $itemsPerPage);
         $this->set('collectionResults', $collectionResults);
         $this->set('showCollectionResults', $showCollectionResults);
+        $this->set('lightboxApp', true);
     }
 
     /**
