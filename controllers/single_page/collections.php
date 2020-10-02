@@ -10,6 +10,7 @@ use Concrete\Core\Express\Form\Renderer;
 use Concrete\Core\Form\Context\ContextFactory;
 use Concrete\Core\Page\Controller\PageController;
 use Concrete\Core\Permission\Checker;
+use Concrete\Core\Search\Pagination\PaginationFactory;
 use Concrete\Core\Validation\CSRF\Token;
 use Doctrine\ORM\EntityManager;
 use Express;
@@ -175,7 +176,6 @@ class Collections extends PageController
         $collection = Express::getEntry($collectionID);
 
         if ($collection && $collection->getEntity()->getHandle() == 'collection') {
-
             $checker = new Checker($collection);
             $this->set('canEditCollection', $checker->canEditExpressEntry());
             $this->set('canDeleteCollection', $checker->canDeleteExpressEntry());
@@ -185,8 +185,14 @@ class Collections extends PageController
         } else {
             $express = $this->app->make('express');
             $collection = $express->getObjectByHandle('collection');
+            $itemsPerPage = (int)$this->request->query->get('ipp', 12);
             $list = new EntryList($collection);
-            $this->set('collections', $list->getResults());
+            $list->setItemsPerPage($itemsPerPage);
+            $factory = new PaginationFactory($this->getRequest());
+            $pagination = $factory->createPaginationObject($list);
+            $collections = $pagination->getCurrentPageResults();
+            $this->set('collections', $collections);
+            $this->set('pagination', $pagination);
         }
         $this->set('lightboxApp', true);
     }

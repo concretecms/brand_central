@@ -10,12 +10,15 @@
     "precommit": "./precommit.sh"
   },
   "license": "MIT",
-  "pre-commit": ["precommit"],
+  "pre-commit": [
+    "precommit"
+  ],
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "cross-env": "^5.1.1",
     "file-saver": "^2.0.0-rc.4",
-    "laravel-mix": "^4.0.7"
+    "laravel-mix": "^4.0.7",
+    "masonry-layout": "^4.2.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",

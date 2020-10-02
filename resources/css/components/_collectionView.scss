@@ -1,5 +1,35 @@
 .collection-container {
 
+  .switch-view {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px;
+    float: right;
+
+    &.search {
+      margin-top: 35px;
+    }
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+      float: left;
+      margin-left: 15px;
+
+      a {
+        font-size: 1.2em;
+        color: #9f9f9f;
+
+        &.active, &:hover {
+          color: rgb(0, 84, 156);
+        }
+      }
+    }
+  }
+
   .thumbnail-container {
     margin-bottom: 20px;
     .thumbnail {

@@ -24,7 +24,7 @@ class Files extends Component {
 
             const fd = new FormData()
             fd.append('file', file)
-            return axios.post("/api/v1/assets/upload", fd, {
+            return axios.post(CCM_DISPATCHER_FILENAME + "/api/v1/assets/upload", fd, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'X-Requested-With': 'XMLHttpRequest'

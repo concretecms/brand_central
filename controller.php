@@ -19,7 +19,7 @@ class Controller extends Package implements ProviderAggregateInterface
 {
 
     protected $appVersionRequired = '8.5.0';
-    protected $pkgVersion = '0.6.6';
+    protected $pkgVersion = '0.6.9';
     protected $pkgHandle = 'brand_central';
     protected $pkgAllowsFullContentSwap = true;
     protected $pkgAutoloaderRegistries = array(
@@ -46,18 +46,24 @@ class Controller extends Package implements ProviderAggregateInterface
         $this->installFolders();
     }
 
+    public function on_after_swap_content()
+    {
+        $service = $this->app->make(PackageService::class);
+        $this->installSinglePages($service->getByHandle($this->pkgHandle));
+    }
+
     public function on_start()
     {
         $list = $this->app->make(ProviderList::class);
         $list->registerProvider(ServiceProvider::class);
 
         // Some theme specific code
-        $this->app->bind('manager/view/pagination', function($app) {
+        $this->app->bind('manager/view/pagination', function ($app) {
             return new Manager($app);
         });
 
         // Extend the ServerInterface binding so that when concrete5 creates the http server we can add our middleware
-        $this->app->extend(ServerInterface::class, function(ServerInterface $server) {
+        $this->app->extend(ServerInterface::class, function (ServerInterface $server) {
             // Add our custom middleware
             return $server->addMiddleware($this->app->make(Middleware::class));
         });
@@ -107,6 +113,7 @@ class Controller extends Package implements ProviderAggregateInterface
         $pages = [
             '/account/lightboxes',
             '/assets/download',
+            '/collections/download',
             '/lightboxes'
         ];
 

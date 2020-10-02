@@ -34,7 +34,7 @@ class DropdownTags extends Component {
                     this.promise = null;
                     this.debouncer = null;
 
-                    axios.get(`/api/v1/tags?search=${inputValue}`)
+                    axios.get(CCM_DISPATCHER_FILENAME + `/api/v1/tags?search=${inputValue}`)
                         .then(response => {
                             me.resolve(response.data.map(option => ({value: option.id, label: option.name})));
                         })

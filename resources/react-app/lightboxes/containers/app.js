@@ -42,7 +42,7 @@ class App extends Component {
     }
 
     handleItemClick(id) {
-        axios.put('/api/v1/lightboxes/set', {id:id, asset:this.props.asset}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
+        axios.put(CCM_DISPATCHER_FILENAME + '/api/v1/lightboxes/set', {id:id, asset:this.props.asset}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
         .then(
             response => {
                 this.closeModal()
@@ -64,7 +64,7 @@ class App extends Component {
             this.openBanner('Please specify a lightbox name', true)
             this.closeBanner()
         } else {
-            axios.post('/api/v1/lightboxes/create', {lightbox:this.state.entryName, asset:this.props.asset}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
+            axios.post(CCM_DISPATCHER_FILENAME + '/api/v1/lightboxes/create', {lightbox:this.state.entryName, asset:this.props.asset}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
               .then(
                 response => {
                     this.closeModal()
@@ -80,7 +80,7 @@ class App extends Component {
 
     getLightboxes () {
         this.setState(()=>({ isLoading: true }))
-        axios.get('/api/v1/lightboxes', {}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
+        axios.get(CCM_DISPATCHER_FILENAME + '/api/v1/lightboxes', {}, {headers :{'X-Requested-With': 'XMLHttpRequest'}})
         .then(response => {
             this.setState(()=>({
                 lightboxes: response.data,

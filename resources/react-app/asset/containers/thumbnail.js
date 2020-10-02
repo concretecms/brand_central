@@ -17,7 +17,7 @@ class Thumbnail extends Component{
             this.props.updateThumbLoad(true)
             const fd = new FormData()
             fd.append('file', file)
-            return axios.post("/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data' } }).then( response => {
+            return axios.post(CCM_DISPATCHER_FILENAME + "/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data' } }).then( response => {
                 const data = response.data
                 this.props.updateThumbLoad(false)
                 this.props.setAssetThumb(data.url)

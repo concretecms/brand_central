@@ -41,10 +41,10 @@ class BulkUpload extends Component {
 
         this.props.processSave(true)
 
-        axios.post(`/api/v1/assets/bulk`, {assets:this.props.bulkUpload.assets, collection:this.props.bulkUpload.currentCollection, collections:this.props.bulkUpload.collections}, {headers :{'X-Requested-With': 'XMLHttpRequest' }})
+        axios.post(CCM_DISPATCHER_FILENAME + `/api/v1/assets/bulk`, {assets:this.props.bulkUpload.assets, collection:this.props.bulkUpload.currentCollection, collections:this.props.bulkUpload.collections}, {headers :{'X-Requested-With': 'XMLHttpRequest' }})
             .then( response => {
                 console.log(this.props.bulkUpload.currentCollection)
-                window.location.href = '/collections/' + this.props.bulkUpload.currentCollection
+                window.location.href = CCM_DISPATCHER_FILENAME + '/collections/' + this.props.bulkUpload.currentCollection
             }).catch(error => {
                 this.props.processSave(false)
                 this.props.toggleGlobalErr(true)
@@ -99,7 +99,7 @@ class BulkUpload extends Component {
                             <h3>Upload Assets</h3>
                         </div>
                         <div className="col-md-4 text-right">
-                            <button className="btn-clear" onClick={()=>{ window.location.href = '/account/welcome' }}>Cancel</button>
+                            <button className="btn-clear" onClick={()=>{ window.location.href = CCM_DISPATCHER_FILENAME + '/account/welcome' }}>Cancel</button>
                             <button className="btn-bold" onClick={()=> this.saveAssets()}>Save</button>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ class BulkUpload extends Component {
 
                         </div>
                         <div className="col-md-4 text-right">
-                            <button className="btn-clear" onClick={()=>{ window.location.href = '/account/welcome' }}>Cancel</button>
+                            <button className="btn-clear" onClick={()=>{ window.location.href = CCM_DISPATCHER_FILENAME + '/account/welcome' }}>Cancel</button>
                             <button className="btn-bold" onClick={()=> this.saveAssets()}>Save</button>
                         </div>
                     </div>

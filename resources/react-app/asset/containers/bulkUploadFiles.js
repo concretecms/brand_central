@@ -45,7 +45,7 @@ class BulkFiles extends Component {
 
             return () => {
 
-                return axios.post("/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest' } })
+                return axios.post(CCM_DISPATCHER_FILENAME + "/api/v1/assets/upload", fd, { headers :{ 'Content-Type': 'multipart/form-data', 'X-Requested-With': 'XMLHttpRequest' } })
                     .then( response => {
                         const data = response.data
                         const payload = {

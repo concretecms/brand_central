@@ -10,7 +10,7 @@ class TagsGeneratorBtn extends Component {
         const getGoogleLabels = () => {
             this.props.updateTagsLoader(true)
             const fileIds = this.props.asset.files.map(item => item.fid)
-            axios.post(`/api/v1/tags/google-vision/process/images`, {files:fileIds}, { headers : {'X-Requested-With': 'XMLHttpRequest'} })
+            axios.post(CCM_DISPATCHER_FILENAME + `/api/v1/tags/google-vision/process/images`, {files:fileIds}, { headers : {'X-Requested-With': 'XMLHttpRequest'} })
                 .then(response => {
                     const tags = response.data
                     tags.map(tag => {

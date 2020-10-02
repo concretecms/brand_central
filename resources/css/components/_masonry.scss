@@ -1,0 +1,88 @@
+$masonryGridSpacing: 15px;
+$masonryActionItemSize: 15px;
+$masonryOverlayBackgroundColor: rgb(0, 84, 156);
+$masonryOverlayTextColor: rgb(255, 255, 255);
+
+.grid {
+  display: block;
+  padding: $masonryGridSpacing / 2;
+  width: 100%;
+
+  .grid-item {
+    position: relative;
+    margin: $masonryGridSpacing / 2;
+    width: calc(25% - #{$masonryGridSpacing} * 2);
+
+    @media screen and (min-width: 576px) and (max-width: 767px) {
+      width: calc(50% - #{$masonryGridSpacing} * 2);
+    }
+
+    @media screen and (max-width: 575px) {
+      width: calc(100% - #{$masonryGridSpacing} * 2);
+    }
+
+    .thumbnail {
+      margin-bottom: 0;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      background: $masonryOverlayBackgroundColor;
+      border-radius: 4px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      .description {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-weight: normal;
+        color: $masonryOverlayTextColor;
+
+        .title {
+          font-weight: bold;
+          color: $masonryOverlayTextColor;
+          font-size: 1em;
+          display: block;
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .add-to-lightbox {
+        position: absolute;
+        bottom: 5px;
+        right: 10px + $masonryActionItemSize;
+        width: $masonryActionItemSize;
+        height: $masonryActionItemSize;
+        color: $masonryOverlayTextColor;
+      }
+
+      .download {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        width: $masonryActionItemSize;
+        height: $masonryActionItemSize;
+        color: $masonryOverlayTextColor;
+      }
+    }
+  }
+}

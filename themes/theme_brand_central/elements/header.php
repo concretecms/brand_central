@@ -1,21 +1,32 @@
 <?php
-    $this->inc('elements/header-top.php');
 
-    $list = new \Concrete\Core\Page\PageList();
-    $list->filterByParentID(1);
-    $list->filterByExcludeNav(false);
-    $list->sortByDisplayOrder();
-    $pages = $list->getResults();
+use Concrete\Core\Form\Service\Form;
+use Concrete\Core\Page\PageList;
+use Concrete\Core\Support\Facade\Application;
+use Concrete\Core\Support\Facade\Url;
+use Concrete\Core\User\User;
 
-    $u = new User();
+$app = Application::getFacadeApplication();
+/** @var Form $form */
+$form = $app->make(Form::class);
 
-    $express = Core::make('express');
-    $asset = $express->getObjectByHandle('asset');
-    $checker = new Permissions($asset);
-    $canAddAssets = $checker->canAddExpressEntries();
-    $collection = $express->getObjectByHandle('collection');
-    $checker = new Permissions($collection);
-    $canAddCollections = $checker->canAddExpressEntries();
+$this->inc('elements/header-top.php');
+
+$list = new PageList();
+$list->filterByParentID(1);
+$list->filterByExcludeNav(false);
+$list->sortByDisplayOrder();
+$pages = $list->getResults();
+
+$u = new User();
+
+$express = $app->make('express');
+$asset = $express->getObjectByHandle('asset');
+$checker = new Permissions($asset);
+$canAddAssets = $checker->canAddExpressEntries();
+$collection = $express->getObjectByHandle('collection');
+$checker = new Permissions($collection);
+$canAddCollections = $checker->canAddExpressEntries();
 
 
 ?>
@@ -60,11 +71,37 @@
                         </div>
                     </div>
 
-                    <ul>
-                    <?php foreach ($pages as $page){ ?>
-                        <li><a href="<?=URL::to("{$page->getCollectionPath()}")?>" class="btn"><?= $page->getCollectionName()?></a></li>
-                    <?php } ?>
-                    </ul>
+                    <div class="header-menu-container">
+                        <div class="main-nav-container">
+                            <ul class="main-nav">
+                                <?php foreach ($pages as $page){ ?>
+                                    <li>
+                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn">
+                                            <?php echo $page->getCollectionName()?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="header-search-container">
+                        <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
+                            <div class="form-group has-feedback has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+
+                                <?php
+                                echo $form->search("keywords", null, [
+                                    "placeholder" => t("Search in Brand Central."),
+                                    "autocomplete" => "off",
+                                    "class" => "form-control"
+                                ]);
+
+                                echo $form->hidden("filter");
+                                ?>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
             </div>
