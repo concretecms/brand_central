@@ -8,7 +8,7 @@ if ($collection) {
 ?>
     <div class="collection-container clearfix">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <?php if ($canEditCollection) { ?>
                     <div class="btn-group pull-right">
                         <button type="button" class="btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@ if ($collection) {
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <?php if($collection->getCollectionDescription()) { ?>
                     <p style="margin-bottom: 30px;"><?= nl2br($collection->getCollectionDescription()) ?></p>
                 <?php } ?>
@@ -63,7 +63,7 @@ if ($collection) {
                         <?php foreach($collection_assets as $asset) {
                             $asset = new Asset($asset);
                             ?>
-                            <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
+                            <div class="col-12 col-sm-6 col-lg-4 thumbnail-container">
                                 <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
                                     <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
                                 </a>

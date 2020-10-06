@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-8 col-offset-2">
 
 
         <form enctype="multipart/form-data" class="form-stacked" method="post" action="<?=$view->action('perform_reorder', $collection->getId())?>">

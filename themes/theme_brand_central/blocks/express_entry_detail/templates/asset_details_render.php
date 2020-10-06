@@ -6,14 +6,14 @@ if (isset($renderer) && isset($entry) && is_object($entry)) {
     ?>
     <section class="collection-asset-list-container">
         <div class="row">
-            <div class="col-xs-12 col-md-4">
+            <div class="col-12 col-md-4">
                 <div class="thumbnail-container">
                     <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
                         <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
                     </a>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8">
+            <div class="col-12 col-md-8">
                 <div class="asset-details">
                     <h3>
                         <?= $asset->getAssetName() ?>

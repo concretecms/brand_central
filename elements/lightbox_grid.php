@@ -5,13 +5,13 @@ use Concrete5\AssetLibrary\Results\Formatter\Lightbox;
 ?>
 
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
             <section class="collection-list-container">
                 <div class="row">
                     <?php foreach($lightboxes as $entry) {
                         $lightbox = new Lightbox($entry);
                         ?>
-                        <div class="col-xs-12 col-md-4">
+                        <div class="col-12 col-md-4">
                             <div class="thumbnail-container lightbox-grid-container">
                                 <a href="<?=$lightbox->getMyAccountViewLink()?>" class="thumbnail">
                                     <?php if($lightbox->getCoverImageURL()) { ?>

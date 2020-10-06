@@ -148,7 +148,7 @@ class Asset extends Component {
                 }} asset={this.props.asset} disabled={this.state.saving}/>
                 <section>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <p>Asset Information</p>
                             <section>
                                 <Input label={'Name'} required={true} action={'SET_ASSET_NAME'} field={'name'}
@@ -156,76 +156,76 @@ class Asset extends Component {
                                        focusOut={(event) => this.handleInputBlur(event)}/>
                             </section>
                         </div>
-                        <div className="col-md-6 col-xs-12" style={{'height': '95px'}}>
+                        <div className="col-md-6 col-12" style={{'height': '95px'}}>
                             {this.props.app.errorName ? this.errorMsg("Missing name") : null}
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <SelectType label={'type'} required={true} error={this.props.app.errorType}/>
 
                             </section>
                         </div>
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <Thumbnail/>
                         </div>
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <Files files={this.props.asset.files} error={this.props.app.errorFiles}/>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-12">
                             <section>
                                 <TextArea label={'Description'} required={false} action={'SET_ASSET_DESC'}/>
                             </section>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <SelectCollections label={'Add to Collection'} required={true}
                                                    action={'FETCH_COLLECTIONS'} actionReducer={'SET_ASSET_COLLECTIONS'}
                                                    error={this.props.app.errorCollections}/>
                             </section>
                         </div>
-                        <div className="col-md-6 col-xs-12" style={{height: '75px'}}>
+                        <div className="col-md-6 col-12" style={{height: '75px'}}>
                             {this.props.app.errorCollections ? this.errorMsg("Please select a Collection") : null}
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-12">
                             <section>
                                 <AssetCollections field={'collections'} action={'REMOVE_COLLECTION'}/>
                             </section>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <SelectDropdown label={'Tags'} required={false} action={'FETCH_TAGS'}
                                                 actionReducer={'SET_ASSET_TAGS'} field={'tags'} dropdown={false}/>
                             </section>
                         </div>
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <TagsGeneratorBtn/>
                             </section>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-12">
                             <section>
                                 <AssetCollections field={'tags'} action={'REMOVE_TAG'}/>
                             </section>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <Input label={'Location'} required={false} action={'SET_ASSET_LOCATION'}
                                        field={'location'}/>
