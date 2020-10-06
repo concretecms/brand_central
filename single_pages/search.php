@@ -132,7 +132,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                                         <button type="button" class="btn btn-round" data-dismiss="modal">
                                             <?php echo t("Cancel"); ?>
                                         </button>
-    
+
                                         <button type="submit" class="btn btn-submit">
                                             <?php echo t("Update"); ?>
                                         </button>

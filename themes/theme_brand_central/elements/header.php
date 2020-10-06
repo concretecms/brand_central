@@ -76,32 +76,33 @@ $canAddCollections = $checker->canAddExpressEntries();
                             <ul class="main-nav">
                                 <?php foreach ($pages as $page){ ?>
                                     <li>
-                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn">
-                                            <?php echo $page->getCollectionName()?>
-                                        </a>
+                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn"><?php echo $page->getCollectionName()?></a>
                                     </li>
                                 <?php } ?>
                             </ul>
+
+                            <div class="header-search-container">
+                                <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
+                                    <div class="form-group has-feedback has-search">
+                                        <span class="fa fa-search form-control-feedback"></span>
+
+                                        <?php
+                                        echo $form->search("keywords", null, [
+                                            "placeholder" => t("Search"),
+                                            "autocomplete" => "off",
+                                            "class" => "form-control"
+                                        ]);
+
+                                        echo $form->hidden("filter");
+                                        ?>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
 
-                    <div class="header-search-container">
-                        <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
-                            <div class="form-group has-feedback has-search">
-                                <span class="fa fa-search form-control-feedback"></span>
 
-                                <?php
-                                echo $form->search("keywords", null, [
-                                    "placeholder" => t("Search in Brand Central."),
-                                    "autocomplete" => "off",
-                                    "class" => "form-control"
-                                ]);
-
-                                echo $form->hidden("filter");
-                                ?>
-                            </div>
-                        </form>
-                    </div>
                 </div>
 
             </div>

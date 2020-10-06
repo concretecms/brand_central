@@ -3,6 +3,7 @@
   nav {
     margin-top: 3px;
     margin-bottom: 3px;
+
     ul {
       list-style-type: none;
       padding: 0px;
@@ -15,34 +16,37 @@
 
     }
   }
+
   a {
-    color:#f4f4f4;
+    color: #f4f4f4;
     text-decoration: none;
     font-size: 10px;
 
     &:hover {
-      color:#4b87c2;
+      color: #4b87c2;
     }
   }
 
   @include desktop {
-    background-color:#000;
+    background-color: #000;
   }
 
   @include mobile{
     display: none;
   }
 }
+
 /*Temporary hidden the dropdown menu*/
 #ccm-account-menu-container {
   display: none;
 }
+
 .logo {
   @include desktop {
-    display:inline-block;
+    display: inline-block;
   }
   @include mobile {
-    display:none;
+    display: none;
   }
 }
 
@@ -51,22 +55,22 @@
   width: 90px;
   margin-top: 3px;
   @include desktop {
-    display:none;
+    display: none;
   }
   @include mobile {
-    display:inline-block;
+    display: inline-block;
   }
 }
 
 .search-input {
-  border:none;
-  padding:5px 40px 5px 10px;
+  border: none;
+  padding: 5px 40px 5px 10px;
   border-radius: 20px;
-  color:#333;
-  background:url(#{$themePath}/images/magnifiing-glass.svg) no-repeat;
+  color: #333;
+  background: url(#{$themePath}/images/magnifiing-glass.svg) no-repeat;
   background-size: 20px;
   background-position: right 15px top 5px;
-  background-color:#fff;
+  background-color: #fff;
 }
 
 .header {
@@ -75,20 +79,22 @@
 
   .main-nav-branding {
     height: $navH;
+
     .logo {
       display: block;
       width: 220px;
-      margin:30px 0 0 0;
+      margin: 30px 0 0 0;
     }
   }
-  @include desktop{
-    background-color:#fff;
+
+  @include desktop {
+    background-color: #fff;
   }
-  @include mobile{
-    background-color:#00549c;
-    .main-nav-branding{
+  @include mobile {
+    background-color: #00549c;
+    .main-nav-branding {
       .logo {
-        margin:10px 0 0 0px;
+        margin: 10px 0 0 0px;
       }
     }
   }
@@ -102,76 +108,68 @@
         display: none;
       }
 
-      .main-nav-container {
-
-        table-layout: fixed;
-        width: 100%;
-        display: flex;
-        position: relative;
-
-        ul {
+      ul {
         list-style: none;
-        display: flex;
-        width: 100%;
-        min-width: 1%;
+        text-align: right;
 
         li {
-          display: table-cell;
-          position:relative;
-          padding:0;
-          margin:0;
-          flex: 1 1 auto;
+          display: inline-block;
+          padding: 0;
+          margin: 0;
 
           a {
-            width:135px;
-            height:76px;
-            line-height: 76px;
-            padding: 0;
+            display: table-cell;
+            position: relative;
+            width: 135px;
+            height: 66px;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
             word-wrap: break-word;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
 
-            color:#9F9F9F;
+            color: #9F9F9F;
             text-decoration: none;
             text-transform: uppercase;
+            line-height: 16px;
             font-weight: normal;
             font-size: 13px;
-            transition: color 0.1s,background-color 0.1s,padding 0.2s ease-in;
+            transition: color 0.1s, background-color 0.1s, padding 0.2s ease-in;
+
             &:hover {
-              color:$hoverColor;
+              color: $hoverColor;
               font-weight: normal;
             }
+
             &:before {
-              content:'';
+              content: '';
               display: block;
-              position:absolute;
-              bottom:3px;
-              left:0;
-              height:3px;
+              position: absolute;
+              bottom: 3px;
+              left: 0;
+              height: 3px;
               width: 100%;
-              background-color:#00549c;
+              background-color: #00549c;
               transform-origin: right top;
               transform: scale(0, 1);
-              transition: color 0.1s,transform 0.2s ease-out;
+              transition: color 0.1s, transform 0.2s ease-out;
             }
-            &:hover::before{
+
+            &:hover::before {
               transform-origin: left top;
               transform: scale(1, 1);
             }
           }
         }
       }
-      }
     }
 
-    @include mobile{
+    @include mobile {
       text-align: right;
-      padding-top:30px;
+      padding-top: 30px;
 
       .hamburger-icon {
         display: inline-block;
-        width:36px;
+        width: 36px;
         margin-right: 20px;
       }
 
@@ -183,14 +181,14 @@
 
   .main-nav-search {
 
-    @include desktop{
+    @include desktop {
       height: $navH;
       padding-top: 40px;
       padding-right: 20px;
 
     }
 
-    @include mobile{
+    @include mobile {
       display: none;
     }
 
@@ -198,7 +196,7 @@
 
   .main-nav-menu-mobil {
     display: none;
-    background-color:#333;
+    background-color: #333;
     position: absolute;
     top: 116px;
     left: 0px;
@@ -206,37 +204,40 @@
     z-index: 200;
     box-sizing: border-box;
 
-    @include mobile{
+    @include mobile {
       form {
         padding-right: 15px;
       }
       .search-input {
         display: block;
         width: 100%;
-        margin:30px 0 20px 0;
+        margin: 30px 0 20px 0;
       }
       ul {
         list-style: none;
-        padding:0;
+        padding: 0;
+
         li {
-          padding:5px;
+          padding: 5px;
+
           a {
-            color:#fff;
+            color: #fff;
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 400;
             font-size: 1.2em;
-            padding:0;
+            padding: 0;
             line-height: 3.5em;
+
             &:hover {
-              color:#fff;
+              color: #fff;
               text-decoration: none;
             }
           }
         }
       }
     }
-    @include desktop{
+    @include desktop {
       display: none;
       .search-input {
         display: none;
@@ -252,7 +253,7 @@
 #nav-icon {
   width: 36px;
   height: 30px;
-  margin:15px 0 0 -10px;
+  margin: 15px 0 0 -10px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -285,21 +286,23 @@
     -o-transform-origin: left center;
     transform-origin: left center;
 
-    &:nth-child(1){
-      top:0px;
+    &:nth-child(1) {
+      top: 0px;
     }
-    &:nth-child(2){
-      top:12px;
+
+    &:nth-child(2) {
+      top: 12px;
     }
-    &:nth-child(3){
-      top:24px;
+
+    &:nth-child(3) {
+      top: 24px;
     }
   }
 }
 
 #nav-icon.open {
   span {
-    &:nth-child(1){
+    &:nth-child(1) {
       -webkit-transform: rotate(45deg);
       -moz-transform: rotate(45deg);
       -o-transform: rotate(45deg);
@@ -307,11 +310,13 @@
       top: -3px;
       left: 0px;
     }
-    &:nth-child(2){
+
+    &:nth-child(2) {
       width: 0%;
       opacity: 0;
     }
-    &:nth-child(3){
+
+    &:nth-child(3) {
       -webkit-transform: rotate(-45deg);
       -moz-transform: rotate(-45deg);
       -o-transform: rotate(-45deg);
@@ -323,31 +328,37 @@
 }
 
 .breadcrumb {
-  background:none;
-  padding:32px 0 0 0;
+  background: none;
+  padding: 32px 0 0 0;
+
   a {
     text-decoration: none;
+
     &:hover {
       text-decoration: none;
     }
   }
+
   .active {
-    color:#333;
+    color: #333;
     font-weight: 600;
   }
 }
 
 .lightbox-sidenav {
   list-style: none;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
+
   li {
-    margin:0;
-    padding:10px;
+    margin: 0;
+    padding: 10px;
     list-style: none;
+
     a {
-      color:#333;
+      color: #333;
       text-decoration: none;
+
       &:hover {
         text-decoration: none;
       }
@@ -359,29 +370,74 @@
   position: absolute;
   float: right;
   bottom: 20px;
-  right:25px;
+  right: 25px;
 }
 
 #rename-lightbox-modal {
-  .modal-dialog{
+  .modal-dialog {
     .modal-content {
-      .modal-body{
+      .modal-body {
         label {
           display: block;
-          font-size:.7em;
+          font-size: .7em;
           font-weight: bold;
           text-transform: uppercase;
         }
+
         input {
           display: block;
           width: 100%;
-          padding:10px;
+          padding: 10px;
           font-size: 1.3em;
+
           &:focus {
             outline: none;
           }
         }
       }
+    }
+  }
+}
+
+.main-nav {
+  padding-right: 245px;
+}
+
+.header-search-container {
+  position: absolute;
+  top: 35px;
+  right: 0;
+
+  @include mobile {
+    display: none;
+  }
+
+  .has-search {
+    input {
+      height: 46px;
+      line-height: 46px;
+      border-radius: 50px;
+      border: 1px solid #9f9f9f;
+      outline: none;
+      box-shadow: none;
+      width: 240px;
+      padding: 0 50px;
+      color: #9f9f9f;
+
+      &:active {
+        border-color: #337ab7;
+      }
+    }
+
+    .form-control-feedback {
+      position: absolute;
+      left: 0;
+      height: 46px;
+      width: 46px;
+      font-size: 20px;
+      line-height: 46px;
+      text-align: center;
+      font-weight: normal;
     }
   }
 }
