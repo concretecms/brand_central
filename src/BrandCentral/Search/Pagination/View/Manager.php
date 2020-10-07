@@ -18,4 +18,10 @@ class Manager extends CoreManager
         return new ConcreteCMSView();
     }
 
+    protected function createCmsDriver()
+    {
+        return new ConcreteCMSView();
+    }
+
+
 }

@@ -18,8 +18,8 @@ use Concrete5\BrandCentral\Search\Pagination\View\Manager;
 class Controller extends Package implements ProviderAggregateInterface
 {
 
-    protected $appVersionRequired = '8.5.0';
-    protected $pkgVersion = '0.7.0';
+    protected $appVersionRequired = '9.0.0a3';
+    protected $pkgVersion = '1.0.1';
     protected $pkgHandle = 'brand_central';
     protected $pkgAllowsFullContentSwap = true;
     protected $pkgAutoloaderRegistries = array(

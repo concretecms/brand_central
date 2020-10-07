@@ -24,7 +24,7 @@ $results = array_slice($results, 2);
 ?>
 
 <div class="row">
-    <div class="col-xs-12 col-md-9">
+    <div class="col-12 col-md-9">
         <?php if ($featuredResultEntry1) { ?>
             <section class="featured-collection">
                 <h1><?=$featuredResultEntry1->getTitle()?></h1>
@@ -86,7 +86,7 @@ $results = array_slice($results, 2);
                 <?php foreach($results as $entry) {
                     $collection = new Collection($entry);
                     ?>
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-12 col-md-6">
                         <div class="thumbnail-container">
                             <a href="<?=$collection->getPublicViewLink()?>" class="thumbnail">
                                 <img src="<?=$collection->getCoverImageURL()?>" />
@@ -112,10 +112,10 @@ $results = array_slice($results, 2);
     $link = URL::to($c);
     $request = Request::createFromGlobals();
     ?>
-    <div class="col-xs-12 col-md-2 col-md-offset-1">
+    <div class="col-12 col-md-2 col-md-offset-1">
         <?php /*
         <div class="row side-bar-search">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <form method="get" action="<?=URL::to($c)?>">
                     <input name="keywords"
                     value="<?php print ($request->query->has('keywords') ? h($request->query->get('keywords')) : '')?>" type="text" autocomplete="off"/>
@@ -125,7 +125,7 @@ $results = array_slice($results, 2);
 */ ?>
         <?php /*
         <div class="row side-bar-links">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h4>Recently Updated</h4>
                 <ul>
                     <li><a href="#">Vacation</a></li>
@@ -147,7 +147,7 @@ $results = array_slice($results, 2);
 
             if ($categories) { ?>
                 <div class="row side-bar-links">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <h4>Browse by Category</h4>
                         <ul>
                         <?php foreach($categories as $category) {

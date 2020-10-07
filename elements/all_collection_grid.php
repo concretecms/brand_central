@@ -17,13 +17,13 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 ?>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-12">
         <section class="all-collection-list-container">
             <div class="row">
                 <?php foreach ($collections as $entry) {
                     $collection = new Collection($entry);
                     ?>
-                    <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
+                    <div class="col-12 col-sm-6 col-lg-4 thumbnail-container">
                         <a href="<?= $collection->getPublicViewLink() ?>" class="thumbnail">
                             <img src="<?= $collection->getThumbnailImageURL() ?>"/>
                         </a>

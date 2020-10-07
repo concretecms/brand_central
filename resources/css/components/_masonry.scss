@@ -3,6 +3,10 @@ $masonryActionItemSize: 15px;
 $masonryOverlayBackgroundColor: rgb(0, 84, 156);
 $masonryOverlayTextColor: rgb(255, 255, 255);
 
+.grid-view {
+  width: 100%;
+}
+
 .grid {
   display: block;
   padding: $masonryGridSpacing / 2;

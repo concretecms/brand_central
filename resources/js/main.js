@@ -64,7 +64,7 @@ $(function() {
     $(".switch-view a").click(function(e) {
         e.preventDefault();
 
-        $(".grid-view").addClass("hidden");
+        $(".grid-view").addClass("d-none");
 
         $(".switch-view a").removeClass("active");
 
@@ -72,12 +72,12 @@ $(function() {
 
         switch($(this).data("gridView")) {
             case "regular":
-                $(".grid-view-regular").removeClass("hidden");
+                $(".grid-view-regular").removeClass("d-none");
 
                 break;
 
             case "masonry":
-                $(".grid-view-masonry").removeClass("hidden");
+                $(".grid-view-masonry").removeClass("d-none");
 
                 var Masonry = require('masonry-layout');
 

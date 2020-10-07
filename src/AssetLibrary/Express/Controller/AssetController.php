@@ -12,7 +12,7 @@ class AssetController extends StandardController
 
     public function getEntryManager(Request $request)
     {
-        return new ExpressEntryManager($this->app->make(EntityManager::class), $request);
+        return $this->app->make(ExpressEntryManager::class, ['request' => $request]);
     }
 
 }

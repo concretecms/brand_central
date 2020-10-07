@@ -26,7 +26,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 
 <div class="container search-results">
     <div class="row">
-        <div class="col-xs-12 collection-container">
+        <div class="col-12 collection-container">
             <?php if ($count_results) { ?>
                 <div class="row">
                     <div class="col-sm-8">
@@ -176,11 +176,11 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                     <?php } ?>
 
                 <div class="row assets">
-                    <div class="grid-view grid-view-regular hidden">
+                    <div class="grid-view grid-view-regular d-none">
                         <?php foreach($search_assets as $asset) {
                             $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
                             ?>
-                            <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
+                            <div class="col-12 col-sm-6 col-lg-4 thumbnail-container">
                                 <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
                                     <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
                                 </a>
@@ -201,7 +201,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="grid-view grid-view-masonry hidden">
+                    <div class="grid-view grid-view-masonry d-none">
                         <div class="grid">
                             <?php foreach($search_assets as $asset) { ?>
                                 <?php $asset = new Asset($asset); ?>
