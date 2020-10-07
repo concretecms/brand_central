@@ -144,7 +144,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 
                     <div class="col-sm-4 text-right">
                         <div class="btn-group search-filter-dropdown">
-                            <button class="btn btn-default" id="toggle-search-filter-popup"  data-toggle="modal" data-target="#search-filter-popup">
+                            <button type="button" class="btn btn-default" id="toggle-search-filter-popup"  data-toggle="modal" data-target="#search-filter-popup">
                                 <?php echo t("Sort Results"); ?> <img src="<?=$view->getThemePath()?>/images/dropdown_filter.png"></button>
 
                             <ul class="switch-view search">

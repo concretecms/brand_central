@@ -84,7 +84,9 @@ $canAddCollections = $checker->canAddExpressEntries();
                             <div class="header-search-container">
                                 <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
                                     <div class="form-group has-feedback has-search">
-                                        <span class="fa fa-search form-control-feedback"></span>
+                                        <div class="form-control-feedback">
+                                            <i class="fas fa-search"></i>
+                                        </div>
 
                                         <?php
                                         echo $form->search("keywords", null, [

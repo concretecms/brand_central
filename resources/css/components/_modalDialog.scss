@@ -34,9 +34,9 @@
           }
 
           input[type=radio] ~ span:before {
-            font-family: FontAwesome;
+            font-family: 'Font Awesome\ 5 Free';
             display: inline-block;
-            content: "\f1db";
+            content: "\f111";
             letter-spacing: 10px;
             font-size: 1.2em;
             color: #727272;

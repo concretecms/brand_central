@@ -19,7 +19,7 @@ class Controller extends Package implements ProviderAggregateInterface
 {
 
     protected $appVersionRequired = '8.5.0';
-    protected $pkgVersion = '0.6.9';
+    protected $pkgVersion = '0.7.0';
     protected $pkgHandle = 'brand_central';
     protected $pkgAllowsFullContentSwap = true;
     protected $pkgAutoloaderRegistries = array(
