@@ -70,7 +70,9 @@ class Search extends PageController
             }
         }
 
-        $list->filterByAssetType($filter);
+        if ($filter) {
+            $list->filterByAssetType($filter);
+        }
         $list->ignorePermissions();
 
         if (!$itemsPerPage) {

@@ -11,7 +11,7 @@ $this->inc('elements/header.php');
 <content>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <?php if (isset($error) && $error instanceof ErrorList && $error->has()) { ?>
                     <div class='error-message alert alert-danger'>
                         <i class='fa fa-exclamation-triangle fa-2x'></i>

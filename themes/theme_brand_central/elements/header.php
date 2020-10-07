@@ -62,7 +62,7 @@ $canAddCollections = $checker->canAddExpressEntries();
         <div class="container">
             <div class="row">
                 <?php View::element('header_logo', ['path' => $this->getThemePath()], 'brand_central') ?>
-                <div class="col-md-9 col-xs-10 main-nav-menu text-center">
+                <div class="col-md-9 col-10 main-nav-menu text-center">
                     <div class="hamburger-icon">
                         <div id="nav-icon" class="hamburger">
                             <span></span>
@@ -111,7 +111,7 @@ $canAddCollections = $checker->canAddExpressEntries();
 
         </div>
         <div class="main-nav-menu-mobil">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <form method="post" action="<?=URL::to('/search')?>">
                     <input name="search-input" type="text" placeholder="Search in Brand Central." autocomplete="off" class="search-input"/>
                 </form>
