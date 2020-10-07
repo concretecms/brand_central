@@ -18,6 +18,7 @@ class Search extends PageController
         $tags = $this->extractTags($query->get('tags'));
         $itemsPerPage = $query->get('ipp');
         $filterLabel = 'Anything';
+        $filterRadioValue = 'all';
 
         $showCollectionResults = false;
         if ($input) {
@@ -37,25 +38,33 @@ class Search extends PageController
             }
         }
 
+        $entity = Express::getObjectByHandle('asset');
+        $list = new \Concrete\Core\Express\EntryList($entity);
+
         switch ($filter) {
             case 'photo' :
                 $filterLabel = 'Photos';
+                $filterRadioValue = 'photos';
+                $list->filterByAssetType('photo');
                 break;
             case 'logo':
                 $filterLabel = 'Logos';
+                $filterRadioValue = 'logos';
+                $list->filterByAssetType('logo');
                 break;
             case 'video':
                 $filterLabel = 'Videos';
+                $filterRadioValue = 'videos';
+                $list->filterByAssetType('video');
                 break;
             case 'template':
                 $filterLabel = 'Templates';
+                $filterRadioValue = 'templates';
+                $list->filterByAssetType('template');
                 break;
         }
 
         $keywords = $this->extractKeywords($input);
-
-        $entity = Express::getObjectByHandle('asset');
-        $list = new \Concrete\Core\Express\EntryList($entity);
 
         if ($keywords) {
             foreach ($keywords as $key) {
@@ -70,9 +79,6 @@ class Search extends PageController
             }
         }
 
-        if ($filter) {
-            $list->filterByAssetType($filter);
-        }
         $list->ignorePermissions();
 
         if (!$itemsPerPage) {
@@ -85,6 +91,7 @@ class Search extends PageController
         if (!in_array($sort, ['name', 'recent', 'oldest'])) {
             $sort = 'recent';
         }
+        $sortRadioValue = $sort;
 
         switch ($sort) {
             case 'name':
@@ -114,6 +121,8 @@ class Search extends PageController
         $this->set("count_results", $count);
         $this->set("filter", $filter);
         $this->set("filter_label", $filterLabel);
+        $this->set("filter_radio_value", $filterRadioValue);
+        $this->set("sort_radio_value", $sortRadioValue);
         $this->set('search_assets', $searchResults);
         $this->set('search_tag', $tag);
         $this->set('keywords', $keywords);

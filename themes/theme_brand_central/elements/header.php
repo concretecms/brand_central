@@ -96,8 +96,6 @@ $canAddCollections = $checker->canAddExpressEntries();
                                     "autocomplete" => "off",
                                     "class" => "form-control"
                                 ]);
-
-                                echo $form->hidden("filter");
                                 ?>
                             </div>
                         </form>
