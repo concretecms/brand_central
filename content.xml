@@ -82,6 +82,13 @@
                 </attributekey>
             </attributes>
         </page>
+        <page name="View Asset" path="/assets" filename="/assets.php" pagetype="" description="" package="brand_central">
+            <attributes>
+                <attributekey handle="exclude_nav">
+                    <value>1</value>
+                </attributekey>
+            </attributes>
+        </page>
         <page name="Collections" path="/collections" filename="/collections.php" pagetype="" description="" package="brand_central">
             <attributes>
                 <attributekey handle="exclude_nav">
@@ -98,8 +105,13 @@
         </page>
         <page name="My Lightboxes" path="/account/lightboxes" filename="/account/lightboxes.php" pagetype="" description="" package="brand_central">
         </page>
+        <page name="Download Asset" path="/assets/download" filename="/assets/download.php" pagetype="" description="" package="brand_central">
+        </page>
+        <page name="Download Collection" path="/collections/download" filename="/collections/download.php" pagetype="" description="" package="brand_central">
+        </page>
+        <page name="Lightboxes" path="/lightboxes" filename="/lightboxes.php" pagetype="" description="" package="brand_central">
+        </page>
     </singlepages>
-
     <pagetypes>
         <pagetype name="Home" handle="home" package="brand_central" launch-in-composer="0" is-frequently-added="0">
             <pagetemplates type="custom" default="home">

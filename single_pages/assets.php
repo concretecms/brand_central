@@ -10,13 +10,12 @@ if (!$error->has()) {
                             <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?=t('Edit')?> <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?=URL::to('/assets', 'edit', $asset->getId())?>" class=""><?=t('Edit Details')?></a></li>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="<?=URL::to('/assets', 'edit', $asset->getId())?>" class=""><?=t('Edit Details')?></a>
                                 <?php if ($canDeleteAsset) { ?>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="<?=URL::to('/assets', 'delete', $asset->getId())?>"><span class="text-danger"><?=t('Delete')?></span></a></li>
+                                    <a class="dropdown-item" href="<?=URL::to('/assets', 'delete', $asset->getId())?>"><span class="text-danger"><?=t('Delete')?></span></a>
                                 <?php } ?>
-                            </ul>
+                            </div>
                         </div>
                     <?php } ?>
 
