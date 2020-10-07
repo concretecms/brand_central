@@ -76,30 +76,32 @@ $canAddCollections = $checker->canAddExpressEntries();
                             <ul class="main-nav">
                                 <?php foreach ($pages as $page){ ?>
                                     <li>
-                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn">
-                                            <?php echo $page->getCollectionName()?>
-                                        </a>
+                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn"><?php echo $page->getCollectionName()?></a>
                                     </li>
                                 <?php } ?>
                             </ul>
-                        </div>
-                    </div>
 
-                    <div class="header-search-container">
-                        <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
-                            <div class="form-group has-feedback has-search">
-                                <span class="fa fa-search form-control-feedback"></span>
+                            <div class="header-search-container">
+                                <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
+                                    <div class="form-group has-feedback has-search">
+                                        <div class="form-control-feedback">
+                                            <i class="fas fa-search"></i>
+                                        </div>
 
-                                <?php
-                                echo $form->search("keywords", null, [
-                                    "placeholder" => t("Search in Brand Central."),
+                                        <?php
+                                        echo $form->search("keywords", null, [
+                                            "placeholder" => t("Search"),
                                     "autocomplete" => "off",
                                     "class" => "form-control"
                                 ]);
                                 ?>
                             </div>
-                        </form>
+                        </form></div>
+
+                        </div>
                     </div>
+
+
                 </div>
 
             </div>

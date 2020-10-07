@@ -54,7 +54,7 @@ if ($collection) {
             </div>
         </div>
 
-        <div class="row grid-view grid-view-regular hidden">
+        <div class="row grid-view grid-view-regular d-none">
             <div class="col-md-12">
                 <div class="row assets">
                     <?php foreach($collection_assets as $asset) {
@@ -85,7 +85,7 @@ if ($collection) {
 
             </div>
         </div>
-        <div class="row grid-view grid-view-masonry hidden">
+        <div class="row grid-view grid-view-masonry d-none">
             <div class="">
                 <div class="grid">
                     <?php foreach($collection_assets as $asset) { ?>

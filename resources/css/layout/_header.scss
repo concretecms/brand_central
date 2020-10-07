@@ -43,47 +43,6 @@ div.ccm-page {
 
   header {
 
-    .header-menu-container {
-      display: block;
-      float: left;
-      width: calc(100% - 175px);
-
-      @include mobile{
-        display: none;
-      }
-    }
-
-    .header-search-container {
-      margin-left: 25px;
-      margin-top: 22px;
-      width: 150px;
-      float: right;
-
-      @include mobile{
-        display: none;
-      }
-
-      .has-search {
-        .form-control-feedback {
-          right: initial;
-          left: 0;
-          color: #ccc;
-        }
-
-        .form-control {
-          padding-right: 12px;
-          padding-left: 34px;
-          border-radius: 25px;
-          border: 1px solid #9f9f9f;
-
-          &:focus {
-            outline-style: none;
-            box-shadow: none;
-            border-color: #337ab7;
-          }
-        }
-      }
-    }
   }
 
 }

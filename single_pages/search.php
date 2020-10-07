@@ -169,7 +169,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
     <?php } ?>
 
     <?php if ($search_assets) { ?>
-        <div class="grid-view grid-view-regular hidden row assets">
+        <div class="grid-view grid-view-regular d-none row assets">
             <?php foreach($search_assets as $asset) {
                 $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
                 ?>
@@ -194,7 +194,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                 </div>
             <?php } ?>
         </div>
-        <div class="grid-view grid-view-masonry hidden row assets">
+        <div class="grid-view grid-view-masonry d-none row assets">
                 <div class="grid">
                     <?php foreach($search_assets as $asset) { ?>
                         <?php $asset = new Asset($asset); ?>
