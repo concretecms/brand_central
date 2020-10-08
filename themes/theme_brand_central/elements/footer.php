@@ -46,5 +46,4 @@
         </div>
     </footer>
 
-
     <?php $this->inc('elements/footer-bottom.php'); ?>

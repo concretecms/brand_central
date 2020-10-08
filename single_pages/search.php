@@ -134,8 +134,10 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 
         <div class="col-sm-4 text-right">
             <div class="btn-group search-filter-dropdown">
-                <button class="btn btn-default" id="toggle-search-filter-popup"  data-toggle="modal" data-target="#search-filter-popup">
-                    <?php echo t("Sort Results"); ?> <img src="<?=$view->getThemePath()?>/images/dropdown_filter.png"></button>
+                <button class="btn btn-default icon-search mr-5" id="toggle-search-filter-popup"  data-toggle="modal" data-target="#search-filter-popup">
+                    <b><?php echo t("Sort/Filter"); ?></b>
+                    <svg><use xlink:href="#bc-icon-sort-filter" /></svg>
+                </button>
 
                 <?php
                 Element::get('asset_grid_controls', 'brand_central')->render();
