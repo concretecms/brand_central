@@ -132,6 +132,7 @@ class Search extends PageController
         $this->set('collectionResults', $collectionResults);
         $this->set('showCollectionResults', $showCollectionResults);
         $this->set('lightboxApp', true);
+        $this->setThemeViewTemplate('view_full.php');
     }
 
     /**

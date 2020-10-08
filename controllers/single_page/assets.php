@@ -120,6 +120,7 @@ class Assets extends PageController
         } else {
             $this->error->add('Asset not found.');
         }
+        $this->setThemeViewTemplate('view_full.php');
 
     }
 

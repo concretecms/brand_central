@@ -18,7 +18,8 @@
     "cross-env": "^5.1.1",
     "file-saver": "^2.0.0-rc.4",
     "laravel-mix": "^4.0.7",
-    "masonry-layout": "^4.2.2"
+    "masonry-layout": "^4.2.2",
+    "pdfobject": "^2.2.4"
   },
   "devDependencies": {
     "@concretecms/bedrock": "github:concrete5/bedrock",

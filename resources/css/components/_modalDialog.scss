@@ -27,12 +27,45 @@
     .modal-footer {
       margin-top: 1em;
     }
-
   }
 }
 
 @include media-breakpoint-up(lg) {
   .modal-search {
     max-width: 650px;
+  }
+}
+
+// PDF modal
+.modal.modal-pdf {
+  padding: 10px 0;
+
+  .modal-dialog {
+    margin-bottom: 0;
+    margin-top: 0;
+    height: 100%;
+
+    button.close {
+      position: absolute;
+      right: -30px;
+      top: 0;
+
+      i {
+        color: white;
+      }
+    }
+
+    .modal-content {
+      height: 100%;
+
+      .modal-body {
+        height: 100%;
+
+        .pdfobject-container {
+          height: 100%;
+        }
+
+      }
+    }
   }
 }

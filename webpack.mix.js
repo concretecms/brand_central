@@ -11,6 +11,7 @@ mix
     .js('resources/js/collection-download.js', 'themes/theme_brand_central/js')
     .react('resources/react-app/asset/asset.js', 'themes/theme_brand_central/js')
     .react('resources/react-app/lightboxes/lightbox.js', 'themes/theme_brand_central/js')
+    .copy('node_modules/pdfobject/pdfobject.min.js', 'themes/theme_brand_central/js/pdfobject.js');
 
 // Other options:
 // mix.sass, mix.js, mix.scripts, mix.stylus, mix.styles, mix.react, mix.webpackConfig, mix.copy, mix.copyDirectory,
