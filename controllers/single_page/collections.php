@@ -195,6 +195,7 @@ class Collections extends PageController
             $this->set('pagination', $pagination);
         }
         $this->set('lightboxApp', true);
+        $this->setThemeViewTemplate('view_full.php');
     }
 
     public function reorder($collectionID = null)

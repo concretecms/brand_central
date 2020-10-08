@@ -99,4 +99,13 @@ $(function() {
     }
 
     $(".switch-view a[data-grid-view='" + selectedGridView + "']").trigger("click");
+
+    var $pdfs = $('div[data-viewer=pdf]');
+    if ($pdfs.length) {
+        $pdfs.each(function() {
+            var documentId = $(this).attr('id');
+            var url = $(this).attr('data-pdf-url');
+            PDFObject.embed(url, '#' + documentId);
+        });
+    }
 });
