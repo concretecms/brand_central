@@ -1,4 +1,3 @@
-<div class="container">
     <div class="text-center">
         <h3><?= t('Your download will begin shortly.') ?></h3>
         <span class="help-block">
@@ -18,4 +17,3 @@
         })
     </script>
     <script src="<?= $view->getThemePath() ?>/js/collection-download.js"></script>
-</div>

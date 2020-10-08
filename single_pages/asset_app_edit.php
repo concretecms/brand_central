@@ -1,7 +1,5 @@
 
 <script src="<?= $view->getThemePath() ?>/js/asset.js"></script>
 
-<div class="container">
-    <div id="asset" data-asset="<?= $asset->getId() ?>"></div>
-</div>
+<div id="asset" data-asset="<?= $asset->getId() ?>"></div>
 

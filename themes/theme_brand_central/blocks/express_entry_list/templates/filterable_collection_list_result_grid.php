@@ -38,7 +38,7 @@ $c = Page::getCurrentPage();
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"><?= t('Filter Results') ?> <img
                             src="<?= $view->getThemePath() ?>/images/dropdown_filter.png"></button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu dropdown-menu-right">
                     <h4><?= t('Category') ?></h4>
                     <a class="dropdown-item" href="<?= $link ?>"><i
                                     class="far <?php if ($isSelected) { ?>fa-dot-circle<?php } else { ?>fa-circle<?php } ?>"></i>

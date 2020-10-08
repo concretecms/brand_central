@@ -25,6 +25,12 @@
                 <?=t('Create a bunch of new assets at once.')?>
             </a>
         <?php } ?>
+        <?php if ($canViewDropbox) { ?>
+            <a href="<?=URL::to('/dropbox')?>" class="list-group-item list-group-item-action">
+                <h5 class="mb-1"><?=t('Drop Box')?></h5>
+                <?=t('Upload large files privately.')?>
+            </a>
+        <?php } ?>
         <a class="list-group-item list-group-item-action" href="<?=URL::to('/private-pages/training')?>">
             <h5 class="mb-1"><?=t('Help')?></h5>
             <?=t('Get help editing this website.')?>

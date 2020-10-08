@@ -11971,12 +11971,7 @@ div.ccm-page .btn-submit-danger:focus, .modal-dialog .btn-submit-danger:focus {
 }
 
 .search-filter-dropdown .dropdown-menu {
-  right: 0 !important;
-  left: unset;
   border-radius: 0;
-}
-.search-filter-dropdown .dropdown-menu li:last-child {
-  margin-bottom: 20px;
 }
 .search-filter-dropdown button {
   margin-top: 30px;
