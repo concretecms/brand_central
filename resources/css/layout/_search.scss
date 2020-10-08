@@ -67,6 +67,10 @@
     }
     font-weight: 600;
     font-size: 14px;
+
+    &:after {
+      content: none;
+    }
   }
   i.fa {
     font-size: 18px;
