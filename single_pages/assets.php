@@ -1,4 +1,5 @@
-<?php
+<div class="container">
+    <?php
 if (!$error->has()) {
 ?>
     <div class="asset">
@@ -11,7 +12,7 @@ if (!$error->has()) {
                                 <?=t('Edit')?> <span class="caret"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?=URL::to('/assets', 'edit', $asset->getId())?>" class=""><?=t('Edit Details')?></a>
+                                <a class="dropdown-item" href="<?=URL::to('/assets', 'edit', $asset->getId())?>"><?=t('Edit Details')?></a>
                                 <?php if ($canDeleteAsset) { ?>
                                     <a class="dropdown-item" href="<?=URL::to('/assets', 'delete', $asset->getId())?>"><span class="text-danger"><?=t('Delete')?></span></a>
                                 <?php } ?>
@@ -135,3 +136,4 @@ if (!$error->has()) {
     }
 ?>
 
+</div>

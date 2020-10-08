@@ -137,19 +137,9 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                 <button class="btn btn-default" id="toggle-search-filter-popup"  data-toggle="modal" data-target="#search-filter-popup">
                     <?php echo t("Sort Results"); ?> <img src="<?=$view->getThemePath()?>/images/dropdown_filter.png"></button>
 
-                <ul class="switch-view search">
-                    <li>
-                        <a href="javascript:void(0);" data-tooltip="regular-grid" data-grid-view="regular" title="<?php echo h(t("Regular Grid")); ?>">
-                            <i class="fa fa-th-large"></i>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="javascript:void(0);" data-tooltip="masonry-grid" data-grid-view="masonry" title="<?php echo h(t("Masonry Grid")); ?>">
-                            <i class="fa fa-th"></i>
-                        </a>
-                    </li>
-                </ul>
+                <?php
+                Element::get('asset_grid_controls', 'brand_central')->render();
+                ?>
             </div>
         </div>
     </div>
@@ -168,86 +158,31 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
         </div>
     <?php } ?>
 
-    <?php if ($search_assets) { ?>
-        <div class="grid-view grid-view-regular d-none row assets">
-            <?php foreach($search_assets as $asset) {
-                $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
-                ?>
-                <div class="col-12 col-sm-6 col-lg-4 thumbnail-container">
-                    <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
-                        <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
-                    </a>
-                    <div class="thumbnail-caption">
-                        <h3>
-                            <span class="pull-right">
-                                <?php
-                                $u = new User();
-                                if ($u->isRegistered()) {
-                                    ?>
-                                    <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?=t('Add to Lightbox')?>" data-asset="<?= $asset->getId() ?>"><i class="fa fa-plus"></i></a>
-                                <?php } ?>
-                                <a href="<?=$asset->getDownloadURL()?>" data-tooltip="download" title="<?=t('Download')?>"><i class="fa fa-download"></i></a>
-                            </span>
-                            <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="asset-link"><?= trim(h($asset->getAssetName())) ?: '&nbsp;' ?></a>
-                        </h3>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-        <div class="grid-view grid-view-masonry d-none row assets">
-                <div class="grid">
-                    <?php foreach($search_assets as $asset) { ?>
-                        <?php $asset = new Asset($asset); ?>
+    <?php
+    Element::get('asset_grid', [
+        'assets' => $search_assets,
+        'pagination' => $pagination,
+    ], 'brand_central')->render();
+    ?>
 
-                        <div class="grid-item">
-                            <a href="<?php echo Url::to('/assets', $asset->getId()) ?>" class="thumbnail">
-                                <img src="<?php echo h($asset->getThumbnailImageURL()) ?>" class="<?php echo h($asset->getAssetType()) ?>"/>
-                            </a>
-
-                            <div class="overlay">
-                                <a href="<?php echo Url::to('/assets', $asset->getId()) ?>" class="description">
-                                        <span class="title">
-                                            <?php echo $asset->getAssetName()?>
-                                        </span>
-
-                                    <?php echo $asset->getAssetDescription(); ?>
-                                </a>
-
-                                <?php $u = new User(); ?>
-
-                                <?php if ($u->isRegistered()) { ?>
-                                    <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?php echo h(t('Add to Lightbox')) ?>" data-asset="<?php echo h($asset->getId()) ?>">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
-                                <?php } ?>
-
-                                <a href="<?php echo h($asset->getDownloadURL()) ?>" data-tooltip="download" title="<?php echo h(t('Download')) ?>" class="download">
-                                    <i class="fa fa-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                    <?php } ?>
-            </div>
-        </div>
-    <?php } ?>
 
 <?php
         if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
 
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-sm-4">
-                    <div class="dropdown search-page-results" style="">
-                        <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="current-option"><?= h($items_per_page) ?> </span> <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?= $searchUrl(['ipp' => 12]) ?>">12</a></li>
-                            <li><a href="<?= $searchUrl(['ipp' => 24]) ?>">24</a></li>
-                            <li><a href="<?= $searchUrl(['ipp' => 48]) ?>">48</a></li>
-                            <li><a href="<?= $searchUrl(['ipp' => 96]) ?>">96</a></li>
-                        </ul>
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn-round" aria-haspopup="true" aria-expanded="false"><?= h($items_per_page) ?> <i class="fa fa-chevron-down"></i></button>
+                        Per Page
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="<?= $searchUrl(['ipp' => 12]) ?>">12</a></li>
+                            <a class="dropdown-item" href="<?= $searchUrl(['ipp' => 24]) ?>">24</a></li>
+                            <a class="dropdown-item" href="<?= $searchUrl(['ipp' => 48]) ?>">48</a></li>
+                            <a class="dropdown-item" href="<?= $searchUrl(['ipp' => 96]) ?>">96</a></li>
+                        </div>
                     </div>
-                    Per Page
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-8 d-flex flex-row-reverse">
                     <?php print $pagination->renderDefaultView(); ?>
                 </div>
             </div>
@@ -255,7 +190,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
         <?php } ?>
 
         <?php if ($showCollectionResults) { ?>
-            <h3><?=t('Also check out...')?></h3>
+            <h3 class="mt-5"><?=t('Also check out...')?></h3>
             <?php
             View::element('all_collection_grid', ['collections' => $collectionResults], 'brand_central');
             ?>

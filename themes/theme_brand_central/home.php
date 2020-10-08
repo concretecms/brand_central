@@ -18,7 +18,7 @@ if (count($files)) {
 
 <section class="home-search" data-bk="<?= $bk ?>">
     <div class="search-container">
-        <form data-form="search" class="" method="get" action="<?=URL::to('/search')?>">
+        <form data-form="home-search" class="" method="get" action="<?=URL::to('/search')?>">
             <input name="filter" type="hidden" value="all"/>
             <div class="search input-group">
                 <input name="keywords" class="form-control" type="text" placeholder="Search in Brand Central." autocomplete="off"/>

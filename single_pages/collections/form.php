@@ -1,5 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
+<div class="container">
     <form enctype="multipart/form-data" class="form-stacked" method="post" action="<?=$view->action('submit')?>">
 
     <?php
@@ -19,3 +20,4 @@
     </div>
 
     </form>
+</div>
