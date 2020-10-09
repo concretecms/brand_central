@@ -67,6 +67,10 @@
     }
     font-weight: 600;
     font-size: 14px;
+
+    &:after {
+      content: none;
+    }
   }
   i.fa {
     font-size: 18px;
@@ -93,4 +97,35 @@
     }
   }
 
+}
+
+.icon-search {
+  svg {
+    transition: 0.2s linear fill;
+    fill: #ccc;
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    svg {
+      fill: #666;
+    }
+  }
+
+  &.active {
+    svg {
+      fill: #0075BF;
+    }
+  }
+}
+
+.search-filter-dropdown {
+  #toggle-search-filter-popup {
+    &:hover {
+      svg {
+        fill: #0075BF;
+      }
+    }
+  }
 }

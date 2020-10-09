@@ -1,3 +1,4 @@
+<div class="container">
 <?php if ($lightbox) { ?>
 
     <div class="row asset">
@@ -52,3 +53,4 @@
     </div>
 
 <?php } ?>
+</div>

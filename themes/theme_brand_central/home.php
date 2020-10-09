@@ -18,14 +18,14 @@ if (count($files)) {
 
 <section class="home-search" data-bk="<?= $bk ?>">
     <div class="search-container">
-        <form data-form="search" class="" method="get" action="<?=URL::to('/search')?>">
-            <input name="filter" type="hidden" value=""/>
+        <form data-form="home-search" class="" method="get" action="<?=URL::to('/search')?>">
+            <input name="filter" type="hidden" value="all"/>
             <div class="search input-group">
                 <input name="keywords" class="form-control" type="text" placeholder="Search in Brand Central." autocomplete="off"/>
                 <div class="input-group-append">
                     <button type="button" class="btn dropdown-toggle search-btn-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="search-btn-label">Anything</span> <span class="caret"></span></button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item" data-filter-value="">Anything</a>
+                        <a href="#" class="dropdown-item" data-filter-value="all">Anything</a>
                         <a href="#" class="dropdown-item" data-filter-value="photo">Photos</a>
                         <a href="#" class="dropdown-item" data-filter-value="logo">Logos</a>
                         <a href="#" class="dropdown-item" data-filter-value="video">Videos</a>

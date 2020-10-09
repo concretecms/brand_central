@@ -1,4 +1,5 @@
-<?php
+<div class="container">
+    <?php
 if (!$error->has()) {
 ?>
     <div class="asset">
@@ -11,7 +12,7 @@ if (!$error->has()) {
                                 <?=t('Edit')?> <span class="caret"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?=URL::to('/assets', 'edit', $asset->getId())?>" class=""><?=t('Edit Details')?></a>
+                                <a class="dropdown-item" href="<?=URL::to('/assets', 'edit', $asset->getId())?>"><?=t('Edit Details')?></a>
                                 <?php if ($canDeleteAsset) { ?>
                                     <a class="dropdown-item" href="<?=URL::to('/assets', 'delete', $asset->getId())?>"><span class="text-danger"><?=t('Delete')?></span></a>
                                 <?php } ?>
@@ -61,21 +62,54 @@ if (!$error->has()) {
                 <?php } ?>
 
                 <div class="asset-files">
+                    <h3><?=t2('File', 'Files', count($asset_files))?></h3>
                     <ul>
                         <?php
                         $u = new User();
                         foreach($asset_files as $file) {
+                            $assetFile = $file->getAssetFile();
                             if ($u->isRegistered()) {
-                                $fileDownloadURL = $file->getAssetFile()->getForceDownloadURL();
+                                $fileDownloadURL = $assetFile->getForceDownloadURL();
                             } else {
                                 $fileDownloadURL = $asset->getDownloadURL();
                             }
                             ?>
                             <li>
-                                <a href="<?=$fileDownloadURL?>">
-                                    <i class="fa fa-download"></i>
+                                <?php
+                                $mime = $assetFile->getMimeType();
+                                if ($mime === 'application/pdf') { ?>
+
+                                <a href="#" class="text-dark" data-toggle="modal" data-target="#pdf-viewer-<?=$assetFile->getFileID()?>">
                                     <?=$file->getAssetFileDescription()?>
+                                    <i class="fa fa-file-pdf"></i>
                                 </a>
+                                <a href="<?=$fileDownloadURL?>" class="text-dark">
+                                    <i class="fa fa-file-download"></i>
+                                </a>
+                                <div class="modal fade modal-pdf" id="pdf-viewer-<?=$assetFile->getFileID()?>" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                                        </button>
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div
+                                                        class="modal-pdf-viewer"
+                                                        data-viewer="pdf"
+                                                        id="pdf-viewer-content-<?=$assetFile->getFileID()?>"
+                                                        data-pdf-url="<?=$assetFile->getURL()?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php } else { ?>
+                                 <a href="<?=$fileDownloadURL?>" class="text-dark">
+                                     <?=$file->getAssetFileDescription()?>
+                                     <i class="fa fa-file-download"></i>
+                                 </a>
+                                <?php } ?>
                             </li>
                         <?php } ?>
                     </ul>
@@ -135,3 +169,4 @@ if (!$error->has()) {
     }
 ?>
 
+</div>

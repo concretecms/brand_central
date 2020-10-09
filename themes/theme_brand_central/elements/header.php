@@ -27,7 +27,9 @@ $canAddAssets = $checker->canAddExpressEntries();
 $collection = $express->getObjectByHandle('collection');
 $checker = new Permissions($collection);
 $canAddCollections = $checker->canAddExpressEntries();
-
+$dropbox = Concrete\Core\Page\Page::getByPath('/dropbox');
+$dropboxPermissions = new Permissions($dropbox);
+$canViewDropbox = $dropboxPermissions->canViewPage();
 
 ?>
 <header>
@@ -47,6 +49,9 @@ $canAddCollections = $checker->canAddExpressEntries();
                                 <?php if ($canAddAssets) { ?>
                                     <li><a href="<?=URL::to('/assets/create')?>"><?= t('Add Asset') ?></a></li>
                                     <li><a href="<?=URL::to('/assets/bulk_upload')?>"><?= t('Bulk Upload') ?></a></li>
+                                <?php } ?>
+                                <?php if ($canViewDropbox) { ?>
+                                    <li><a href="<?=URL::to('/dropbox')?>"><?= t('Drop Box') ?></a></li>
                                 <?php } ?>
                                 <li><?php echo Core::make('helper/navigation')->getLogInOutLink() ?></li>
                             <?php } else { ?>
@@ -91,15 +96,12 @@ $canAddCollections = $checker->canAddExpressEntries();
                                         <?php
                                         echo $form->search("keywords", null, [
                                             "placeholder" => t("Search"),
-                                            "autocomplete" => "off",
-                                            "class" => "form-control"
-                                        ]);
-
-                                        echo $form->hidden("filter");
-                                        ?>
-                                    </div>
-                                </form>
+                                    "autocomplete" => "off",
+                                    "class" => "form-control"
+                                ]);
+                                ?>
                             </div>
+                        </form></div>
 
                         </div>
                     </div>

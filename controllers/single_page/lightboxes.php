@@ -69,6 +69,7 @@ class Lightboxes extends PageController
         } else {
             $this->set('lightboxes', $list->getResults());
         }
+        $this->setThemeViewTemplate('view_full.php');
 
     }
 
@@ -121,6 +122,7 @@ class Lightboxes extends PageController
         } else {
             return $this->responseFactory->notFound(t('Lightbox not found.'));
         }
+        $this->setThemeViewTemplate('view_full.php');
     }
 
     /**

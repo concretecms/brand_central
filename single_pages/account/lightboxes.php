@@ -1,4 +1,5 @@
-<?php
+<div class="container">
+    <?php
     defined('C5_EXECUTE') or die("Access Denied.");
     use Concrete5\AssetLibrary\Results\Formatter\Lightbox;
 
@@ -107,3 +108,4 @@ else {
     </div>
 
 <?php } ?>
+</div>

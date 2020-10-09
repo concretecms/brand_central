@@ -1,65 +1,71 @@
 .modal-dialog {
-  .modal-content {
-    border-radius: 0;
-  }
 
+  // global styles
   .modal-header {
-    border-bottom: none;
-
     .modal-title {
-      margin-top: 20px;
+      font-weight: bold;
       text-align: center;
       text-transform: uppercase;
-      font-weight: bold;
-      margin: auto;
+      width: 100%;
     }
   }
 
-  .modal-body {
-    .radio-buttons-container {
-      padding: 0 40px 20px;
+  // search dialog
+  &.modal-search {
+    h5 {
+      margin-bottom: 1em;
+    }
 
-      .radio {
-        label {
-          padding-left: 0;
+    div.form-check {
+      margin-bottom: 1em;
 
-          input[type=radio] {
-            border: 0;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-          }
-
-          input[type=radio] ~ span:before {
-            font-family: 'Font Awesome\ 5 Free';
-            display: inline-block;
-            content: "\f111";
-            letter-spacing: 10px;
-            font-size: 1.2em;
-            color: #727272;
-            width: 1.4em;
-          }
-
-          input[type=radio]:checked ~ span:before {
-            content: "\f192";
-            font-size: 1.2em;
-            color: #0075BF;
-            letter-spacing: 5px;
-          }
-          input[type=radio]:focus ~ span:before,
-          input[type=radio]:focus ~ span
-          {
-            color: #0075BF;
-          }
-        }
+      input.form-check-input:checked + label {
+        font-weight: bold;
       }
     }
+
+    .modal-footer {
+      margin-top: 1em;
+    }
   }
-  .modal-footer {
-    border-top: none;
+}
+
+@include media-breakpoint-up(lg) {
+  .modal-search {
+    max-width: 650px;
+  }
+}
+
+// PDF modal
+.modal.modal-pdf {
+  padding: 10px 0;
+
+  .modal-dialog {
+    margin-bottom: 0;
+    margin-top: 0;
+    height: 100%;
+
+    button.close {
+      position: absolute;
+      right: -30px;
+      top: 0;
+
+      i {
+        color: white;
+      }
+    }
+
+    .modal-content {
+      height: 100%;
+
+      .modal-body {
+        height: 100%;
+
+        .pdfobject-container {
+          height: 100%;
+        }
+
+      }
+    }
   }
 }
