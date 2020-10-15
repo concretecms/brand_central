@@ -112,7 +112,7 @@ class Collections extends PageController
             $controller = $express->getEntityController($entity);
             $factory = new ContextFactory($controller);
             $context = $factory->getContext(new FrontendFormContext());
-            $form = $entity->getForm('Frontend');
+            $form = $entity->getForms()[0];
             $renderer = new Renderer(
                 $context,
                 $form
