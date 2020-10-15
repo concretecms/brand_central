@@ -108,4 +108,27 @@ $(function() {
             PDFObject.embed(url, '#' + documentId);
         });
     }
+
+    /*
+     * Code for requesting the download permissions if required
+     */
+
+    var tempDownloadUrl = '';
+
+    $("#opt-in-form").submit(function (e) {
+        e.preventDefault();
+        $.getJSON(CCM_DISPATCHER_FILENAME + "/assets/download/opt_in", function (data) {
+            if (data.success) {
+                $('#download-opt-in-modal').modal('hide');
+                window.location.href = tempDownloadUrl;
+            }
+        });
+    });
+
+    $(".request-download-opt-in").click(function (e) {
+        e.preventDefault();
+        tempDownloadUrl = $(this).attr("href");
+        $('#download-opt-in-modal').modal('show');
+        return false;
+    });
 });

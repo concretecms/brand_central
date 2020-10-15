@@ -1,6 +1,10 @@
 <div class="container">
     <?php
-if (!$error->has()) {
+    /** @var bool $canDownload */
+
+    use Concrete\Core\Support\Facade\Url;
+
+    if (!$error->has()) {
 ?>
     <div class="asset">
         <div class="row ">
@@ -83,7 +87,7 @@ if (!$error->has()) {
                                     <?=$file->getAssetFileDescription()?>
                                     <i class="fa fa-file-pdf"></i>
                                 </a>
-                                <a href="<?=$fileDownloadURL?>" class="text-dark">
+                                <a href="<?=$fileDownloadURL?>" class="text-dark<?php echo $canDownload ? "" : " request-download-opt-in" ?>">
                                     <i class="fa fa-file-download"></i>
                                 </a>
                                 <div class="modal fade modal-pdf" id="pdf-viewer-<?=$assetFile->getFileID()?>" tabindex="-1" role="dialog">
@@ -105,7 +109,7 @@ if (!$error->has()) {
                                 </div>
 
                                 <?php } else { ?>
-                                 <a href="<?=$fileDownloadURL?>" class="text-dark">
+                                 <a href="<?=$fileDownloadURL?>" class="text-dark<?php echo $canDownload ? "" : " request-download-opt-in" ?>">
                                      <?=$file->getAssetFileDescription()?>
                                      <i class="fa fa-file-download"></i>
                                  </a>
@@ -161,6 +165,32 @@ if (!$error->has()) {
                 <?php }
                 ?>
             </div>
+        </div>
+
+        <div class="modal" id="download-opt-in-modal" role="dialog" tabindex="-1">
+          <div class="modal-dialog" style="margin-top: 200px;">
+            <div class="modal-content">
+              <form enctype="multipart/form-data" action="#" method="post" id="opt-in-form">
+                <div class="modal-body">
+                  <?php
+                    // render the modal content form the global "Download Agreement" Stack.
+                    $stack = \Concrete\Core\Page\Stack\Stack::getByName('Download Agreement');
+                    if (is_object($stack)) {
+                        $stack->display();
+                    }
+                  ?>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-default" data-dismiss="modal">
+                      <?php echo t("Cancel"); ?>
+                  </button>
+                  <button class="btn btn-primary" type="submit">
+                      <?php echo t("Agree"); ?>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
 
     </div>

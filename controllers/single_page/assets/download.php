@@ -12,6 +12,7 @@ use Concrete\Core\Http\ResponseFactory;
 use Concrete\Core\Page\Controller\PageController;
 use Concrete\Core\Page\Page;
 use Concrete\Core\Permission\Checker;
+use Concrete\Core\Session\SessionValidator;
 use Concrete\Core\User\PostLoginLocation;
 use Concrete\Core\User\User;
 use Concrete\Core\Utility\Service\Identifier;
@@ -22,6 +23,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\Session\Session;
 use ZipArchive;
 
 class Download extends PageController
@@ -56,6 +58,10 @@ class Download extends PageController
     /** @var User */
     protected $user;
 
+    protected $sessionValidator;
+
+    protected $session;
+
     public function __construct(
         Page $c,
         File $fileService,
@@ -66,8 +72,10 @@ class Download extends PageController
         Token $token,
         ResponseFactory $responseFactory,
         EntityManagerInterface $entityManager,
+        SessionValidator $sessionValidator,
         User $user
-    ) {
+    )
+    {
         parent::__construct($c);
         $this->file = $fileService;
         $this->express = $express;
@@ -78,6 +86,8 @@ class Download extends PageController
         $this->identifier = $identifier;
         $this->entityManager = $entityManager;
         $this->user = $user;
+        $this->sessionValidator = $sessionValidator;
+        $this->session = $this->sessionValidator->getActiveSession();
     }
 
     /**
@@ -89,6 +99,8 @@ class Download extends PageController
      */
     public function view(string $assetId = ''): ?SymfonyResponse
     {
+        $this->checkPermissions();
+
         // Check constant, if disabled just pass through to the do_download url
         if (!self::ENABLE_DOWNLOAD_INTERSTITIAL) {
             return $this->do_download($assetId, $this->token->generate('do_download_' . $assetId));
@@ -110,19 +122,45 @@ class Download extends PageController
         return null;
     }
 
-    public function on_start()
+    public function checkPermissions()
     {
-        parent::on_start();
         $u = new User();
-        if (!$u->isRegistered()) {
+
+        if (!($u->isRegistered() || ($this->session instanceof Session && $this->session->has("download_opt_in")))) {
             $this->setupRequestActionAndParameters($this->request);
             $parameters = $this->getRequestActionParameters();
             $assetID = intval($parameters[0]);
             /**
              * @var $helper PostLoginLocation
              */
-            return $this->responseFactory->forbidden(\URL::to('/assets', $assetID));
+            $this->responseFactory->forbidden(\URL::to('/assets', $assetID))->send();
+            $this->app->shutdown();
         }
+    }
+
+    /**
+     * This method is not integrated in the frontend because it's a non-EU project, but if you need to make this
+     * project GDPR-compliant you can add this URL to the disclaimer to allow user's removing their download
+     * opt-in permissions.
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse|SymfonyResponse
+     */
+    public function opt_out()
+    {
+        if ($this->session instanceof Session) {
+            $this->session->remove("download_opt_in");
+        }
+
+        return $this->responseFactory->json(["success" => true]);
+    }
+
+    public function opt_in()
+    {
+        if ($this->session instanceof Session) {
+            $this->session->set("download_opt_in", true);
+        }
+
+        return $this->responseFactory->json(["success" => true]);
     }
 
     /**
@@ -135,6 +173,8 @@ class Download extends PageController
      */
     public function do_download(string $assetId = '', string $token = ''): ?SymfonyResponse
     {
+        $this->checkPermissions();
+
         // Double check the token
         if (!$this->token->validate('do_download_' . $assetId, $token)) {
             return new Response('', Response::HTTP_FORBIDDEN);
