@@ -3,10 +3,10 @@
   "description": "A concrete5 asset management system package",
   "type": "concrete5-package",
   "license": "MIT",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "require": {
     "php": "^7.2",
-    "concrete5/core": "^8.5",
+    "concrete5/core": "dev-develop",
     "google/cloud-vision": "^0.15.4",
     "ext-zip": "*"
   }
