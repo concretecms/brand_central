@@ -187,6 +187,7 @@ class Collections extends PageController
             $collection = $express->getObjectByHandle('collection');
             $itemsPerPage = (int)$this->request->query->get('ipp', 12);
             $list = new EntryList($collection);
+            $list->ignorePermissions();
             $list->setItemsPerPage($itemsPerPage);
             $factory = new PaginationFactory($this->getRequest());
             $pagination = $factory->createPaginationObject($list);

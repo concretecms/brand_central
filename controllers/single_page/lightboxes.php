@@ -57,6 +57,7 @@ class Lightboxes extends PageController
         $express = $this->app->make('express');
         $lightboxObj = $express->getObjectByHandle('lightbox');
         $list = new EntryList($lightboxObj);
+        $list->ignorePermissions();
         $list->sortByDateAddedDescending();
 
         $lightbox = Express::getEntry($lightboxID);

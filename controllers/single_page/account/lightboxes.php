@@ -134,6 +134,7 @@ class Lightboxes extends AccountPageController
         $express = $this->app->make('express');
         $lightboxObj = $express->getObjectByHandle('lightbox');
         $list = new EntryList($lightboxObj);
+        $list->ignorePermissions();
         $list->filterByAuthorUserID($userID);
 
         $this->set('token', new Token());
