@@ -24,6 +24,7 @@ class Search extends PageController
         if ($input) {
             $collectionEntity = Express::getObjectByHandle('collection');
             $collectionList = new EntryList($collectionEntity);
+            $collectionList->ignorePermissions();
             $collectionList->filterByKeywords($input);
             $collectionList->setItemsPerPage(3);
 
