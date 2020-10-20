@@ -5,6 +5,7 @@ namespace Concrete5\AssetLibrary\API\V1;
 use Concrete\Core\Entity\Attribute\Value\Value\SelectValueOption;
 use Concrete\Core\Entity\File\Version;
 use Concrete\Core\Error\ErrorList\ErrorList;
+use Concrete\Core\Express\EntryList;
 use Concrete\Core\Express\ObjectManager;
 use Concrete\Core\File\File;
 use Concrete\Core\File\Filesystem;
@@ -12,6 +13,8 @@ use Concrete\Core\File\Importer;
 use Concrete\Core\Legacy\FilePermissions;
 use Concrete\Core\Tree\Node\Type\FileFolder;
 use Concrete\Core\Utility\Service\Validation\Numbers;
+use Concrete5\AssetLibrary\API\V1\Transformer\AssetFileTransformer;
+use Concrete5\AssetLibrary\Results\Formatter\AssetFile;
 use League\Fractal\Resource\Item;
 use Concrete5\AssetLibrary\API\V1\Transformer\AssetTransformer;
 use Concrete5\AssetLibrary\Results\Formatter\Asset;
@@ -19,6 +22,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Express;
 
 class Assets
 {
@@ -117,6 +121,78 @@ class Assets
             return $this->read($asset->getId());
 
         }
+    }
+
+    public function getAssetFile($assetFileId)
+    {
+        $entry = $this->objectManager->getEntry($assetFileId);
+
+        if (!is_object($entry) || $entry->getEntity()->getHandle() != 'asset_file') {
+            throw new ResourceNotFoundException(t('Invalid asset file.'));
+        }
+
+        $assetFile = new AssetFile($entry);
+        $assetFileTransformer = new AssetFileTransformer();
+
+        return new JsonResponse($assetFileTransformer->transform($assetFile));
+    }
+
+    /**
+     * You can use the following query params to perform a search request:
+     *
+     * 1) keywords (string; at least 3 characters)
+     * 2) fileType (string; allowed values are: "", "photo", "logo", "video", "template")
+     *
+     * @return JsonResponse
+     */
+    public function search()
+    {
+        $request = Request::createFromGlobals();
+
+        $errors = new ErrorList();
+
+        $keywords = (string)$request->query->get("keywords");
+        $fileType = (string)$request->query->get("fileType");
+
+        if (strlen($keywords) <= 3) {
+            $errors->add(t("You need to enter at least 3 characters."));
+        }
+
+        if (!($fileType === "" || in_array($fileType, ["photo", "logo", "video", "template"]))) {
+            $errors->add(t("The given file type is invalid."));
+        }
+
+        if (!$errors->has()) {
+            $entity = Express::getObjectByHandle('asset');
+
+            $list = new EntryList($entity);
+
+            if (in_array($fileType, ["photo", "logo", "video", "template"])) {
+                $list->filterByAssetType($fileType);
+            }
+
+            $list->filterByKeywords($keywords);
+            $list->ignorePermissions();
+
+            $assets = [];
+
+            $assetTransformer = new AssetTransformer();
+
+            $entries = $list->getResults();
+
+            if (count($entries) > 0) {
+                foreach ($entries as $entry) {
+                    $asset = new Asset($entry);
+                    $assets[] = $assetTransformer->transform($asset);
+                }
+
+                return new JsonResponse($assets);
+            } else {
+                $errors->add(t("No search results found."));
+            }
+        }
+
+        return $errors->createResponse();
     }
 
     protected function saveEntry($asset, $folder, $data)

@@ -4,7 +4,10 @@ namespace Concrete5\AssetLibrary;
 
 use Concrete\Core\Express\Controller\Manager as ExpressControllerManager;
 use Concrete\Core\Foundation\Service\Provider;
+use Concrete\Core\Http\Middleware\OAuthAuthenticationMiddleware;
+use Concrete\Core\Http\Middleware\OAuthErrorMiddleware;
 use Concrete\Core\Page\Theme\ThemeRouteCollection;
+use Concrete5\AssetLibrary\API\V1\FileTypes;
 use Concrete5\AssetLibrary\API\V1\Lightboxes;
 use Concrete5\AssetLibrary\API\V1\Middleware\FractalNegotiatorMiddleware;
 use Concrete\Core\Routing\Router;
@@ -71,6 +74,21 @@ class ServiceProvider extends Provider
                 $groupRouter->get('/lightboxes', [Lightboxes::class, 'list']);
                 $groupRouter->post('/lightboxes/create', [Lightboxes::class, 'add']);
                 $groupRouter->put('/lightboxes/set', [Lightboxes::class, 'set']);
+            });
+
+        $router->buildGroup()
+            ->setPrefix('/public_api/v1')
+            ->addMiddleware(FractalNegotiatorMiddleware::class)
+            //->addMiddleware(OAuthErrorMiddleware::class)
+            //->addMiddleware(OAuthAuthenticationMiddleware::class)
+            ->routes(function($groupRouter) {
+                /**
+                 * @var $groupRouter Router
+                 */
+                $groupRouter->get('/file_types', [FileTypes::class, 'list']);
+                $groupRouter->get('/assets/search', [Assets::class, 'search']);
+                $groupRouter->get('/assets/{assetID}', [Assets::class, 'read']);
+                $groupRouter->get('/assets/get_file/{assetFileId}', [Assets::class, 'getAssetFile']);
             });
 
     }
