@@ -17,13 +17,13 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 ?>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-12">
         <section class="all-collection-list-container">
             <div class="row">
                 <?php foreach ($collections as $entry) {
                     $collection = new Collection($entry);
                     ?>
-                    <div class="col-xs-12 col-sm-6 col-lg-4 thumbnail-container">
+                    <div class="col-12 col-sm-6 col-lg-4 thumbnail-container">
                         <a href="<?= $collection->getPublicViewLink() ?>" class="thumbnail">
                             <img src="<?= $collection->getThumbnailImageURL() ?>"/>
                         </a>
@@ -44,7 +44,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 <?php
 if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
 
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-sm-4">
             <div class="dropdown search-page-results" style="">
                 <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="current-option"><?= h($items_per_page) ?> </span> <span class="caret"></span></button>
@@ -57,7 +57,7 @@ if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
             </div>
             Per Page
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 d-flex flex-row-reverse">
             <?php print $pagination->renderDefaultView(); ?>
         </div>
     </div>

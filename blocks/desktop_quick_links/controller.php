@@ -5,6 +5,7 @@ namespace Concrete\Package\BrandCentral\Block\DesktopQuickLinks;
 use Concrete\Core\Block\BlockController;
 use Concrete\Core\Permission\Checker;
 use PortlandLabs\Liberta\Site\Selector;
+use Concrete\Core\Page\Page;
 
 class Controller extends BlockController
 {
@@ -33,6 +34,10 @@ class Controller extends BlockController
 
         $checker = new Checker($collection);
         $this->set('canAddCollections', $checker->canAddExpressEntries());
+
+        $dropbox = Page::getByPath('/dropbox');
+        $dropboxPermissions = new Checker($dropbox);
+        $this->set('canViewDropbox', $dropboxPermissions->canViewPage());
     }
 
 }

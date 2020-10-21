@@ -107,15 +107,15 @@ class FileTable extends Component {
 
                 <div>
                     {/* Delete Item */}
-                    <div className="col-xs-1 tb-tb tb-xs">
+                    <div className="col-1 tb-tb tb-xs">
                         <span className="delete-asset" onClick={()=>this.removeAsset(asset.id)}><i className="fa fa-trash"></i></span>
                     </div>
                     {/* Thumbnail */}
-                    <div className="col-xs-1 tb-tb tb-sm">
+                    <div className="col-1 tb-tb tb-sm">
                         {asset.isLoading ? <span className="loading"></span> : <img src={asset.img} />}
                     </div>
                     {/* Name */}
-                    <div className="col-xs-2 tb-tb tb-md">
+                    <div className="col-2 tb-tb tb-md">
 
                         {
 
@@ -131,7 +131,7 @@ class FileTable extends Component {
                         }
                     </div>
                     {/* Description */}
-                    <div className="col-xs-2 tb-tb tb-md">
+                    <div className="col-2 tb-tb tb-md">
                         {asset.isDescEditMode ?
                             <InputText
                                 value={asset.desc}
@@ -143,11 +143,11 @@ class FileTable extends Component {
                         }
                     </div>
                     {/* Type */}
-                    <div className="col-xs-2 tb-tb tb-sm">
+                    <div className="col-2 tb-tb tb-sm">
                         <SelectTypeDropdown onValueChange={(value)=>this.updateType(value, asset.id)} />
                     </div>
                     {/* Tags */}
-                    <div className="col-xs-4 tb-tb">
+                    <div className="col-4 tb-tb">
                         <TagRowContainer
                             key={asset.id}
                             asset={asset.id}
@@ -170,12 +170,12 @@ class FileTable extends Component {
             <div className="tb-file-table">
                 <div className="tb-header">
                     <div className="row">
-                        <div className="col-xs-1 tb-th tb-xs"></div>
-                        <div className="col-xs-1 tb-th tb-sm"><span>Thumbnail</span></div>
-                        <div className="col-xs-2 tb-th tb-md"><span>Name</span></div>
-                        <div className="col-xs-2 tb-th tb-md"><span>Description</span></div>
-                        <div className="col-xs-2 tb-th tb-sm"><span>Type</span></div>
-                        <div className="col-xs-4 tb-th"><span>Tags</span></div>
+                        <div className="col-1 tb-th tb-xs"></div>
+                        <div className="col-1 tb-th tb-sm"><span>Thumbnail</span></div>
+                        <div className="col-2 tb-th tb-md"><span>Name</span></div>
+                        <div className="col-2 tb-th tb-md"><span>Description</span></div>
+                        <div className="col-2 tb-th tb-sm"><span>Type</span></div>
+                        <div className="col-4 tb-th"><span>Tags</span></div>
                     </div>
                 </div>
                 <div className="tb-body">
@@ -188,7 +188,7 @@ class FileTable extends Component {
         return (
             <section>
                 <div className="row">
-                    <div className="col-xs-12">
+                    <div className="col-12">
                         {this.props.bulkUpload.assets.length ? flexTable : null}
                     </div>
                 </div>
@@ -200,11 +200,11 @@ class FileTable extends Component {
                     controls="false" width="700px" height="400px">
                         <section>
                             <div className="row">
-                                <div className="col-xs-9">
+                                <div className="col-9">
                                     <label>Select Tags</label>
                                     <DropdownTags onValueChange={(tag)=>this.addTag(tag)}/>
                                 </div>
-                                <div className="col-xs-3">
+                                <div className="col-3">
                                     {this.props.bulkUpload.isLoadingTags ?
                                         <span className="processing-icon"></span> :
                                         <button className="tag-gen-btn" onClick={()=>this.getGoogleTags(this.props.bulkUpload.currentAsset, this.props.bulkUpload.currentAssetFid)}>Generate Tags</button>}

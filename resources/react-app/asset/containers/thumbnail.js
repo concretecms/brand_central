@@ -51,10 +51,10 @@ class Thumbnail extends Component{
         return (
             <section>
                 <div className="row">
-                    <div className="col-xs-6">
+                    <div className="col-6">
                         <label>Thumbnail Image</label> 
                     </div>
-                    <div className="col-xs-6 text-right">
+                    <div className="col-6 text-right">
                         <span>{this.props.asset.thumbnail ? 
                             <span onClick={handleClick} className="clear-thumb"><i className="fa fa-trash"></i> Remove Thumbnail</span>  : '' }
                         </span>

@@ -85,7 +85,7 @@
       @extend %img;
     }
   }
-  .asset-description, .asset-collections {
+  .asset-description, .asset-collections, .asset-files {
     margin-bottom: 50px;
     h3 {
       font-weight: bold;
@@ -103,7 +103,7 @@
         a{
           text-decoration: none;
           i{
-            margin-right:10px;
+            margin-left:10px;
           }
           &:hover {
             text-decoration: none;

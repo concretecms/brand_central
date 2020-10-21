@@ -104,27 +104,27 @@ class BulkUpload extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <section>
                                 <DropdownCollections  label={'Add to Collection'} required={true} onValueChange={(value)=>this.currentCollection(value)} error={this.props.bulkUpload.errorCollection}/>
                             </section>
                         </div>
 
-                        <div className="col-md-6 col-xs-12">
+                        <div className="col-md-6 col-12">
                             <div style={{height:'75px'}}>
                                 {this.props.bulkUpload.errorCollection ? collectionError : null}
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-12">
                             <section>
                                 <CurrentCollections collections={this.props.bulkUpload.collections } removeItem={(item)=> this.removeCollection(item) } />
                             </section>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-12">
                             <BulkFiles />
                         </div>
                     </div>

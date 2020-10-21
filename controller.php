@@ -2,6 +2,7 @@
 
 namespace Concrete\Package\BrandCentral;
 
+use Concrete\Core\Block\BlockType\BlockType;
 use Concrete\Core\Database\EntityManager\Provider\ProviderAggregateInterface;
 use Concrete\Core\Database\EntityManager\Provider\ProviderInterface;
 use Concrete\Core\Database\EntityManager\Provider\StandardPackageProvider;
@@ -12,14 +13,15 @@ use Concrete\Core\Package\Package;
 use Concrete\Core\Package\PackageService;
 use Concrete\Core\Page\Page;
 use Concrete\Core\Page\Single;
+use Concrete\Core\Page\Stack\Stack;
 use Concrete5\AssetLibrary\ServiceProvider;
 use Concrete5\BrandCentral\Search\Pagination\View\Manager;
 
 class Controller extends Package implements ProviderAggregateInterface
 {
 
-    protected $appVersionRequired = '8.5.0';
-    protected $pkgVersion = '0.6.9';
+    protected $appVersionRequired = '9.0.0a3';
+    protected $pkgVersion = '1.0.3';
     protected $pkgHandle = 'brand_central';
     protected $pkgAllowsFullContentSwap = true;
     protected $pkgAutoloaderRegistries = array(
@@ -44,6 +46,7 @@ class Controller extends Package implements ProviderAggregateInterface
         $this->installFileSets();
         $this->clearWelcomePages();
         $this->installFolders();
+        $this->installStacks();
     }
 
     public function on_after_swap_content()
@@ -103,9 +106,25 @@ class Controller extends Package implements ProviderAggregateInterface
         parent::upgrade();
         $this->installFileSets();
         $this->installFolders();
+        $this->installStacks();
 
         $service = $this->app->make(PackageService::class);
         $this->installSinglePages($service->getByHandle($this->pkgHandle));
+    }
+
+    private function installStacks()
+    {
+        /*
+         * Normally i would prefer to use CIF format but i don't want to add more CIF files...
+         */
+        $stack = Stack::getByName('Download Agreement');
+        if (is_null($stack)) {
+            $stack = Stack::addStack('Download Agreement');
+            $blockType = BlockType::getByHandle('content');
+            $stack->addBlock($blockType, STACKS_AREA_NAME, [
+                "content" => t("Please agree to download the file.")
+            ]);
+        }
     }
 
     protected function installSinglePages($pkg)

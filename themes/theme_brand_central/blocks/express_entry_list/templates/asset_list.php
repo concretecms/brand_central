@@ -7,20 +7,20 @@ $results = $result->getItemListObject()->getResults();
 ?>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-12">
         <section class="collection-asset-list-container">
                 <?php foreach($results as $asset) {
                     $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
                     ?>
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <div class="thumbnail-container">
                                 <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail">
                                     <img src="<?=$asset->getThumbnailImageURL()?>" class="<?= $asset->getAssetType() ?>"/>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-8">
+                        <div class="col-12 col-sm-6 col-md-8">
                             <div class="asset-details">
                                 <h3>
                                     <?= $asset->getAssetName() ?>

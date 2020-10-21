@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-8">
+                <div class="col-8">
                     <?php
                     $a = new GlobalArea('Footer_Legal');
                     $a->display($c);
@@ -31,7 +31,7 @@
             </div>
         <?php View::element('footer_logos', [], 'brand_central') ?>
             <div class="row">
-            <div class="col-md-12 col-xs-12 text-center">
+            <div class="col-md-12 col-12 text-center">
                         <span>
                         <?php
                         $page = \Concrete\Core\Page\Page::getCurrentPage();
@@ -45,6 +45,5 @@
             <?php View::element('footer_copyright', [], 'brand_central') ?>
         </div>
     </footer>
-
 
     <?php $this->inc('elements/footer-bottom.php'); ?>

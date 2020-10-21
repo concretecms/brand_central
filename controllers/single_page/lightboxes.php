@@ -57,6 +57,7 @@ class Lightboxes extends PageController
         $express = $this->app->make('express');
         $lightboxObj = $express->getObjectByHandle('lightbox');
         $list = new EntryList($lightboxObj);
+        $list->ignorePermissions();
         $list->sortByDateAddedDescending();
 
         $lightbox = Express::getEntry($lightboxID);
@@ -69,6 +70,7 @@ class Lightboxes extends PageController
         } else {
             $this->set('lightboxes', $list->getResults());
         }
+        $this->setThemeViewTemplate('view_full.php');
 
     }
 
@@ -121,6 +123,7 @@ class Lightboxes extends PageController
         } else {
             return $this->responseFactory->notFound(t('Lightbox not found.'));
         }
+        $this->setThemeViewTemplate('view_full.php');
     }
 
     /**

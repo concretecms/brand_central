@@ -9,11 +9,11 @@ $(function() {
     })
 
 
-    $('.dropdown-item').click(function(e){
+    $('form[data-form=home-search] .dropdown-item').click(function(e){
         e.preventDefault();
         let selected = $(this).text();
         $('.search-btn-label').text(selected);
-        $("form[data-form=search] input[name=filter]").val($(this).data('filterValue'));
+        $("form[data-form=home-search] input[name=filter]").val($(this).data('filterValue'));
 
     });
 
@@ -22,20 +22,20 @@ $(function() {
 
     $('.search-clear').click(function(e){
         e.preventDefault();
-        $("form[data-form=search] input[name=keywords]").val();
-        $("form[data-form=search] input[name=keywords]").focus();
+        $("form[data-form=home-search] input[name=keywords]").val();
+        $("form[data-form=home-search] input[name=keywords]").focus();
         $(this).hide();
     });
 
-    $("form[data-form=search] input[name=keywords]").one('keypress', function(){
+    $("form[data-form=home-search] input[name=keywords]").one('keypress', function(){
         $('.search-clear').show();
     });
 
-    if($("form[data-form=search] input[name=keywords]").val()){
+    if($("form[data-form=home-search] input[name=keywords]").val()){
         $('.search-clear').show();
     }
 
-    $("form[data-form=search] input[name=keywords]").focus();
+    $("form[data-form=home-search] input[name=keywords]").focus();
 
     $('.add-to-lightbox').click(function(e){
         e.preventDefault();
@@ -64,20 +64,19 @@ $(function() {
     $(".switch-view a").click(function(e) {
         e.preventDefault();
 
-        $(".grid-view").addClass("hidden");
-
         $(".switch-view a").removeClass("active");
 
         $(this).addClass("active");
 
         switch($(this).data("gridView")) {
             case "regular":
-                $(".grid-view-regular").removeClass("hidden");
-
+                $(".grid-view-masonry").removeClass('grid-view-active');
+                $(".grid-view-regular").addClass('grid-view-active');
                 break;
 
             case "masonry":
-                $(".grid-view-masonry").removeClass("hidden");
+                $(".grid-view-regular").removeClass('grid-view-active');
+                $(".grid-view-masonry").addClass('grid-view-active');
 
                 var Masonry = require('masonry-layout');
 
@@ -100,4 +99,36 @@ $(function() {
     }
 
     $(".switch-view a[data-grid-view='" + selectedGridView + "']").trigger("click");
+
+    var $pdfs = $('div[data-viewer=pdf]');
+    if ($pdfs.length) {
+        $pdfs.each(function() {
+            var documentId = $(this).attr('id');
+            var url = $(this).attr('data-pdf-url');
+            PDFObject.embed(url, '#' + documentId);
+        });
+    }
+
+    /*
+     * Code for requesting the download permissions if required
+     */
+
+    var tempDownloadUrl = '';
+
+    $("#opt-in-form").submit(function (e) {
+        e.preventDefault();
+        $.getJSON(CCM_DISPATCHER_FILENAME + "/assets/download/opt_in", function (data) {
+            if (data.success) {
+                $('#download-opt-in-modal').modal('hide');
+                window.location.href = tempDownloadUrl;
+            }
+        });
+    });
+
+    $(".request-download-opt-in").click(function (e) {
+        e.preventDefault();
+        tempDownloadUrl = $(this).attr("href");
+        $('#download-opt-in-modal').modal('show');
+        return false;
+    });
 });

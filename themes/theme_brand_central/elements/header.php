@@ -27,7 +27,9 @@ $canAddAssets = $checker->canAddExpressEntries();
 $collection = $express->getObjectByHandle('collection');
 $checker = new Permissions($collection);
 $canAddCollections = $checker->canAddExpressEntries();
-
+$dropbox = Concrete\Core\Page\Page::getByPath('/dropbox');
+$dropboxPermissions = new Permissions($dropbox);
+$canViewDropbox = $dropboxPermissions->canViewPage();
 
 ?>
 <header>
@@ -48,6 +50,9 @@ $canAddCollections = $checker->canAddExpressEntries();
                                     <li><a href="<?=URL::to('/assets/create')?>"><?= t('Add Asset') ?></a></li>
                                     <li><a href="<?=URL::to('/assets/bulk_upload')?>"><?= t('Bulk Upload') ?></a></li>
                                 <?php } ?>
+                                <?php if ($canViewDropbox) { ?>
+                                    <li><a href="<?=URL::to('/dropbox')?>"><?= t('Drop Box') ?></a></li>
+                                <?php } ?>
                                 <li><?php echo Core::make('helper/navigation')->getLogInOutLink() ?></li>
                             <?php } else { ?>
                                 <li><a href="<?=URL::to('/login')?>" class="btn"><?= t('Log In') ?> <i class="fa fa-user"></i></a></li>
@@ -62,7 +67,7 @@ $canAddCollections = $checker->canAddExpressEntries();
         <div class="container">
             <div class="row">
                 <?php View::element('header_logo', ['path' => $this->getThemePath()], 'brand_central') ?>
-                <div class="col-md-9 col-xs-10 main-nav-menu text-center">
+                <div class="col-md-9 col-10 main-nav-menu text-center">
                     <div class="hamburger-icon">
                         <div id="nav-icon" class="hamburger">
                             <span></span>
@@ -76,39 +81,39 @@ $canAddCollections = $checker->canAddExpressEntries();
                             <ul class="main-nav">
                                 <?php foreach ($pages as $page){ ?>
                                     <li>
-                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn">
-                                            <?php echo $page->getCollectionName()?>
-                                        </a>
+                                        <a href="<?php echo Url::to("{$page->getCollectionPath()}")?>" class="btn"><?php echo $page->getCollectionName()?></a>
                                     </li>
                                 <?php } ?>
                             </ul>
-                        </div>
-                    </div>
 
-                    <div class="header-search-container">
-                        <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
-                            <div class="form-group has-feedback has-search">
-                                <span class="fa fa-search form-control-feedback"></span>
+                            <div class="header-search-container">
+                                <form data-form="search" method="get" action="<?php echo Url::to('/search')?>">
+                                    <div class="form-group has-feedback has-search">
+                                        <div class="form-control-feedback">
+                                            <i class="fas fa-search"></i>
+                                        </div>
 
-                                <?php
-                                echo $form->search("keywords", null, [
-                                    "placeholder" => t("Search in Brand Central."),
+                                        <?php
+                                        echo $form->search("keywords", null, [
+                                            "placeholder" => t("Search"),
                                     "autocomplete" => "off",
                                     "class" => "form-control"
                                 ]);
-
-                                echo $form->hidden("filter");
                                 ?>
                             </div>
-                        </form>
+                        </form></div>
+
+                        </div>
                     </div>
+
+
                 </div>
 
             </div>
 
         </div>
         <div class="main-nav-menu-mobil">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <form method="post" action="<?=URL::to('/search')?>">
                     <input name="search-input" type="text" placeholder="Search in Brand Central." autocomplete="off" class="search-input"/>
                 </form>

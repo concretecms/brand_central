@@ -5,18 +5,28 @@ namespace Concrete\Package\BrandCentral\Controller\SinglePage;
 use Concrete\Core\Error\ErrorList\ErrorList;
 use Concrete\Core\Page\Controller\PageController;
 use Concrete\Core\Permission\Checker;
+use Concrete\Core\Session\SessionValidator;
+use Concrete\Core\User\User;
 use Concrete\Core\Validation\CSRF\Token;
 use Express;
 use Concrete5\AssetLibrary\Results\Formatter\Asset;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class Assets extends PageController
 {
 
     protected $error;
 
+    /** @var SessionValidator */
+    protected $sessionValidator;
+
+    protected $session;
+
     public function on_start()
     {
         $this->error = new ErrorList();
+        $this->sessionValidator = $this->app->make(SessionValidator::class);
+        $this->session = $this->sessionValidator->getActiveSession();
     }
 
     public function on_before_render()
@@ -92,8 +102,12 @@ class Assets extends PageController
             if ($author = $asset->getAuthor()) {
                 $authorName = ucfirst($author->getUserInfoObject()->getUserDisplayName());
             }
+            $u = new User();
+            $canDownload =  ($u->isRegistered() || ($this->session instanceof Session && $this->session->has("download_opt_in")));
+
             $this->set('canEditAsset', $checker->canEditExpressEntry());
             $this->set('canDeleteAsset', $checker->canDeleteExpressEntry());
+            $this->set('canDownload', $canDownload);
             $this->set('asset_name', $asset->getAssetName());
             $this->set('asset_date', $asset->getDateCreated()->format('F d, Y'));
             $this->set('asset_desc', $asset->getAssetDescription());
@@ -120,6 +134,7 @@ class Assets extends PageController
         } else {
             $this->error->add('Asset not found.');
         }
+        $this->setThemeViewTemplate('view_full.php');
 
     }
 

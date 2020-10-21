@@ -4,7 +4,7 @@
  if ($breadcrumbList) { ?>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <ol class="breadcrumb">
                     <?php foreach ($breadcrumbList as $list){ ?>
                         <li><a href="<?=$list['url']?>"><?= $list['label'] ?></a></li>

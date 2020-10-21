@@ -1,3 +1,4 @@
+<div class="container">
 <?php if ($lightbox) { ?>
 
     <div class="row asset">
@@ -12,12 +13,12 @@
     </div>
     <hr>
     <div class="row collection-container">
-        <div class="col-xs-12">
+        <div class="col-12">
             <div class="row assets">
             <?php foreach ($lightbox_assets as $asset) {
                 $asset = new \Concrete5\AssetLibrary\Results\Formatter\Asset($asset);
                 ?>
-                <div class="col-xs-12 col-md-4 thumbnail-container">
+                <div class="col-12 col-md-4 thumbnail-container">
                     <a href="<?= \URL::to('/assets', $asset->getId()) ?>" class="thumbnail" style="max-height: 200px;">
                         <img src="<?= $asset->getThumbnailImageURL() ?>" class="<?= $asset->getAssetType() ?>"/>
                     </a>
@@ -40,7 +41,7 @@
 <?php } else { ?>
 
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
             <h1>Lightboxes</h1>
             <hr>
             <div class="row">
@@ -52,3 +53,4 @@
     </div>
 
 <?php } ?>
+</div>

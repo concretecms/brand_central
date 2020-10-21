@@ -74,6 +74,7 @@ class Lightboxes
         $u = new User();
         $userID = $u->getUserID();
         $list = new EntryList($entity);
+        $list->ignorePermissions();
         $list->filterByAuthorUserID($userID);
         return new Collection($list->getResults(), new LightboxTransformer());
     }
