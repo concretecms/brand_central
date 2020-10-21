@@ -10,6 +10,10 @@ class FileTypes
     {
         return new JsonResponse([
             [
+                "key" => "",
+                "value" => t("** Select All")
+            ],
+            [
                 "key" => "photo",
                 "value" => t("Photo"),
             ],

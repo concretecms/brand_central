@@ -154,10 +154,6 @@ class Assets
         $keywords = (string)$request->query->get("keywords");
         $fileType = (string)$request->query->get("fileType");
 
-        if (strlen($keywords) <= 3) {
-            $errors->add(t("You need to enter at least 3 characters."));
-        }
-
         if (!($fileType === "" || in_array($fileType, ["photo", "logo", "video", "template"]))) {
             $errors->add(t("The given file type is invalid."));
         }
@@ -180,16 +176,12 @@ class Assets
 
             $entries = $list->getResults();
 
-            if (count($entries) > 0) {
-                foreach ($entries as $entry) {
-                    $asset = new Asset($entry);
-                    $assets[] = $assetTransformer->transform($asset);
-                }
-
-                return new JsonResponse($assets);
-            } else {
-                $errors->add(t("No search results found."));
+            foreach ($entries as $entry) {
+                $asset = new Asset($entry);
+                $assets[] = $assetTransformer->transform($asset);
             }
+
+            return new JsonResponse($assets);
         }
 
         return $errors->createResponse();
