@@ -79,8 +79,8 @@ class ServiceProvider extends Provider
         $router->buildGroup()
             ->setPrefix('/public_api/v1')
             ->addMiddleware(FractalNegotiatorMiddleware::class)
-            //->addMiddleware(OAuthErrorMiddleware::class)
-            //->addMiddleware(OAuthAuthenticationMiddleware::class)
+            ->addMiddleware(OAuthErrorMiddleware::class)
+            ->addMiddleware(OAuthAuthenticationMiddleware::class)
             ->routes(function($groupRouter) {
                 /**
                  * @var $groupRouter Router
