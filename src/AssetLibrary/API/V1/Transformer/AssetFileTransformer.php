@@ -13,17 +13,21 @@ class AssetFileTransformer extends TransformerAbstract
     public function transform(AssetFile $assetFile)
     {
         $downloadUrl = '';
+        $originalFileName = '';
 
         if ($assetFile->getFile() instanceof File) {
             $approvedFileVersion = $assetFile->getFile()->getApprovedVersion();
 
             if ($approvedFileVersion instanceof Version) {
                 $downloadUrl = (string)$approvedFileVersion->getDownloadURL();
+                $originalFileName = $approvedFileVersion->getFileName();
             }
         }
 
         return [
             "downloadUrl" => $downloadUrl,
+            "originalFileName" => $originalFileName,
+            "assetId" => $assetFile->getAssetId(),
             "description" => $assetFile->getDescription()
         ];
     }
