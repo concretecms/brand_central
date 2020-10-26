@@ -45,6 +45,14 @@ class AssetFile
         return $this->entry->getAttribute("asset_file");
     }
 
+    /**
+     * @return Int
+     */
+    public function getAssetId()
+    {
+        return $this->entry->getAssociation("asset")->getId();
+    }
+
     public function getDescription()
     {
         return (string)$this->entry->getAttribute("asset_file_description");
