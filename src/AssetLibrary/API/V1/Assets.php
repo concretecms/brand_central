@@ -3,6 +3,7 @@
 namespace Concrete5\AssetLibrary\API\V1;
 
 use Concrete\Core\Entity\Attribute\Value\Value\SelectValueOption;
+use Concrete\Core\Entity\Express\Entity;
 use Concrete\Core\Entity\File\Version;
 use Concrete\Core\Error\ErrorList\ErrorList;
 use Concrete\Core\Express\EntryList;
@@ -11,6 +12,7 @@ use Concrete\Core\File\File;
 use Concrete\Core\File\Filesystem;
 use Concrete\Core\File\Importer;
 use Concrete\Core\Legacy\FilePermissions;
+use Concrete\Core\Search\Pagination\PaginationFactory;
 use Concrete\Core\Tree\Node\Type\FileFolder;
 use Concrete\Core\Utility\Service\Validation\Numbers;
 use Concrete5\AssetLibrary\API\V1\Transformer\AssetFileTransformer;
@@ -142,6 +144,10 @@ class Assets
      *
      * 1) keywords (string; at least 3 characters)
      * 2) fileType (string; allowed values are: "", "photo", "logo", "video", "template")
+     * 3) orderBy (string)
+     * 4) orderByDirection (string; allowed values are "ASC", "DESC")
+     * 5) currentPage (int)
+     * 6) itemsPerPage (int)
      *
      * @return JsonResponse
      */
@@ -153,13 +159,22 @@ class Assets
 
         $keywords = (string)$request->query->get("keywords");
         $fileType = (string)$request->query->get("fileType");
+        $orderBy = (string)$request->query->get("orderBy");
+        $orderByDirection = (string)$request->query->get("orderByDirection");
+        $itemsPerPage = (int)$request->query->get("ipp", 20);
+
+        /** @var Entity $entity */
+        $entity = Express::getObjectByHandle('asset');
 
         if (!($fileType === "" || in_array($fileType, ["photo", "logo", "video", "template"]))) {
             $errors->add(t("The given file type is invalid."));
         }
 
+        if (!($orderByDirection === "" || in_array(strtoupper($orderByDirection), ["ASC", "DESC"]))) {
+            $errors->add(t("The given order direction is invalid."));
+        }
+
         if (!$errors->has()) {
-            $entity = Express::getObjectByHandle('asset');
 
             $list = new EntryList($entity);
 
@@ -168,20 +183,31 @@ class Assets
             }
 
             $list->filterByKeywords($keywords);
+
+            if ($orderBy !== "") {
+                $list->sortBy($orderBy, $orderByDirection);
+            }
+
             $list->ignorePermissions();
+            $list->setItemsPerPage($itemsPerPage);
+
+            $collectionPaginationFactory = new PaginationFactory($request);
+            $pagination = $collectionPaginationFactory->createPaginationObject($list);
+            $paginationResults = $pagination->getCurrentPageResults();
 
             $assets = [];
 
             $assetTransformer = new AssetTransformer();
 
-            $entries = $list->getResults();
-
-            foreach ($entries as $entry) {
+            foreach ($paginationResults as $entry) {
                 $asset = new Asset($entry);
                 $assets[] = $assetTransformer->transform($asset);
             }
 
-            return new JsonResponse($assets);
+            return new JsonResponse([
+                "total" => $list->getTotalResults(),
+                "assets" => $assets
+            ]);
         }
 
         return $errors->createResponse();
