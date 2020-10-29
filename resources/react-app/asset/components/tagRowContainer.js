@@ -6,7 +6,7 @@ class TagRowContainer extends Component {
         const tags = this.props.tags.map(tag => 
             <span className="label label-default" key={tag.id}>
                 {tag.name}  
-                <span onClick={()=>this.props.removeTag(tag.id,this.props.asset)} className="remove-tag-btn"> <i className="fa fa-close"></i> </span>
+                <span onClick={()=>this.props.removeTag(tag.id,this.props.asset)} className="remove-tag-btn"> <i className="fa fa-times"></i> </span>
             </span>)
 
         return (

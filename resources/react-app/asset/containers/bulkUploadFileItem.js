@@ -99,13 +99,13 @@ class FileTable extends Component {
     render () {
 
         const processAssets = this.props.bulkUpload.assets.map(asset =>
-            <div className="row" key={asset.id}>
+            <div key={asset.id}>
 
                 {asset.hasErrors ?
                     <div className="tb-error-msg">{asset.errorMsg}</div>
                 :
 
-                <div>
+                <div className="row">
                     {/* Delete Item */}
                     <div className="col-1 tb-tb tb-xs">
                         <span className="delete-asset" onClick={()=>this.removeAsset(asset.id)}><i className="fa fa-trash"></i></span>

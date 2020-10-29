@@ -37,7 +37,7 @@ $(function() {
 
     $("form[data-form=home-search] input[name=keywords]").focus();
 
-    $('.add-to-lightbox').click(function(e){
+    $('[data-action=add-to-lightbox]').click(function(e){
         e.preventDefault();
         window.lightbox.run($(this).data('asset'));
     });
