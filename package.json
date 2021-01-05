@@ -24,7 +24,7 @@
   "devDependencies": {
     "@concretecms/bedrock": "github:concrete5/bedrock",
     "@babel/preset-react": "^7.0.0",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "babel-preset-react": "^6.24.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
