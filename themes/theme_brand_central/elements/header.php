@@ -67,7 +67,7 @@ $canViewDropbox = $dropboxPermissions->canViewPage();
         <div class="container">
             <div class="row">
                 <?php View::element('header_logo', ['path' => $this->getThemePath()], 'brand_central') ?>
-                <div class="col-md-9 col-10 main-nav-menu text-center">
+                <div class="col-10 main-nav-menu">
                     <div class="hamburger-icon">
                         <div id="nav-icon" class="hamburger">
                             <span></span>
@@ -112,7 +112,7 @@ $canViewDropbox = $dropboxPermissions->canViewPage();
             </div>
 
         </div>
-        <div class="main-nav-menu-mobil">
+        <div class="main-nav-menu-mobile">
             <div class="col-12">
                 <form method="post" action="<?=URL::to('/search')?>">
                     <input name="search-input" type="text" placeholder="Search in Brand Central." autocomplete="off" class="search-input"/>
