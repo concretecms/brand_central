@@ -54,7 +54,7 @@ $itemsPerPageOptionUrl = function($itemsPerPage) {
                     <strong><?= t('All') ?></strong></a>
                 <?php foreach ($categories as $category) {
                     /** @var $link \Concrete\Core\Url\UrlImmutable */
-                    $link = $link->setQuery([$field => $category->getTreeNodeID()]);
+                    $link = $link->setQuery([$field => $category->getTreeNodeID(), 'search' => 1]);
                     $isSelected = false;
                     if ($request->query->has('akID')) {
                         $querykeyID = $request->query->get('akID');
