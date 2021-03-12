@@ -4,7 +4,7 @@ $(function() {
 
     $('.hamburger-icon').click(function(e){
         e.preventDefault();
-        $('.main-nav-menu-mobil').slideToggle(50);
+        $('.main-nav-menu-mobile').slideToggle(50);
         $('#nav-icon').toggleClass('open');
     })
 
