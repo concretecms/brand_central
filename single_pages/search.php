@@ -153,7 +153,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                     <?php foreach ($keywords as $keyword) {
                         $tagUrl = $view->controller->getRemoveTagUrl($keyword);
                         ?>
-                        <span><?= h($keyword) ?> <a href="<?=$tagUrl?>"><i class="fa fa-close"></i></a></span>
+                        <span><?= h($keyword) ?> <a href="<?=$tagUrl?>"><i class="fas fa-times"></i></a></span>
                     <?php } ?>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class AssetCollections extends Component {
         const mapCollections = this.props.asset[this.props.field].map(collection => 
             <span className="round-tag-span" key={collection.id}>
                 <span>{collection.name}</span>
-                <span className="remove" onClick={()=> handleClick(collection.id) }><i className="fa fa-close"></i></span>
+                <span className="remove" onClick={()=> handleClick(collection.id) }><i className="fas fa-times"></i></span>
             </span>)
 
         return (
