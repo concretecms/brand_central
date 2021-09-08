@@ -275,7 +275,7 @@ class Download extends PageController
                             $assetFileVersion = $assetFile->getApprovedVersion();
 
                             if ($assetFileVersion instanceof Version) {
-                                $zip->addFromString($assetFileVersion->getFilename(), $assetFileVersion->getFileContents());
+                                $zip->addFile($assetFile->getRelativePath(), $assetFile->getFileName());
                             }
                         }
                     }
