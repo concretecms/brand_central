@@ -105,7 +105,7 @@ class Lightboxes extends PageController
                 $files = $asset->getAssetFiles();
                 foreach ($files as $file) {
                     $assetFile = $file->getAssetFile();
-                    $zip->addFromString($assetFile->getFilename(), $assetFile->getFileContents());
+                    $zip->addFile($assetFile->getRelativePath(), $assetFile->getFileName());
                 }
 
                 $this->trackDownload($asset);
