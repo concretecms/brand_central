@@ -300,7 +300,7 @@ class Download extends PageController
 
         foreach ($files as $file) {
             $assetFile = $file->getAssetFile();
-            $zip->addFromString($assetFile->getFilename(), $assetFile->getFileContents());
+            $zip->addFromString(DIR_BASE . $assetFile->getFilename(), $assetFile->getFileContents());
         }
 
         // If we actually have files in the zip
