@@ -5,8 +5,7 @@
   "license": "MIT",
   "minimum-stability": "dev",
   "require": {
-    "php": "^7.2",
-    "concrete5/core": "dev-develop",
+    "php": "^7.3",
     "google/cloud-vision": "^0.15.4",
     "ext-zip": "*"
   }
