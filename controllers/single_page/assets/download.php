@@ -112,7 +112,7 @@ class Download extends PageController
         }
 
         // Make sure we have permission to download this file
-        $checker = $this->app->make(Checker::class, [$asset]);
+        $checker = new Checker($asset);
         if (!$checker->canViewExpressEntry()) {
             return $this->responseFactory->forbidden($this->request->getPath());
         }
@@ -186,7 +186,7 @@ class Download extends PageController
         }
 
         // Make sure we actually have permission to download it
-        $checker = $this->app->make(Checker::class, [$asset]);
+        $checker = new Checker($asset);
         if (!$checker->canViewExpressEntry()) {
             return new Response('', Response::HTTP_FORBIDDEN);
         }
