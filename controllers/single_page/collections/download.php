@@ -22,6 +22,7 @@ use Concrete5\AssetLibrary\Results\Formatter\Asset;
 use Doctrine\ORM\EntityManagerInterface;
 use Concrete5\BrandCentral\Entity\CollectionDownload;
 use Psr\Log\LoggerInterface;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -163,6 +164,7 @@ class Download extends PageController
 
         // Return the download response
         $response = new BinaryFileResponse($zip);
+        $response->deleteFileAfterSend();
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
             snake_case('brandcentral_' . $collection->getCollectionName() . '.zip')
@@ -242,7 +244,11 @@ class Download extends PageController
     private function resolveZipFile(Entry $collection): ?string
     {
         // Create a temporary file
-        $filename = $this->file->getTemporaryDirectory() . '/' . md5('do_collection_download_' . $collection->getID()) . '.zip';
+        $filename = implode('/', [
+            $this->file->getTemporaryDirectory(),
+            md5('do_collection_download_' . $collection->getID()),
+            Uuid::uuid4() . '.zip',
+        ]);
         $directory = dirname($filename);
 
         if (!is_dir($directory) && !mkdir($directory, 0777, true) && !is_dir($directory)) {

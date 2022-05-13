@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Express;
 use Concrete5\BrandCentral\Entity\AssetDownload;
 use Psr\Log\LoggerInterface;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use ZipArchive;
@@ -85,8 +86,11 @@ class Lightboxes extends PageController
         $lightbox = Express::getEntry($lightboxID);
 
         if ($lightbox && $lightbox->getEntity()->getHandle() == 'lightbox') {
-
-            $filename = $this->file->getTemporaryDirectory() . '/' . md5('do_download_' . $lightboxID) . '.zip';
+            $filename = implode('/', [
+                $this->file->getTemporaryDirectory(),
+                md5('do_download_' . $lightboxID),
+                Uuid::uuid4() . '.zip',
+            ]);
             $directory = dirname($filename);
 
             if (!is_dir($directory) && !mkdir($directory, 0777, true) && !is_dir($directory)) {
@@ -114,6 +118,7 @@ class Lightboxes extends PageController
             $zip->close();
 
             $response = new BinaryFileResponse($filename);
+            $response->deleteFileAfterSend();
             $response->setContentDisposition(
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
                 snake_case('brandcentral_lightbox_' . str_replace(' ', '_', $lightbox->getLightboxName()) . '.zip')
