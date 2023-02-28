@@ -106,18 +106,21 @@ built-in "File Uploader" group to the following permissions:
 * Edit File Contents
 * Copy File
 * Delete File
+
 Be sure to save the changes after making these changes.
 
 Finally, add the Contributors group to the following Express objects
 in Dashboard > System & Settings > Express > Custom Entry Locations:
 * Asset File
 * Asset
-* Collection 
+* Collection
+
 For each of these objects, select "Permissions" from the
 contextual menu, then Add Contributors to the following permissions:
 * Add Entry
 * Edit Entry
 * Delete Entry
+
 Be sure to save the changes after making these changes.
 
 Tip: before saving, select the "Copy" button to save the permissions
