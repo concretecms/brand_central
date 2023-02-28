@@ -86,3 +86,41 @@ selected.
   }
 }
 ```
+
+# Configuration
+
+Some permissions will need to be set up in order to allow users other
+than the admin to upload assets. The most common scenario is to create
+a group of registered users who have the ability to contribute
+assets. For this scenario, create a user group named "Contributors"
+and add some users to it.
+
+Next, enable "Advanced Permissions" in Dashboard > System & Settings >
+Permissions & Access > Advanced Permissions. This will allow
+fine-grained control of access to file operations and Express entries.
+
+Add the Contributors group to the "Add File" permission in Dashboard >
+System & Settings > Files > File Manager Permissions. Also, add the
+built-in "File Uploader" group to the following permissions:
+* Edit File Properties
+* Edit File Contents
+* Copy File
+* Delete File
+Be sure to save the changes after making these changes.
+
+Finally, add the Contributors group to the following Express objects
+in Dashboard > System & Settings > Express > Custom Entry Locations:
+* Asset File
+* Asset
+* Collection 
+For each of these objects, select "Permissions" from the
+contextual menu, then Add Contributors to the following permissions:
+* Add Entry
+* Edit Entry
+* Delete Entry
+Be sure to save the changes after making these changes.
+
+Tip: before saving, select the "Copy" button to save the permissions
+signature to the clipboard. When editing the permissions for the other
+two objects, select the "Paste" button to set the copied permissions
+to the new object.
