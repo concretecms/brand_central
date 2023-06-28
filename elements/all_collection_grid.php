@@ -7,7 +7,7 @@ use Concrete5\AssetLibrary\Results\Formatter\Collection;
 $url = Concrete\Core\Support\Facade\Url::to('/collections');
 
 $defaultQuery = array_filter([
-    'ipp' => (int) $items_per_page ?? null
+    'ipp' => isset($items_per_page) ? (int) $items_per_page : null
 ]);
 $searchUrl = function($data = []) use ($url, $defaultQuery) {
     $query = $url->getQuery();
