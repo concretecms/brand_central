@@ -125,7 +125,7 @@ class Search extends PageController
         $this->set("filter_radio_value", $filterRadioValue);
         $this->set("sort_radio_value", $sortRadioValue);
         $this->set('search_assets', $searchResults);
-        $this->set('search_tag', $tag);
+        $this->set('search_tag', $tag ?? '');
         $this->set('keywords', $keywords);
         $this->set('sortBy', $sort);
         $this->set('qkeywords', $qKeywords);

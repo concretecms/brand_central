@@ -125,7 +125,7 @@ class Collection
 
     public function getThumbnailImageURL()
     {
-        $asset = $this->assets[0];
+        $asset = $this->assets[0] ?? null;
         if ($asset) {
             $asset = new Asset($asset);
             $image = $asset->getThumbnailImageURL();
