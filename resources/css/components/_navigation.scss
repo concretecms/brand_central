@@ -41,19 +41,10 @@
   display: none;
 }
 
-.logo {
-  @include desktop {
-    display: inline-block;
-  }
-  @include mobile {
-    display: none;
-  }
-}
-
-.logo-mobil {
-  height: 90px;
-  width: 90px;
-  margin-top: 3px;
+.logo-mobile {
+  height: 120px;
+  width: 120px;
+  margin-top: 0;
   @include desktop {
     display: none;
   }
@@ -81,9 +72,16 @@
     height: $navH;
 
     .logo {
-      display: block;
       width: 220px;
       margin: 30px 0 0 0;
+
+      @include desktop {
+        display: block;
+      }
+      @include mobile {
+        display: none;
+      }
+
     }
   }
 
@@ -91,7 +89,6 @@
     background-color: #fff;
   }
   @include mobile {
-    background-color: #00549c;
     .main-nav-branding {
       .logo {
         margin: 10px 0 0 0px;
@@ -194,7 +191,7 @@
 
   }
 
-  .main-nav-menu-mobil {
+  .main-nav-menu-mobile {
     display: none;
     background-color: #333;
     position: absolute;
@@ -253,7 +250,7 @@
 #nav-icon {
   width: 36px;
   height: 30px;
-  margin: 15px 0 0 -10px;
+  margin: 15px 0 0 0;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -269,7 +266,7 @@
     position: absolute;
     height: 5px;
     width: 100%;
-    background: white;
+    background: #333;
     opacity: 1;
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -369,8 +366,8 @@
 .lightbox-menu {
   position: absolute;
   float: right;
-  bottom: 20px;
-  right: 25px;
+  top: 15px;
+  right: 20px;
 }
 
 #rename-lightbox-modal {

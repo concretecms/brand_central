@@ -27,7 +27,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
 <div class="collection-container container search-results">
     <div class="row">
         <div class="col-sm-8">
-            <h1><?= $input_search?> <small>Results <strong><?=t2('%s item', '%s items', $count_results)?>.</strong></small></h1>
+            <h1><?= h($input_search) ?> <small>Results <strong><?=t2('%s item', '%s items', $count_results)?>.</strong></small></h1>
         </div>
 
         <div class="modal fade" id="search-filter-popup" tabindex="-1" role="dialog">
@@ -153,7 +153,7 @@ $searchUrl = function($data = []) use ($url, $defaultQuery) {
                     <?php foreach ($keywords as $keyword) {
                         $tagUrl = $view->controller->getRemoveTagUrl($keyword);
                         ?>
-                        <span><?= h($keyword) ?> <a href="<?=$tagUrl?>"><i class="fa fa-close"></i></a></span>
+                        <span><?= h($keyword) ?> <a href="<?=$tagUrl?>"><i class="fas fa-times"></i></a></span>
                     <?php } ?>
                 </div>
             </div>

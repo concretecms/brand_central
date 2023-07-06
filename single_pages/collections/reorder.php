@@ -23,7 +23,7 @@
             ?>
 
             <tr>
-                <td style="vertical-align: middle"><i class="fa fa-arrows"></i></td>
+                <td style="vertical-align: middle"><i class="fa fa-arrows-alt"></i></td>
                 <td><img style="width: 100px" src="<?=$asset->getThumbnailImageURL()?>"></td>
                 <td style="width: 100%; vertical-align: middle"><input type="hidden" name="asset[]" value="<?=$asset->getId()?>"> <strong><?=$asset->getName()?></strong></td>
             </tr>
@@ -46,7 +46,7 @@
 <script type="text/javascript">
     $(function() {
         $('table[data-table=reorder-assets] tbody').sortable({
-            handle: 'i.fa-arrows',
+            handle: 'i.fa-arrows-alt',
             cursor: 'move',
             axis: 'y',
             helper: function(e, ui) { // prevent table columns from collapsing

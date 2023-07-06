@@ -203,7 +203,6 @@ class Collections extends PageController
     {
         $express = $this->app->make('express');
         $collection = $express->getEntry($collectionID);
-        $this->requireAsset('jquery/ui');
 
         if ($collection) {
 

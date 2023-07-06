@@ -34,7 +34,7 @@
                     $u = new User();
                     if ($u->isRegistered()) {
                     ?>
-                        <a href="#" class="add-to-lightbox" data-asset="<?= $asset->getId() ?>">Add to Lightbox</a>
+                        <a href="#" data-action="add-to-lightbox" class="add-to-lightbox" data-asset="<?= $asset->getId() ?>">Add to Lightbox</a>
                     <?php } ?>
 
                     <ul>

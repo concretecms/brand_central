@@ -22,7 +22,7 @@ use Concrete5\AssetLibrary\Results\Formatter\Asset;
                                 $u = new User();
                                 if ($u->isRegistered()) {
                                     ?>
-                                    <a href="#" data-tooltip="lightbox" title="<?=t('Add to Lightbox')?>" data-asset="<?= $asset->getId() ?>"><i class="fa fa-plus"></i></a>
+                                    <a href="#" data-action="add-to-lightbox" data-tooltip="lightbox" title="<?=t('Add to Lightbox')?>" data-asset="<?= $asset->getId() ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                                 <a href="<?=$asset->getDownloadURL()?>" data-tooltip="download" title="<?=t('Download')?>"><i class="fa fa-download"></i></a>
                             </span>
@@ -63,7 +63,7 @@ use Concrete5\AssetLibrary\Results\Formatter\Asset;
                         <?php $u = new User(); ?>
 
                         <?php if ($u->isRegistered()) { ?>
-                            <a href="#" class="add-to-lightbox" data-tooltip="lightbox" title="<?php echo h(t('Add to Lightbox')) ?>" data-asset="<?php echo h($asset->getId()) ?>">
+                            <a href="#" data-action="add-to-lightbox" class="add-to-lightbox" data-tooltip="lightbox" title="<?php echo h(t('Add to Lightbox')) ?>" data-asset="<?php echo h($asset->getId()) ?>">
                                 <i class="fa fa-plus"></i>
                             </a>
                         <?php } ?>

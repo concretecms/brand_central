@@ -17,7 +17,7 @@ class BrandCentralView extends DefaultView implements ViewInterface
     public function getArguments()
     {
         return array(
-            'previous_message' => '&lt;',
+            'prev_message' => '&lt;',
             'next_message' => '&gt;',
             'container_template' => '<nav class="pagination">%pages%</nav>',
         );

@@ -2,7 +2,6 @@
 
 namespace Concrete5\AssetLibrary\API\V1\Transformer;
 
-use Concrete\Core\Support\Facade\Facade;
 use League\Fractal\TransformerAbstract;
 use Concrete5\AssetLibrary\Results\Formatter\Asset;
 
@@ -58,21 +57,13 @@ class AssetTransformer extends TransformerAbstract
             $desc = '';
         }
 
-        $app = Facade::getFacadeApplication();
-        $site = $app->make('site')->getSite();
-        $url = $site->getSiteCanonicalURL();
-        if ($url) {
-            $thumbnail = $url . $asset->getThumbnailImageURL();
-        } else {
-            $thumbnail = $asset->getThumbnailImageURL();
-        }
         $assetArr = [
             'id' => $asset->getId(),
             'name' => $asset->getAssetName(),
             'desc' => $desc,
             'location' => $location,
             'type' => $type,
-            'thumbnail' => $thumbnail,
+            'thumbnail' => $asset->getThumbnailImageURL(),
             'thumbnailId' => $thumbnailId,
             'files' => $assetFiles,
         ];

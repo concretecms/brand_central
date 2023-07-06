@@ -26,11 +26,11 @@ use Concrete5\AssetLibrary\Results\Formatter\Lightbox;
                                     <p><strong><?= t2('%d Asset','%d Assets', count((array)$lightbox->getAssets())) ?> </strong></p>
                                     <div class="lightbox-menu">
                                         <div class="btn-group">
-                                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#" class="btn-edit-lightbox" data-lightbox="<?= $lightbox->getId() ?>" data-lightbox-name="<?= $lightbox->getLightboxName() ?>"><i class="fa fa-pencil"></i> Edit</a></li>
-                                                <li><a href="<?=URL::to('/account/lightboxes', 'delete', $lightbox->getId())?>"><i class="fa fa-trash"></i> Delete</a></li>
-                                            </ul>
+                                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                                            <div class="dropdown-menu">
+                                                <a href="#" class="dropdown-item btn-edit-lightbox" data-lightbox="<?= $lightbox->getId() ?>" data-lightbox-name="<?= $lightbox->getLightboxName() ?>"><i class="fa fa-pencil"></i> Edit</a></>
+                                                <a class="dropdown-item" href="<?=URL::to('/account/lightboxes', 'delete', $lightbox->getId())?>"><i class="fa fa-trash"></i> Delete</a></>
+                                            </div>
                                         </div>
                                     </div>
 

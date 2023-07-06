@@ -27,7 +27,7 @@
                                 </a>
                                 <div class="thumbnail-caption">
                                     <h3>
-                                        <span class="pull-right">
+                                        <span class="float-right">
                                         <a href="#" class="btn-remove-asset" data-asset="<?= $asset->getId() ?>" style="color:red; margin-right: 5px;"><i class="fa fa-trash"></i></a>
 
                                     </span>
@@ -52,13 +52,16 @@
             <div class="modal-content">
                 <form enctype="multipart/form-data" action="<?=$view->action('perform_remove_asset', $lightbox->getId())?>" method="post">
                     <?=$token->output('perform_remove_asset')?>
+                    <div class="modal-header">
+                        <h3>Remove Asset</h3>
+                    </div>
                     <div class="modal-body">
-                        <h2>Do you wan't to remove the asset from "<?= $lightbox_name ?>"?</h2>
+                        Do you want to remove the asset from "<?= $lightbox_name ?>"?
                         <input type="hidden" id="modal-asset-id" name="asset" />
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-danger" type="submit">Remove Asset</button>
+                        <button class="btn btn-round" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-round btn-submit" type="submit">Remove</button>
                     </div>
                 </form>
             </div>

@@ -6,7 +6,7 @@ class TagContainer extends Component {
         const tags = this.props.tags.map(tag => 
             <span className="round-tag-span" key={tag.id}>
                 {tag.name}  
-                <span onClick={()=>this.props.removeTag(tag.id,null)} className="remove-tag-btn"> <i className="fa fa-close"></i> </span>
+                <span onClick={()=>this.props.removeTag(tag.id,null)} className="remove-tag-btn"> <i className="fas fa-times"></i> </span>
             </span>)
 
         return (
