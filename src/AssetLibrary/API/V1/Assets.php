@@ -84,7 +84,9 @@ class Assets
                 'id' => $importedFile->getFileID(),
                 'filename' => $importedFile->getFileName(),
                 'url' => $importedFile->getURL(),
-                'desc' => $importedFile->getFileName()
+                'title' => $importedFile->getTitle(),
+                'desc' => $importedFile->getDescription(),
+                'tags' => $importedFile->getTagsList(),
             ];
             return new JsonResponse($result);
         }

@@ -2,7 +2,9 @@
 
 namespace Concrete5\AssetLibrary;
 
+use Concrete\Core\Events\EventDispatcher;
 use Concrete\Core\Express\Controller\Manager as ExpressControllerManager;
+use Concrete\Core\File\Event\FileVersion;
 use Concrete\Core\Foundation\Service\Provider;
 use Concrete\Core\Http\Middleware\OAuthAuthenticationMiddleware;
 use Concrete\Core\Http\Middleware\OAuthErrorMiddleware;
@@ -16,6 +18,9 @@ use Concrete5\AssetLibrary\API\V1\Collections;
 use Concrete5\AssetLibrary\API\V1\Tags;
 use Concrete5\AssetLibrary\API\V1\TagsGenerator;
 use Concrete5\AssetLibrary\Express\Controller\AssetController;
+use Concrete5\AssetLibrary\Metadata\FileMetadata;
+use Concrete5\AssetLibrary\Metadata\Reader\IptcReader;
+use Concrete5\AssetLibrary\Metadata\Reader\XmpReader;
 
 class ServiceProvider extends Provider
 {
@@ -25,6 +30,7 @@ class ServiceProvider extends Provider
         $this->registerAPI();
         $this->registerExpressControllers();
         $this->registerThemePaths();
+        $this->registerFileEvents();
     }
 
     protected function registerExpressControllers()
@@ -91,6 +97,56 @@ class ServiceProvider extends Provider
                 $groupRouter->get('/assets/get_file/{assetFileId}', [Assets::class, 'getAssetFile']);
             });
 
+    }
+
+    private function registerFileEvents()
+    {
+        $this->app->make(EventDispatcher::class)->addListener('on_file_version_add', function (FileVersion $event) {
+            $loaded = null;
+            $version = $event->getFileVersionObject();
+
+            // Try loading XMP data
+            try {
+                $metadata = $this->app->make(XmpReader::class)->read($version->getFileResource()->readStream());
+            } catch (\Throwable $e) {
+                \Log::emergency(
+                    sprintf(
+                        'Failed parsing XMP data for file version: %d v %d: %s',
+                        $version->getFileID(),
+                        $version->getFileVersionID(),
+                        $e
+                    )
+                );
+            }
+
+            if (!$loaded) {
+                // Fall back to trying to load IPTC data
+                try {
+                    $loaded = $this->app->make(IptcReader::class)->read($version->getFileResource()->readStream());
+                } catch (\Throwable $e) {
+                    \Log::emergency(
+                        sprintf(
+                            'Failed parsing IPTC data for file version: %d v %d: %s',
+                            $version->getFileID(),
+                            $version->getFileVersionID(),
+                            $e
+                        )
+                    );
+                }
+            }
+
+            if ($loaded instanceof FileMetadata) {
+                if ($loaded->title) {
+                    $version->updateTitle($loaded->title);
+                }
+                if ($loaded->description) {
+                    $version->updateDescription($loaded->description);
+                }
+                if ($loaded->keywords) {
+                    $version->updateTags(implode("\n", $loaded->keywords));
+                }
+            }
+        });
     }
 
 }

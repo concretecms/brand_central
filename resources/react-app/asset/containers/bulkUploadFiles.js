@@ -51,13 +51,21 @@ class BulkFiles extends Component {
                         const payload = {
                             id:utid,
                             fid: data.id,
-                            name:data.filename,
+                            filename: data.filename,
+                            name: data.title ? data.title : data.filename,
                             img: data.url,
                             type:"photo",
                             isLoading:false,
                             hasErrors:false,
-
+                            tags: data.tags,
+                            title: data.title,
+                            desc: data.desc,
                         }
+
+                        if (payload.desc.trim()) {
+                            this.props.addDescription({id: payload.id, desc: data.desc.trim()});
+                        }
+                        payload.tags.map(t => this.props.addTag({id: payload.id, tid: t, name: t}))
                         this.props.updateAssetLoading(payload)
                         this.props.updateAssetImg(payload)
                     }).catch(error => {
@@ -136,6 +144,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setAsset: (payload) => dispatch(runAction("SET_ASSET_BULK", payload)),
+        addTag: (payload) => dispatch(runAction("SET_ASSET_BULK_TAG", payload)),
+        addDescription: (payload) => dispatch(runAction("UPDATE_ASSET_BULK_DESC", payload)),
         updateAssetLoading: (payload) => dispatch(runAction("UPDATE_ASSET_BULK_IS_LOADING", payload)),
         updateAssetImg: (payload) => dispatch(runAction("UPDATE_ASSET_BULK_IMG", payload)),
         toggleFilesErr: (payload) => dispatch(runAction("SET_FILES_ERROR", payload)),

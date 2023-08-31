@@ -29,6 +29,10 @@ const assetReducer = ( state = InitialState, action) => {
             return Object.assign({}, state, {
                 desc: action.payload
             })
+        case "ADD_ASSET_DESC":
+            return Object.assign({}, state, {
+                desc: state.desc ? state.desc + "\n" + action.payload : action.payload
+            })
         case "SET_ASSET_TYPE":
             return Object.assign({}, state, {
                 type: action.payload
@@ -58,7 +62,7 @@ const assetReducer = ( state = InitialState, action) => {
         case "UPDATE_ASSET_FILE":
             return Object.assign({}, state, {
                 files: state.files.map(file => {
-                    if(file.id !== action.payload.id){
+                    if (file.id !== action.payload.id){
                         return file
                     }
                     return Object.assign({}, file, {
@@ -66,6 +70,8 @@ const assetReducer = ( state = InitialState, action) => {
                         fid: action.payload.fid,
                         img: action.payload.img,
                         desc: action.payload.desc,
+                        title: action.payload.title,
+                        tags: action.payload.tags,
                         errorMsg: action.payload.errorMsg,
                         hasErrors: action.payload.hasErrors
                     })

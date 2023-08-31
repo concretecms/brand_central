@@ -37,11 +37,18 @@ class Files extends Component {
                         fid: data.id,
                         img: data.url,
                         desc: data.desc,
+                        title: data.title,
+                        tags: data.tags,
                         filename: data.filename,
                         isLoading: false,
                         errorMsg: '',
                         hasErrors: false
                     }
+
+                    if (payload.desc.trim()) {
+                        this.props.addDescription(data.desc.trim());
+                    }
+                    payload.tags.map(t => this.props.addTag({id: t, name: t}))
                     this.props.updateFile(payload)
                     this.props.updateFileErr(false)
                 })
@@ -103,7 +110,10 @@ class Files extends Component {
                 <div>
                     <span className={file.isLoading ? 'file-disabled' : 'file-item'}
                           onClick={() => this.openFile(file.id)}>
-                        {file.hasErrors ? <span className="label label-danger">{file.errorMsg}</span> : file.desc}
+                        {file.hasErrors
+                            ? <span className="label label-danger">{file.errorMsg}</span>
+                            : <span alt={file.filename}>{(file.title ? file.title : file.filename)}</span>
+                        }
                     </span>
                     {file.isLoading ? <span className="file-processing-icon file-icon-pull-right"></span> :
                         <span className="file-delete-icon file-icon-pull-right" onClick={() => this.handleFileDeletion(file.id)}></span>}
@@ -175,6 +185,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setFile: (payload) => dispatch(runAction("SET_ASSET_FILES", payload)),
+        addTag: (payload) => dispatch(runAction("SET_ASSET_TAGS", payload)),
+        addDescription: payload => dispatch(runAction('ADD_ASSET_DESC', payload)),
         updateFile: (payload) => dispatch(runAction("UPDATE_ASSET_FILE", payload)),
         removeFile: (payload) => dispatch(runAction("REMOVE_ASSET_FILE", payload)),
         modalVisibility: (payload) => dispatch(runAction("SET_MODAL_VISIBILITY", payload)),
