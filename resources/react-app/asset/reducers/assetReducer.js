@@ -25,6 +25,13 @@ const assetReducer = ( state = InitialState, action) => {
             return Object.assign({}, state, {
                 name: action.payload
             })
+        case "TRY_SET_ASSET_NAME":
+            if (state.name) {
+                return state
+            }
+            return Object.assign({}, state, {
+                name: action.payload
+            })
         case "SET_ASSET_DESC":
             return Object.assign({}, state, {
                 desc: action.payload

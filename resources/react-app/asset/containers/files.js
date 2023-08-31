@@ -45,8 +45,12 @@ class Files extends Component {
                         hasErrors: false
                     }
 
+                    if (payload.title.trim()) {
+                        this.props.addName(payload.title.trim());
+                    }
+
                     if (payload.desc.trim()) {
-                        this.props.addDescription(data.desc.trim());
+                        this.props.addDescription(payload.desc.trim());
                     }
                     payload.tags.map(t => this.props.addTag({id: t, name: t}))
                     this.props.updateFile(payload)
@@ -187,6 +191,7 @@ const mapDispatchToProps = (dispatch) => {
         setFile: (payload) => dispatch(runAction("SET_ASSET_FILES", payload)),
         addTag: (payload) => dispatch(runAction("SET_ASSET_TAGS", payload)),
         addDescription: payload => dispatch(runAction('ADD_ASSET_DESC', payload)),
+        addName: payload => dispatch(runAction('TRY_SET_ASSET_NAME', payload)),
         updateFile: (payload) => dispatch(runAction("UPDATE_ASSET_FILE", payload)),
         removeFile: (payload) => dispatch(runAction("REMOVE_ASSET_FILE", payload)),
         modalVisibility: (payload) => dispatch(runAction("SET_MODAL_VISIBILITY", payload)),
