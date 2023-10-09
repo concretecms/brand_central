@@ -113,7 +113,7 @@ class Collection
 
     public function getCoverImageURL()
     {
-        $asset = $this->assets[0];
+        $asset = $this->assets[0] ?? null;
         if ($asset) {
             $asset = new Asset($asset);
             $image = $asset->getDetailImageURL();
