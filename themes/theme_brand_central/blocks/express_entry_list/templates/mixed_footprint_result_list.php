@@ -13,10 +13,10 @@ foreach($items as $result) {
 $featuredResultEntry1 = null;
 $featuredResultEntry2 = null;
 
-if ($results[0]) {
+if (!empty($results[0])) {
     $featuredResultEntry1 = new Collection($results[0]);
 }
-if ($results[1]) {
+if (!empty($results[1])) {
     $featuredResultEntry2 = new Collection($results[1]);
 }
 
