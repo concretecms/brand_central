@@ -10,6 +10,7 @@ $list = new \Concrete\Core\File\FileList();
 $set = \Concrete\Core\File\Set\Set::getByName('Home Page Background');
 $list->filterBySet($set);
 $files = $list->getResults();
+$bk = null;
 if (count($files)) {
     $r = array_rand($files, 1);
     $bk = $files{$r}->getRelativePath();
