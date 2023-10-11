@@ -130,7 +130,7 @@ class Search extends PageController
         $this->set('sortBy', $sort);
         $this->set('qkeywords', $qKeywords);
         $this->set('items_per_page', $itemsPerPage);
-        $this->set('collectionResults', $collectionResults);
+        $this->set('collectionResults', $collectionResults ?? []);
         $this->set('showCollectionResults', $showCollectionResults);
         $this->set('lightboxApp', true);
         $this->setThemeViewTemplate('view_full.php');
