@@ -4,7 +4,7 @@
     use Concrete5\AssetLibrary\Results\Formatter\Lightbox;
 
 
-    if ($lightbox ?? null) {
+    if (!empty($lightbox)) {
 ?>
 
     <div class="row">

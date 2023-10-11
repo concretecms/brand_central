@@ -41,6 +41,7 @@ class AssetTransformer extends TransformerAbstract
             }
         }
         $assetImage = $asset->getAssetThumbnail();
+        $thumbnailId = null;
         if ($assetImage) {
             $thumbnail = $assetImage->getURL();
             $thumbnailId = $assetImage->getFileID();

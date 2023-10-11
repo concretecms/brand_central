@@ -317,7 +317,6 @@ class Assets
     {
 
         list($errors, $data) = $this->parseRequest();
-
         $entity = $this->objectManager->getObjectByHandle('asset');
         $permissions = new \Permissions($entity);
         if (!$permissions->canAddExpressEntries()) {
@@ -329,9 +328,8 @@ class Assets
         } else {
 
             // Set basic attributes
-
             $asset = $this->objectManager->buildEntry('asset')->save();
-            $folder = $this->createAssetFolder($asset, $asset->asset->name);
+            $folder = $this->createAssetFolder($asset, $data->asset->name);
 
             $asset->setAssetFolderId($folder->getTreeNodeID());
 
@@ -390,7 +388,7 @@ class Assets
                 $this->saveEntry($assetObj, $folder, (object)$assetData);
             }
 
-            return new JsonResponse(['collection' => $data->collections{0}->id]);
+            return new JsonResponse(['collection' => $data->collections[0]->id]);
         }
     }
 
