@@ -218,7 +218,7 @@ class Assets
     protected function saveEntry($asset, $folder, $data)
     {
         $thumbnail = null;
-        if ($data->asset->thumbnailId) {
+        if ($data->asset->thumbnailId ?? null) {
             $thumbnail = File::getByID($data->asset->thumbnailId);
             $sourceNode = $thumbnail->getFileNodeObject();
             if ($folder) {
@@ -226,11 +226,11 @@ class Assets
             }
         }
 
-        $asset->setAssetName($data->asset->name);
-        $asset->setAssetType($data->asset->type);
-        $asset->setAssetDescription($data->asset->desc);
-        $asset->setAssetLocation($data->asset->location);
-        $asset->setAssetThumbnail($thumbnail);
+        $asset->setAssetName($data->asset->name ?? null);
+        $asset->setAssetType($data->asset->type ?? null);
+        $asset->setAssetDescription($data->asset->desc ?? null);
+        $asset->setAssetLocation($data->asset->location ?? null);
+        $asset->setAssetThumbnail($thumbnail ?? null);
         $asset->save();
 
         $fileEntries = [];
@@ -244,7 +244,7 @@ class Assets
                     }
                     $assetFile = $this->objectManager->buildEntry('asset_file')
                         ->setAssetFile($f)
-                        ->setAssetFileDescription($file->desc ? $file->desc : $f->getFilename())
+                        ->setAssetFileDescription(($file->desc ?? null) ? $file->desc : $f->getFilename())
                         ->save();
                     $fileEntries[] = $assetFile;
                 }
