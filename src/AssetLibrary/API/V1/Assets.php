@@ -121,7 +121,7 @@ class Assets
         } else {
             $folder = FileFolder::getByID($asset->getAssetFolderId());
             $this->saveEntry($asset, $folder, $data);
-            $this->session->getFlashBag()->add('page_message', ['success' => t('Asset updated successfully.')]);
+            $this->session->getFlashBag()->add('page_message', ['success', t('Asset updated successfully.')]);
             return $this->read($asset->getId());
 
         }
@@ -338,7 +338,7 @@ class Assets
             $this->saveEntry($asset, $folder, $data);
 
             // Return the asset
-            $this->session->getFlashBag()->add('page_message', ['success' => t('Asset created successfully.')]);
+            $this->session->getFlashBag()->add('page_message', ['success', t('Asset created successfully.')]);
             return $this->read($asset->getId());
 
         }
