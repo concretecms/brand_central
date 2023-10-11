@@ -132,7 +132,7 @@ class Asset
                 }
             }
         }
-        return $this->thumbnailImage;
+        return $this->thumbnailImage ?? null;
     }
 
     public function __call($name, $arguments)
