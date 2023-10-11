@@ -9,5 +9,19 @@
     "concrete5/core": "dev-develop",
     "google/cloud-vision": "^0.15.4",
     "ext-zip": "*"
+  },
+  "require-dev": {
+    "pestphp/pest": "2.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Concrete5\\BrandCentral\\": "src/BrandCentral",
+      "Concrete5\\AssetLibrary\\": "src/AssetLibrary"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   }
 }
