@@ -48,7 +48,7 @@ class Collections extends PageController
             }
         }
 
-        if ($collection) {
+        if (isset($collection) && $collection) {
             $validator->validate($form, $collection);
         } else {
             $validator->validate($form);
