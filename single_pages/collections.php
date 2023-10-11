@@ -4,7 +4,7 @@ use Concrete\Core\Support\Facade\Url;
 use Concrete\Core\User\User;
 use Concrete5\AssetLibrary\Results\Formatter\Asset;
 
-if ($collection) {
+if (!empty($collection)) {
 ?>
     <div class="container collection-container clearfix">
         <div class="row">

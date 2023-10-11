@@ -39,7 +39,7 @@ class Assets extends PageController
         if (isset($collectionID)) {
             return $collectionObj = Express::getEntry($collectionID);
         } else {
-            return $collectionObj = $asset->getCollections()[0];
+            return $collectionObj = ($asset->getCollections()) ? $asset->getCollections()[0] : null;
         }
     }
 

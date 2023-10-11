@@ -49,11 +49,11 @@ class Collections extends PageController
         }
 
         if ($collection) {
-            $validator->validate($form, ProcessorInterface::REQUEST_TYPE_UPDATE);
+            $validator->validate($form, $collection);
         } else {
-            $validator->validate($form, ProcessorInterface::REQUEST_TYPE_ADD);
+            $validator->validate($form);
         }
-
+        
         $this->error = $validator->getErrorList();
 
         if (!$this->error->has()) {
