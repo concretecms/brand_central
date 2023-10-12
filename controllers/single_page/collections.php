@@ -238,7 +238,7 @@ class Collections extends PageController
             if (!$this->error->has()) {
                 $association = $collection->getAssociation('assets');
                 $displayOrder = 0;
-                foreach ($this->request->request->get('asset') as $assetId) {
+                foreach ((array) $this->request->request->get('asset', []) as $assetId) {
                     $asset = $express->getEntry($assetId);
                     if ($asset && $asset->getEntity()->getHandle() == 'asset') {
                         $associationAsset = $association->getAssociationEntry($asset);
