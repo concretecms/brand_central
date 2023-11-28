@@ -9,6 +9,9 @@ $url = Concrete\Core\Support\Facade\Url::to('/collections');
 $defaultQuery = array_filter([
     'ipp' => isset($items_per_page) ? (int) $items_per_page : null
 ]);
+
+$items_per_page ??= 12;
+
 $searchUrl = function($data = []) use ($url, $defaultQuery) {
     $query = $url->getQuery();
     $query->set($data + $defaultQuery);
@@ -63,4 +66,3 @@ if (isset($pagination) && $pagination->getTotalPages() > 1) { ?>
     </div>
 
 <?php } ?>
-
