@@ -69,7 +69,7 @@ class TagsGenerator
             ];
 
             $approvedVersion = $img->getApprovedVersion();
-
+            $i = 0;
             if ($approvedVersion instanceof Version) {
                 foreach (explode("\n", $approvedVersion->getTags()) as $tag) {
                     if (strlen(trim($tag)) > 0) {
