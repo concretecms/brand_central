@@ -6,7 +6,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^7.3 || ^8",
-    "concrete5/core": "dev-develop",
+    "concrete5/core": "^9.2",
     "google/cloud-vision": "^0.15.4",
     "ext-zip": "*"
   },
