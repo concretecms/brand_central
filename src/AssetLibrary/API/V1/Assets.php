@@ -2,6 +2,10 @@
 
 namespace Concrete5\AssetLibrary\API\V1;
 
+use Concrete5\AssetLibrary\API\V1\Transformer\AssetFileTransformer;
+use Concrete5\AssetLibrary\API\V1\Transformer\AssetTransformer;
+use Concrete5\AssetLibrary\Results\Formatter\Asset;
+use Concrete5\AssetLibrary\Results\Formatter\AssetFile;
 use Concrete\Core\Entity\Attribute\Value\Value\SelectValueOption;
 use Concrete\Core\Entity\Express\Entity;
 use Concrete\Core\Entity\File\Version;
@@ -11,20 +15,16 @@ use Concrete\Core\Express\ObjectManager;
 use Concrete\Core\File\File;
 use Concrete\Core\File\Filesystem;
 use Concrete\Core\File\Importer;
+use Concrete\Core\Http\Request;
 use Concrete\Core\Legacy\FilePermissions;
 use Concrete\Core\Search\Pagination\PaginationFactory;
 use Concrete\Core\Tree\Node\Type\FileFolder;
 use Concrete\Core\Utility\Service\Validation\Numbers;
-use Concrete5\AssetLibrary\API\V1\Transformer\AssetFileTransformer;
-use Concrete5\AssetLibrary\Results\Formatter\AssetFile;
+use Express;
 use League\Fractal\Resource\Item;
-use Concrete5\AssetLibrary\API\V1\Transformer\AssetTransformer;
-use Concrete5\AssetLibrary\Results\Formatter\Asset;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Express;
 
 class Assets
 {
