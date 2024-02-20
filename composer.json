@@ -6,12 +6,13 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^7.3 || ^8",
-    "concrete5/core": "^9.2",
     "google/cloud-vision": "^0.15.4",
+    "ramsey/uuid": "^3.9",
     "ext-zip": "*"
   },
   "require-dev": {
-    "pestphp/pest": "2.x-dev"
+    "concrete5/core": "^9.2",
+    "pestphp/pest": "^1"
   },
   "autoload": {
     "psr-4": {

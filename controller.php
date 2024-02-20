@@ -57,6 +57,10 @@ class Controller extends Package implements ProviderAggregateInterface
 
     public function on_start()
     {
+        if (file_exists($this->getPackagePath() . "/vendor")) {
+            require_once $this->getPackagePath() . "/vendor/autoload.php";
+        }
+
         $list = $this->app->make(ProviderList::class);
         $list->registerProvider(ServiceProvider::class);
 
