@@ -11,11 +11,11 @@ class CollectionDownloadRepository extends EntityRepository
      * Count the amount of downloads of an collection
      *
      * @param int $collectionId
-     * @param int $userId
+     * @param int|null $userId
      *
      * @return int >=0
      */
-    public function countDownloads(int $collectionId, int $userId = null): int
+    public function countDownloads(int $collectionId, ?int $userId = null): int
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('count(downloadId)')->where($qb->expr()->eq('collectionId', ':collectionId'));

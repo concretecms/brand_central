@@ -222,7 +222,7 @@ class Search extends PageController
             'the',
             'www'
         );
-        $string = preg_replace('/[\pP]/', '', trim(preg_replace('/\s\s+/i', '', mb_strtolower(utf8_encode($string)))));
+        $string = preg_replace('/[\pP]/', '', trim(preg_replace('/\s\s+/i', '', mb_strtolower((string) $string))));
         $matchWords = array_filter(explode(' ', $string), function ($item) use ($stopwords) {
             return !($item == '' || in_array($item, $stopwords) || mb_strlen($item) < 2 || is_numeric($item));
         });
